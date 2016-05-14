@@ -238,6 +238,10 @@
 <p><a id='DifferentialEquations.fem_solveheat' href='#DifferentialEquations.fem_solveheat'>#</a>
 <strong><code>DifferentialEquations.fem_solveheat</code></strong> &mdash; <em>Function</em>.</p>
 <p>fem_solveheat</p>
+<p><code>fem_solveheat(femMesh::FEMmesh,u0::AbstractArray,gD::Function,f::Function,isLinear::Bool)</code></p>
+<p><code>fem_solveheat(femMesh::FEMmesh,u0::Function,gD::Function,f::Function,isLinear::Bool)</code></p>
+<p><code>fem_solveheat(femMesh::FEMmesh,pdeProb::HeatProblem)</code></p>
+<p>Takes in a definition for the heat equation <code>u_t = Δu + f</code> on a finite element mesh with initial condtion u0 and returns the solution.</p>
               
             </div>
           </div>

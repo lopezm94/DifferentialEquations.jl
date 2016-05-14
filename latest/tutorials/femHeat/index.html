@@ -228,7 +228,7 @@
               
                 <p><a id='Heat-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="heat-equation-finite-element-method-example">Heat Equation Finite Element Method Example</h1>
-<p>In this example we will solve the heat equation u_t=Δu+f. To do this, we define a HeatProblem which contains the function <code>f</code> and the boundary conditions. We specify one as follows:</p>
+<p>In this example we will solve the heat equation <code>u_t=Δu+f</code>. To do this, we define a HeatProblem which contains the function <code>f</code> and the boundary conditions. We specify one as follows:</p>
 <pre class="codehilite"><code class="language-julia">&quot;Example problem which starts with 0 and solves with f(u)=1-.1u&quot;
 function heatProblemExample_birthdeath()
   gD(x,t) = zeros(size(x,1))

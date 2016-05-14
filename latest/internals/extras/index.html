@@ -234,6 +234,19 @@
 <p><a id='DifferentialEquations.CG2' href='#DifferentialEquations.CG2'>#</a>
 <strong><code>DifferentialEquations.CG2</code></strong> &mdash; <em>Function</em>.</p>
 <p>CG2(u,A,b;tol=1e-6)</p>
+<p><a id='DifferentialEquations.@conditionalProgress' href='#DifferentialEquations.@conditionalProgress'>#</a>
+<strong><code>DifferentialEquations.@conditionalProgress</code></strong> &mdash; <em>Macro</em>.</p>
+<pre class="codehilite"><code class="language-julia">#This one won't add @progress
+@conditionalProgress for i=1:1000 print(i) end
+
+# This will
+@conditionalProgress for i=1:1000 print(i) end</code></pre>
+
+
+<p><a id='DifferentialEquations.checkIfLoaded' href='#DifferentialEquations.checkIfLoaded'>#</a>
+<strong><code>DifferentialEquations.checkIfLoaded</code></strong> &mdash; <em>Function</em>.</p>
+<p>checkIfLoaded(pkg::AbstractString)</p>
+<p>Returns true if module "pkg" is defined in Main, otherwise false.</p>
               
             </div>
           </div>
