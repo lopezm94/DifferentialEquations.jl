@@ -240,18 +240,19 @@
 <p><a id='Using-the-Package-1'></a></p>
 <h2 id="using-the-package">Using the Package</h2>
 <p>To install the package, use the following command inside the Julia REPL:</p>
-<pre class="codehilite"><code class="language-julia">Pkg.clone(&quot;https://github.com/ChrisRackauckas/DifferentialEquations.jl&quot;)</code></pre>
+<pre class="codehilite"><code class="language-julia">Pkg.add(&quot;DifferentialEquations&quot;)</code></pre>
 
 
-<p>To load the package, use the command</p>
+<p>For all of the latest features, switch to the master branch via:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.checkout(&quot;DifferentialEquations&quot;)</code></pre>
+
+
+<p>To load the package, use the command:</p>
 <pre class="codehilite"><code class="language-julia">using DifferentialEquations</code></pre>
 
 
-<p>To understand the package in more detail, check out the following tutorials. Example codes for the latest features can be found in <a href="./test/">test/</a>. Note that for many of the examples in the test folder, you may wish to run them at lower Δx or Δt. These values were taken to be large in order make unit tests run faster! Due to the fast development speed of the package, it is recommended you checkout the main branch:</p>
-<pre class="codehilite"><code>Pkg.checkout(&quot;DifferentialEquations&quot;)</code></pre>
-
-
-<p>This will keep your local repository up to date with the latest changes.</p>
+<p>To understand the package in more detail, check out the following tutorials. Example codes for the latest features can be found in <a href="./test/">test/</a>. Note that for many of the examples in the test folder, you may wish to run them at lower Δx or Δt. These values were taken to be large in order make unit tests run faster!</p>
+<p>For the most up to date on using the package information, please contact me <a href="https://gitter.im/ChrisRackauckas/DifferentialEquations.jl">via the repository Gitter</a> or <a href="http://chrisrackauckas.github.io/DifferentialEquations.jl/latest/">read the latest documentation</a></p>
 <p><a id='Tutorials-1'></a></p>
 <h2 id="tutorials">Tutorials</h2>
 <p>The following tutorials will introduce you to the functionality of DifferentialEquations.jl</p>
@@ -422,5 +423,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-05-14 21:34:53.856624
+Build Date UTC : 2016-05-14 22:44:29.281144
 -->
