@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Julia package for solving differential equations">
+  <meta name="author" content="Chris Rackauckas">
+  
+  <title>DifferentialEquations.jl</title>
+  
+
+  <link rel="shortcut icon" href="./img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="./css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="./css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="./css/highlight.css">
+  <link href="./assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "None";
+    var mkdocs_page_input_path = "index.md";
+    var mkdocs_page_url = "/";
+  </script>
+  
+  <script src="./js/jquery-2.1.1.min.js"></script>
+  <script src="./js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="./js/highlight.pack.js"></script>
+  <script src="./js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="./assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="." class="icon icon-home"> DifferentialEquations.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href=".">Introduction</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#differentialequationsjl-documentation">DifferentialEquations.jl Documentation</a></li>
+                
+                    <li><a class="toctree-l4" href="#using-the-package">Using the Package</a></li>
+                
+                    <li><a class="toctree-l4" href="#tutorials">Tutorials</a></li>
+                
+                    <li><a class="toctree-l4" href="#manual">Manual</a></li>
+                
+                    <li><a class="toctree-l4" href="#internal-documentation">Internal Documentation</a></li>
+                
+                    <li><a class="toctree-l4" href="#index">Index</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/overview/">Overview of DifferentialEquations.jl Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/commonTerms/">Common Terms</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/problem/">Defining a Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/mesh/">Mesh Generation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/solvers/">Information on Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/solution/">The Solution Type</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/convergence/">Convergence Simuations</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Internal Documentation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="internals/femTools/">Internal Finite Element Tools</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href=".">DifferentialEquations.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Introduction</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='DifferentialEquations.jl-Documentation-1'></a></p>
+<h1 id="differentialequationsjl-documentation">DifferentialEquations.jl Documentation</h1>
+<p>This is a package for solving numerically solving differential equations in Julia by Chris Rackauckas. The purpose of this package is to supply efficient Julia implementations of solvers for various differential equations. Equations within the realm of this package include stochastic ordinary differential equations (SODEs or SDEs), stochastic partial differential equations (SPDEs), partial differential equations (with both finite difference and finite element methods), and differential delay equations. For ordinary differential equation solvers, see <a href="https://github.com/JuliaLang/ODE.jl">ODE.jl</a></p>
+<p>This package is for efficient and parallel implementations of research-level algorithms, many of which are quite recent. These algorithms aim to be optimized for HPC applications, including the use of GPUs, Xeon Phis, and multi-node parallelism. With the easy to use plot/convergence testing algorithms, this package also provides a good sandbox for developing novel numerical schemes.</p>
+<p>If at any time you run into documentation that is incomplete/confusing, please contact me via the Gitter channel and I will clear it up!</p>
+<p><a id='Using-the-Package-1'></a></p>
+<h2 id="using-the-package">Using the Package</h2>
+<p>To install the package, use the following command inside the Julia REPL:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.add(&quot;DifferentialEquations&quot;)</code></pre>
+
+
+<p>For all of the latest features, switch to the master branch via:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.checkout(&quot;DifferentialEquations&quot;)</code></pre>
+
+
+<p>To load the package, use the command:</p>
+<pre class="codehilite"><code class="language-julia">using DifferentialEquations</code></pre>
+
+
+<p>To understand the package in more detail, check out the following tutorials. Example codes for the latest features can be found in <a href="./test/">test/</a>. Note that for many of the examples in the test folder, you may wish to run them at lower Δx or Δt. These values were taken to be large in order make unit tests run faster!</p>
+<p>For the most up to date on using the package information, please contact me <a href="https://gitter.im/ChrisRackauckas/DifferentialEquations.jl">via the repository Gitter</a> or <a href="http://chrisrackauckas.github.io/DifferentialEquations.jl/latest/">read the latest documentation</a></p>
+<p><a id='Tutorials-1'></a></p>
+<h2 id="tutorials">Tutorials</h2>
+<p>The following tutorials will introduce you to the functionality of DifferentialEquations.jl</p>
+<ul>
+<li><a href="tutorials/femPoisson/#Poisson-Equation-Finite-Element-Method-Example-1">Poisson Equation Finite Element Method Example</a></li>
+<li><a href="tutorials/femHeat/#Heat-Equation-Finite-Element-Method-Example-1">Heat Equation Finite Element Method Example</a></li>
+<li><a href="tutorials/femStochastic/#Stochastic-Finite-Element-Examples-1">Stochastic Finite Element Examples</a><ul>
+<li><a href="tutorials/femStochastic/#Finite-Element-Stochastic-Poisson-Equation-1">Finite Element Stochastic Poisson Equation</a></li>
+<li><a href="tutorials/femStochastic/#Finite-Element-Stochastic-Heat-Equation-1">Finite Element Stochastic Heat Equation</a></li>
+</ul>
+</li>
+</ul>
+<p><a id='Manual-1'></a></p>
+<h2 id="manual">Manual</h2>
+<ul>
+<li><a href="man/overview/#Overview-of-DifferentialEquations.jl-Usage-1">Overview of DifferentialEquations.jl Usage</a></li>
+<li><a href="man/commonTerms/#Common-Terms-1">Common Terms</a></li>
+<li><a href="man/problem/#Defining-a-Problem-1">Defining a Problem</a><ul>
+<li><a href="man/problem/#Poisson-Equation-Problem-1">Poisson Equation Problem</a></li>
+<li><a href="man/problem/#Heat-Equation-Problem-1">Heat Equation Problem</a></li>
+<li><a href="man/problem/#Example-Problems-1">Example Problems</a></li>
+<li><a href="man/problem/#Related-Functions-1">Related Functions</a></li>
+</ul>
+</li>
+<li><a href="man/mesh/#Mesh-Generation-1">Mesh Generation</a><ul>
+<li><a href="man/mesh/#Mesh-Specification-1">Mesh Specification</a></li>
+<li><a href="man/mesh/#Mesh-Type-1">Mesh Type</a></li>
+<li><a href="man/mesh/#Mesh-Generation-Functions-1">Mesh Generation Functions</a></li>
+</ul>
+</li>
+<li><a href="man/solvers/#Information-on-Solvers-1">Information on Solvers</a><ul>
+<li><a href="man/solvers/#Finite-Element-Method-Solvers-1">Finite Element Method Solvers</a></li>
+</ul>
+</li>
+<li><a href="man/solution/#The-Solution-Type-1">The Solution Type</a><ul>
+<li><a href="man/solution/#Related-Functions-1">Related Functions</a></li>
+</ul>
+</li>
+<li><a href="man/plot/#Plot-Functions-1">Plot Functions</a><ul>
+<li><a href="man/plot/#Related-Functions-1">Related Functions</a></li>
+</ul>
+</li>
+<li><a href="man/convergence/#Convergence-Simulations-1">Convergence Simulations</a><ul>
+<li><a href="man/convergence/#The-ConvergenceSimulation-Type-1">The ConvergenceSimulation Type</a></li>
+<li><a href="man/convergence/#Related-Functions-1">Related Functions</a></li>
+<li><a href="man/convergence/#Plot-Functions-1">Plot Functions</a></li>
+</ul>
+</li>
+</ul>
+<p><a id='Internal-Documentation-1'></a></p>
+<h2 id="internal-documentation">Internal Documentation</h2>
+<ul>
+<li><a href="internals/femTools/#Internal-Finite-Element-Tools-1">Internal Finite Element Tools</a><ul>
+<li><a href="internals/femTools/#General-1">General</a></li>
+<li><a href="internals/femTools/#Mesh-Tools-1">Mesh Tools</a></li>
+<li><a href="internals/femTools/#Solver-Tools-1">Solver Tools</a></li>
+<li><a href="internals/femTools/#Error-Tools-1">Error Tools</a></li>
+</ul>
+</li>
+<li><a href="internals/extras/#Extra-Functions-1">Extra Functions</a></li>
+</ul>
+<p><a id='Index-1'></a></p>
+<h2 id="index">Index</h2>
+<ul>
+<li><a href="internals/extras/#DifferentialEquations.CG2"><code>DifferentialEquations.CG2</code></a></li>
+<li><a href="internals/extras/#DifferentialEquations.checkIfLoaded"><code>DifferentialEquations.checkIfLoaded</code></a></li>
+<li><a href="internals/extras/#DifferentialEquations.modulechildren"><code>DifferentialEquations.modulechildren</code></a></li>
+<li><a href="internals/extras/#DifferentialEquations.quadfbasis2"><code>DifferentialEquations.quadfbasis2</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations"><code>DifferentialEquations</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.CFLμ"><code>DifferentialEquations.CFLμ</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.CFLν"><code>DifferentialEquations.CFLν</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.accumarray"><code>DifferentialEquations.accumarray</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.assemblematrix"><code>DifferentialEquations.assemblematrix</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.getH1error"><code>DifferentialEquations.getH1error</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.getL2error"><code>DifferentialEquations.getL2error</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.gradbasis"><code>DifferentialEquations.gradbasis</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.gradu"><code>DifferentialEquations.gradu</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.meshgrid"><code>DifferentialEquations.meshgrid</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.quadfbasis"><code>DifferentialEquations.quadfbasis</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.quadpts"><code>DifferentialEquations.quadpts</code></a></li>
+<li><a href="man/convergence/#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}"><code>Base.length</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.ConvergenceSimulation"><code>DifferentialEquations.ConvergenceSimulation</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.conv_ests"><code>DifferentialEquations.conv_ests</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_fullΔt"><code>DifferentialEquations.convplot_fullΔt</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_fullΔx"><code>DifferentialEquations.convplot_fullΔx</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_h1vsΔt"><code>DifferentialEquations.convplot_h1vsΔt</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_h1vsΔx"><code>DifferentialEquations.convplot_h1vsΔx</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_l2vsΔt"><code>DifferentialEquations.convplot_l2vsΔt</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_l2vsΔx"><code>DifferentialEquations.convplot_l2vsΔx</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_maxvsΔt"><code>DifferentialEquations.convplot_maxvsΔt</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_maxvsΔx"><code>DifferentialEquations.convplot_maxvsΔx</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_node2vsΔt"><code>DifferentialEquations.convplot_node2vsΔt</code></a></li>
+<li><a href="man/convergence/#DifferentialEquations.convplot_node2vsΔx"><code>DifferentialEquations.convplot_node2vsΔx</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.FEMmesh"><code>DifferentialEquations.FEMmesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.SimpleMesh"><code>DifferentialEquations.SimpleMesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.fem_squaremesh"><code>DifferentialEquations.fem_squaremesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.findboundary"><code>DifferentialEquations.findboundary</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.notime_squaremesh"><code>DifferentialEquations.notime_squaremesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.parabolic_squaremesh"><code>DifferentialEquations.parabolic_squaremesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.setboundary"><code>DifferentialEquations.setboundary</code></a></li>
+<li><a href="man/plot/#DifferentialEquations.convplot"><code>DifferentialEquations.convplot</code></a></li>
+<li><a href="man/plot/#DifferentialEquations.showmesh"><code>DifferentialEquations.showmesh</code></a></li>
+<li><a href="man/plot/#DifferentialEquations.solplot"><code>DifferentialEquations.solplot</code></a></li>
+<li><a href="man/plot/#DifferentialEquations.solplot_animation"><code>DifferentialEquations.solplot_animation</code></a></li>
+<li><a href="man/plot/#DifferentialEquations.solplot_appx"><code>DifferentialEquations.solplot_appx</code></a></li>
+<li><a href="man/plot/#DifferentialEquations.solplot_appxvstrue"><code>DifferentialEquations.solplot_appxvstrue</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.HeatProblem"><code>DifferentialEquations.HeatProblem</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.PdeProblem"><code>DifferentialEquations.PdeProblem</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.PoissonProblem"><code>DifferentialEquations.PoissonProblem</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.heatProblemExample_birthdeath"><code>DifferentialEquations.heatProblemExample_birthdeath</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.heatProblemExample_diffuse"><code>DifferentialEquations.heatProblemExample_diffuse</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.heatProblemExample_moving"><code>DifferentialEquations.heatProblemExample_moving</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.heatProblemExample_pure"><code>DifferentialEquations.heatProblemExample_pure</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.heatProblemExample_stochasticbirthdeath"><code>DifferentialEquations.heatProblemExample_stochasticbirthdeath</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.poissonProblemExample_birthdeath"><code>DifferentialEquations.poissonProblemExample_birthdeath</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.poissonProblemExample_noisyWave"><code>DifferentialEquations.poissonProblemExample_noisyWave</code></a></li>
+<li><a href="man/problem/#DifferentialEquations.poissonProblemExample_wave"><code>DifferentialEquations.poissonProblemExample_wave</code></a></li>
+<li><a href="man/solution/#DifferentialEquations.FEMSolution"><code>DifferentialEquations.FEMSolution</code></a></li>
+<li><a href="man/solution/#DifferentialEquations.PdeSolution"><code>DifferentialEquations.PdeSolution</code></a></li>
+<li><a href="man/solution/#DifferentialEquations.appxTrue!"><code>DifferentialEquations.appxTrue!</code></a></li>
+<li><a href="man/solvers/#DifferentialEquations.fem_solveheat"><code>DifferentialEquations.fem_solveheat</code></a></li>
+<li><a href="man/solvers/#DifferentialEquations.fem_solvepoisson"><code>DifferentialEquations.fem_solvepoisson</code></a></li>
+</ul>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorials/femPoisson/" class="btn btn-neutral float-right" title="Poisson Equation Finite Element Method Example">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+      
+        <span style="margin-left: 15px"><a href="tutorials/femPoisson/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 0.15.3
+Build Date UTC : 2016-05-14 23:00:15.740865
+-->

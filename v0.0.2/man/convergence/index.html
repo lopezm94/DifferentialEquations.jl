@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Chris Rackauckas">
+  
+  <title>Convergence Simuations - DifferentialEquations.jl</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Convergence Simuations";
+    var mkdocs_page_input_path = "man/convergence.md";
+    var mkdocs_page_url = "/man/convergence/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> DifferentialEquations.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../overview/">Overview of DifferentialEquations.jl Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../commonTerms/">Common Terms</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../problem/">Defining a Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../mesh/">Mesh Generation</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../solvers/">Information on Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../solution/">The Solution Type</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Convergence Simuations</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#convergence-simulations">Convergence Simulations</a></li>
+                
+                    <li><a class="toctree-l4" href="#the-convergencesimulation-type">The ConvergenceSimulation Type</a></li>
+                
+                    <li><a class="toctree-l4" href="#related-functions">Related Functions</a></li>
+                
+                    <li><a class="toctree-l4" href="#plot-functions">Plot Functions</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Internal Documentation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">DifferentialEquations.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Manual &raquo;</li>
+        
+      
+    
+    <li>Convergence Simuations</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Convergence-Simulations-1'></a></p>
+<h1 id="convergence-simulations">Convergence Simulations</h1>
+<p>The convergence simulation</p>
+<p><a id='The-ConvergenceSimulation-Type-1'></a></p>
+<h2 id="the-convergencesimulation-type">The ConvergenceSimulation Type</h2>
+<p><a id='DifferentialEquations.ConvergenceSimulation' href='#DifferentialEquations.ConvergenceSimulation'>#</a>
+<strong><code>DifferentialEquations.ConvergenceSimulation</code></strong> &mdash; <em>Type</em>.</p>
+<p>ConvergenceSimulation</p>
+<p>A type which holds the data from a convergence simulation.</p>
+<p><a id='Related-Functions-1'></a></p>
+<h2 id="related-functions">Related Functions</h2>
+<p><a id='Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}' href='#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}'>#</a>
+<strong><code>Base.length</code></strong> &mdash; <em>Method</em>.</p>
+<p>length(simres::ConvergenceSimulation)</p>
+<p>Returns the number of simultations in the Convergence Simulation</p>
+<p><a id='DifferentialEquations.conv_ests' href='#DifferentialEquations.conv_ests'>#</a>
+<strong><code>DifferentialEquations.conv_ests</code></strong> &mdash; <em>Function</em>.</p>
+<p>conv_ests(error::Vector{Number})</p>
+<p>Computes the pairwise convergence estimate for a convergence test done by halving/doubling stepsizes via</p>
+<p>log2(error[i+1]/error[i])</p>
+<p>Returns the mean of the convergence estimates</p>
+<p><a id='Plot-Functions-1'></a></p>
+<h2 id="plot-functions">Plot Functions</h2>
+<p><a id='DifferentialEquations.convplot_fullΔt' href='#DifferentialEquations.convplot_fullΔt'>#</a>
+<strong><code>DifferentialEquations.convplot_fullΔt</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_fullΔt(simres::ConvergenceSimulation;titleStr="All Convergences",savefile="")</p>
+<p><a id='DifferentialEquations.convplot_fullΔx' href='#DifferentialEquations.convplot_fullΔx'>#</a>
+<strong><code>DifferentialEquations.convplot_fullΔx</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_fullΔx(simres::ConvergenceSimulation;titleStr="All Convergences",savefile="")</p>
+<p><a id='DifferentialEquations.convplot_node2vsΔt' href='#DifferentialEquations.convplot_node2vsΔt'>#</a>
+<strong><code>DifferentialEquations.convplot_node2vsΔt</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_node2vsΔt(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_maxvsΔx' href='#DifferentialEquations.convplot_maxvsΔx'>#</a>
+<strong><code>DifferentialEquations.convplot_maxvsΔx</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_maxvsΔx(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_l2vsΔt' href='#DifferentialEquations.convplot_l2vsΔt'>#</a>
+<strong><code>DifferentialEquations.convplot_l2vsΔt</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_l2vsΔt(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_h1vsΔt' href='#DifferentialEquations.convplot_h1vsΔt'>#</a>
+<strong><code>DifferentialEquations.convplot_h1vsΔt</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_h1vsΔt(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_l2vsΔx' href='#DifferentialEquations.convplot_l2vsΔx'>#</a>
+<strong><code>DifferentialEquations.convplot_l2vsΔx</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_l2vsΔx(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_h1vsΔx' href='#DifferentialEquations.convplot_h1vsΔx'>#</a>
+<strong><code>DifferentialEquations.convplot_h1vsΔx</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_h1vsΔx(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_node2vsΔx' href='#DifferentialEquations.convplot_node2vsΔx'>#</a>
+<strong><code>DifferentialEquations.convplot_node2vsΔx</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_node2vsΔx(simres::ConvergenceSimulation)</p>
+<p><a id='DifferentialEquations.convplot_maxvsΔt' href='#DifferentialEquations.convplot_maxvsΔt'>#</a>
+<strong><code>DifferentialEquations.convplot_maxvsΔt</code></strong> &mdash; <em>Function</em>.</p>
+<p>convplot_maxvsΔt(simres::ConvergenceSimulation)</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../internals/femTools/" class="btn btn-neutral float-right" title="Internal Finite Element Tools">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../plot/" class="btn btn-neutral" title="Plot Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../plot/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../internals/femTools/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
