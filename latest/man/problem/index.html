@@ -246,7 +246,7 @@
 <p><code>$ (generic function with 34 methods) Δu = f(x,t) $ (generic function with 34 methods)</code></p>
 <h3 id="constructors">Constructors</h3>
 <p>PoissonProblem(f,sol,Du,gN,isLinear): Defines the Dirichlet problem with solution sol, solution gradient Du = [u_x,u_y], f, and Neumann boundary data gN,</p>
-<p>PoissonProblem(u0,f,gD,gN,isLinear): Defines the problem with initial value u0 (as a function or vector), f, Dirichlet boundary function gD, and Neumann boundary function gN.</p>
+<p>PoissonProblem(u₀,f,gD,gN,isLinear): Defines the problem with initial value u₀ (as a function or vector), f, Dirichlet boundary function gD, and Neumann boundary function gN.</p>
 <p>Note: If isLinear is true, then all functions must only be functions of (x). If isLinear is false, then f=f(u,x) and σ=σ(u,x) (if specified), while the other functions are only functions of (x).</p>
 <h3 id="keyword-arguments">Keyword Arguments</h3>
 <p><code>σ</code> = The function which multiplies the noise <code>dW</code>. By default <code>σ</code> is 0.</p>
@@ -260,7 +260,7 @@
 <p><code>$ (generic function with 34 methods) u_t = Δu + f(x,t) $ (generic function with 34 methods)</code></p>
 <h3 id="constructors_1">Constructors</h3>
 <p>HeatProblem(sol,Du,f,isLinear): Defines the Dirichlet problem with solution sol, solution gradient Du = [u_x,u_y], f, and a boolean which states whether the problem is linear (i.e. linear if f does not depend on u).</p>
-<p>HeatProblem(u0,f,gD,gN,isLinear): Defines the problem with initial value u0 (as a function or vector), f, Dirichlet boundary function gD,  Neumann boundary function gN, and a boolean which states whether the problem is linear (i.e. linear if f does not depend on u).</p>
+<p>HeatProblem(u₀,f,gD,gN,isLinear): Defines the problem with initial value u₀ (as a function or vector), f, Dirichlet boundary function gD,  Neumann boundary function gN, and a boolean which states whether the problem is linear (i.e. linear if f does not depend on u).</p>
 <p>Note: If isLinear is true, then all functions must only be functions of (x,t). If isLinear is false, then f=f(u,x,t) and σ=σ(u,x,t) (if specified), while the other functions are only functions of (x,t).</p>
 <h3 id="keyword-arguments_1">Keyword Arguments</h3>
 <p>The constructors take the following keyword arguments:</p>

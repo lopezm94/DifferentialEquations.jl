@@ -269,11 +269,12 @@
 <p>Returns the gradient of the barycentric basis elements.</p>
 <p><a id='DifferentialEquations.quadfbasis' href='#DifferentialEquations.quadfbasis'>#</a>
 <strong><code>DifferentialEquations.quadfbasis</code></strong> &mdash; <em>Function</em>.</p>
-<p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdNode,mid,N,Dirichlet,Neumann,isLinear;gNquadorder=2)</p>
+<p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdNode,mid,N,Dirichlet,Neumann,isLinear;gNquad𝒪=2)</p>
 <p><a id='DifferentialEquations.quadpts' href='#DifferentialEquations.quadpts'>#</a>
 <strong><code>DifferentialEquations.quadpts</code></strong> &mdash; <em>Function</em>.</p>
-<p>quadpts(order)</p>
-<p>Returns the quadrature points and weights for and order ### quadrature in 2D.</p>
+<p>quadpts(𝒪)</p>
+<p>Returns the quadrature points and ω's for and 𝒪 ### quadrature in 2D.</p>
+<p>Reference: David Dunavant. High degree efficient symmetrical Gaussian quadrature rules for the triangle. International journal for numerical methods in engineering. 21(6):1129–1148, 1985.</p>
 <p><a id='DifferentialEquations.accumarray' href='#DifferentialEquations.accumarray'>#</a>
 <strong><code>DifferentialEquations.accumarray</code></strong> &mdash; <em>Function</em>.</p>
 <p>accumarray(subs, val, sz=(maximum(subs),))</p>
@@ -290,20 +291,20 @@
 <p>A = Stiffness Matrix M = Mass Matrix area = A vector of the calculated areas for each element.</p>
 <p><a id='DifferentialEquations.gradu' href='#DifferentialEquations.gradu'>#</a>
 <strong><code>DifferentialEquations.gradu</code></strong> &mdash; <em>Function</em>.</p>
-<p>gradu(node,elem,u,Dlambda=[])</p>
+<p>gradu(node,elem,u,Dλ=[])</p>
 <p>Estimates the gradient of u on the mesh (node,elem)</p>
 <p><a id='Error-Tools-1'></a></p>
 <h2 id="error-tools">Error Tools</h2>
 <p><a id='DifferentialEquations.getH1error' href='#DifferentialEquations.getH1error'>#</a>
 <strong><code>DifferentialEquations.getH1error</code></strong> &mdash; <em>Function</em>.</p>
-<p>function getH1error(node,elem,Du,uh,K=[],quadOrder=[])</p>
+<p>function getH1error(node,elem,Du,uh,K=[],quad𝒪=[])</p>
 <p>getH1error(femMesh::FEMmesh,Du,u)</p>
-<p>Estimates the H1 error between uexact and uh on the mesh (node,elem). It reads the mesh to estimate the element type and uses this to choose a quadrature order unless specified. If K is specified then it is the diffusion coefficient matrix.</p>
+<p>Estimates the H1 error between uexact and uh on the mesh (node,elem). It reads the mesh to estimate the element type and uses this to choose a quadrature 𝒪 unless specified. If K is specified then it is the diffusion coefficient matrix.</p>
 <p><a id='DifferentialEquations.getL2error' href='#DifferentialEquations.getL2error'>#</a>
 <strong><code>DifferentialEquations.getL2error</code></strong> &mdash; <em>Function</em>.</p>
-<p>getL2error(node,elem,uexact,uh,quadOrder=[])</p>
+<p>getL2error(node,elem,uexact,uh,quad𝒪=[])</p>
 <p>getL2error(femMesh::FEMmesh,sol,u)</p>
-<p>Estimates the L2 error between uexact and uh on the mesh (node,elem). It reads the mesh to estimate the element type and uses this to choose a quadrature order unless specified.</p>
+<p>Estimates the L2 error between uexact and uh on the mesh (node,elem). It reads the mesh to estimate the element type and uses this to choose a quadrature 𝒪 unless specified.</p>
               
             </div>
           </div>
