@@ -107,13 +107,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../../man/problem/">Defining a Problem</a>
         
     </li>
@@ -121,7 +114,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/mesh/">Mesh Generation</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
@@ -228,12 +221,6 @@
               
                 <p><a id='Extra-Functions-1'></a></p>
 <h1 id="extra-functions">Extra Functions</h1>
-<p><a id='DifferentialEquations.quadfbasis2' href='#DifferentialEquations.quadfbasis2'>#</a>
-<strong><code>DifferentialEquations.quadfbasis2</code></strong> &mdash; <em>Function</em>.</p>
-<p>quadfbasis2(f,gD,A,node,elem,lambda,phi,weight,N,NT,area,bdNode) Slightly slower than quadfbasis, easier to extend to higher order quadrature</p>
-<p><a id='DifferentialEquations.CG2' href='#DifferentialEquations.CG2'>#</a>
-<strong><code>DifferentialEquations.CG2</code></strong> &mdash; <em>Function</em>.</p>
-<p>CG2(u,A,b;tol=1e-6)</p>
 <p><a id='DifferentialEquations.modulechildren' href='#DifferentialEquations.modulechildren'>#</a>
 <strong><code>DifferentialEquations.modulechildren</code></strong> &mdash; <em>Function</em>.</p>
 <p><code>modulechildren(m::Module)</code></p>
@@ -242,6 +229,14 @@
 <strong><code>DifferentialEquations.checkIfLoaded</code></strong> &mdash; <em>Function</em>.</p>
 <p><code>checkIfLoaded(pkg::AbstractString)</code></p>
 <p>Returns true if module "pkg" is defined in Main, otherwise false.</p>
+<p><a id='DifferentialEquations.getNoise' href='#DifferentialEquations.getNoise'>#</a>
+<strong><code>DifferentialEquations.getNoise</code></strong> &mdash; <em>Function</em>.</p>
+<p>getNoise(N,node,elem;noiseType="White")</p>
+<p>Returns a random vector corresponding to the noise type which was chosen.</p>
+<p><a id='DifferentialEquations.numparameters' href='#DifferentialEquations.numparameters'>#</a>
+<strong><code>DifferentialEquations.numparameters</code></strong> &mdash; <em>Function</em>.</p>
+<p>numparameters(f)</p>
+<p>Returns the number of parameters of <code>f</code> for the method which has the most parameters.</p>
               
             </div>
           </div>

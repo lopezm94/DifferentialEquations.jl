@@ -107,13 +107,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../problem/">Defining a Problem</a>
         
     </li>
@@ -121,7 +114,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mesh/">Mesh Generation</a>
+        <a class="" href="../mesh/">Meshes</a>
         
     </li>
 
@@ -235,21 +228,64 @@
 <p><a id='DifferentialEquations.solplot_appxvstrue' href='#DifferentialEquations.solplot_appxvstrue'>#</a>
 <strong><code>DifferentialEquations.solplot_appxvstrue</code></strong> &mdash; <em>Function</em>.</p>
 <p>solplot_appxvstrue(res::FEMSolution)</p>
+<p>Plots the approximate solution and the true solution.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>savefile</code>: Designates a file to save the plot in. Save type is defined by the chosen extension. Default is "" which implies no saving.</li>
+<li><code>title</code>: The title at the top of the plot. Default is "PDE Solution".</li>
+<li><code>appxTitle</code>: The title above the approximate solution. Default is "Approximated Solution".</li>
+<li><code>trueTitle</code>: The title above the true solution. Default is "True Solution".</li>
+<li><code>cmap</code>: Specifies the color map in the plot. Default is PyPlot.get_cmap("winter").</li>
+</ul>
 <p><a id='DifferentialEquations.solplot_animation' href='#DifferentialEquations.solplot_animation'>#</a>
 <strong><code>DifferentialEquations.solplot_animation</code></strong> &mdash; <em>Function</em>.</p>
 <p>solplot_animation(res::FEMSolution)</p>
+<p>Plots an animation of the solution. Requires <code>fullSave=true</code> was enabled in the solver.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>zlim</code>: The limits on the z-axis in the simulation. Default nothing.</li>
+<li><code>cbar</code>: Boolean flag which turns on/off the color bar. Default true.</li>
+</ul>
 <p><a id='DifferentialEquations.convplot' href='#DifferentialEquations.convplot'>#</a>
 <strong><code>DifferentialEquations.convplot</code></strong> &mdash; <em>Function</em>.</p>
 <p>convplot(measure,err)</p>
+<p>Makes a convergence plot of err vs measure in loglog scale.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>ErrStr</code>: The y-axis label. Default is "Error".</li>
+<li><code>measureStr</code>: The x-axis label. Default is "Measure".</li>
+<li><code>titleStr</code>: The title. Default is ":ErrStr vs :measureStr Convergence Plot".</li>
+</ul>
 <p><a id='DifferentialEquations.solplot' href='#DifferentialEquations.solplot'>#</a>
 <strong><code>DifferentialEquations.solplot</code></strong> &mdash; <em>Function</em>.</p>
 <p>solplot(res::FEMSolution)</p>
+<p>Plots the approximate solution and, if available, the true solution.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>savefile</code>: Designates a file to save the plot in. Save type is defined by the chosen extension. Default is "" which implies no saving.</li>
+<li><code>title</code>: The title at the top of the plot. Default is "PDE Solution".</li>
+<li><code>appxTitle</code>: The title above the approximate solution. Default is "Approximated Solution".</li>
+<li><code>trueTitle</code>: The title above the true solution. Default is "True Solution".</li>
+<li><code>cmap</code>: Specifies the color map in the plot. Default is PyPlot.get_cmap("winter").</li>
+</ul>
 <p><a id='DifferentialEquations.solplot_appx' href='#DifferentialEquations.solplot_appx'>#</a>
 <strong><code>DifferentialEquations.solplot_appx</code></strong> &mdash; <em>Function</em>.</p>
 <p>solplot_appx(res::FEMSolution)</p>
+<p>Plots the approximate solution.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>savefile</code>: Designates a file to save the plot in. Save type is defined by the chosen extension. Default is "" which implies no saving.</li>
+<li><code>title</code>: The title at the top of the plot. Default is "PDE Solution".</li>
+<li><code>cmap</code>: Specifies the color map in the plot. Default is PyPlot.get_cmap("winter").</li>
+</ul>
 <p><a id='DifferentialEquations.showmesh' href='#DifferentialEquations.showmesh'>#</a>
 <strong><code>DifferentialEquations.showmesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>showmesh(femMesh::FEMmesh)</p>
+<p>Shows the mesh which is defined by the (node,elem) structure.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>cmap</code>: Specifies the color map in the plot. Default is PyPlot.get_cmap("winter").</li>
+</ul>
               
             </div>
           </div>

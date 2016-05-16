@@ -106,13 +106,6 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
     <li class="toctree-l1 current">
         <a class="current" href="./">Defining a Problem</a>
         
@@ -136,7 +129,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mesh/">Mesh Generation</a>
+        <a class="" href="../mesh/">Meshes</a>
         
     </li>
 
@@ -236,63 +229,110 @@
               
                 <p><a id='Defining-a-Problem-1'></a></p>
 <h1 id="defining-a-problem">Defining a Problem</h1>
-<p>(x,t) vs (x,y,t) isLinear stochastic</p>
+<p>Below are the definitions of the types which specify problems. Some general notes are:</p>
+<ul>
+<li>(x,t) vs (x,y,t): Mathematically one normally specifies equations in 2D as <code>f(x,y,t)</code>. However, in this code we use <code>x</code> as a vector. Thus you can think of <code>x</code>=<code>x[:,1]</code> and <code>y</code>=<code>x[:,2]</code>. Thus input equations are of the form <code>f(x,t)</code> no matter the dimension. If time is not included in the problem (for example, a Poisson equation problem), then we use <code>f(x)</code>. An example is the equation <code>u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> would be specified as <code>sol(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)</code>.</li>
+<li>Linearity: If the equation has linear term, they are specified with functions <code>f(x,t)</code>. If it is nonlinear, it is specified with functions <code>f(u,x,t)</code>. The boundary conditions are always <code>(x,t)</code></li>
+<li>Stochastic: By default the equation is deterministic. For each equation, one can specify a σ term which adds a stochastic <code>σ(u,x,t)dW_t</code> term to the equation (or with <code>σ(x,t)dW_t</code> if linear, must match <code>f</code>). <code>dW_t</code> corresponds to the type of noise which is chosen. By default this is space-time Gaussian white noise.</li>
+</ul>
 <p><a id='Poisson-Equation-Problem-1'></a></p>
 <h2 id="poisson-equation-problem">Poisson Equation Problem</h2>
 <p><a id='DifferentialEquations.PoissonProblem' href='#DifferentialEquations.PoissonProblem'>#</a>
 <strong><code>DifferentialEquations.PoissonProblem</code></strong> &mdash; <em>Type</em>.</p>
 <p>PoissonProblem</p>
 <p>Wraps the data that define a 2D linear Poisson equation problem:</p>
-<p><code>$ (generic function with 34 methods) Δu = f(x,t) $ (generic function with 34 methods)</code></p>
+<pre class="codehilite"><code class="language-math">-Δu = f</code></pre>
+
+
+<p>with bounday conditions <code>gD</code> on the Dirichlet boundary and gN on the Neumann boundary. Linearity is determined by whether the forcing function <code>f</code> is a function of two variables (x,t) or three (u,x,t) (with x=[:,1] and y=[:,2]).</p>
+<p>If they keyword <code>σ</code> is given, then this wraps the data that define a 2D stochastic heat equation</p>
+<pre class="codehilite"><code class="language-math">-Δu = f + σdW</code></pre>
+
+
 <h3 id="constructors">Constructors</h3>
-<p>PoissonProblem(f,sol,Du,gN,isLinear): Defines the Dirichlet problem with solution sol, solution gradient Du = [u_x,u_y], f, and Neumann boundary data gN,</p>
-<p>PoissonProblem(u₀,f,gD,gN,isLinear): Defines the problem with initial value u₀ (as a function or vector), f, Dirichlet boundary function gD, and Neumann boundary function gN.</p>
-<p>Note: If isLinear is true, then all functions must only be functions of (x). If isLinear is false, then f=f(u,x) and σ=σ(u,x) (if specified), while the other functions are only functions of (x).</p>
+<p>PoissonProblem(f,sol,Du): Defines the Dirichlet problem with solution <code>sol</code>, solution gradient <code>Du = [u_x,u_y]</code>, and forcing function <code>f</code></p>
+<p>PoissonProblem(u₀,f): Defines the problem with initial value <code>u₀</code> (as a function) and f. If your initial data is a vector, wrap it as u₀(x) = vector.</p>
+<p>Note: If all functions are of (x,t), then the program assumes it's linear. Write your functions using x = x[:,1] and y = x[:,2].  Use f=f(u,x,t) and σ=σ(u,x,t) (if specified) for nonlinear problems (with the boundary conditions still (x,t))</p>
 <h3 id="keyword-arguments">Keyword Arguments</h3>
+<ul>
+<li>
+<p><code>gD</code> = Dirichlet boundary function</p>
+</li>
+<li>
+<p><code>gN</code> = Neumann boundary function</p>
+</li>
+<li>
 <p><code>σ</code> = The function which multiplies the noise <code>dW</code>. By default <code>σ</code> is 0.</p>
-<p>noiseType = A string which specifies the type of noise to be generated. By default noiseType is "White" for Gaussian Spacetime White Noise.</p>
+</li>
+<li>
+<p><code>noiseType</code> = A string which specifies the type of noise to be generated. By default <code>noiseType</code> is "White" for Gaussian Spacetime White Noise.</p>
+</li>
+</ul>
 <p><a id='Heat-Equation-Problem-1'></a></p>
 <h2 id="heat-equation-problem">Heat Equation Problem</h2>
 <p><a id='DifferentialEquations.HeatProblem' href='#DifferentialEquations.HeatProblem'>#</a>
 <strong><code>DifferentialEquations.HeatProblem</code></strong> &mdash; <em>Type</em>.</p>
 <p>HeatProblem</p>
-<p>Wraps the data that define a 2D linear heat equation problem:</p>
-<p><code>$ (generic function with 34 methods) u_t = Δu + f(x,t) $ (generic function with 34 methods)</code></p>
+<p>Wraps the data that define a 2D heat equation problem:</p>
+<pre class="codehilite"><code class="language-math">u_t = Δu + f</code></pre>
+
+
+<p>with bounday conditions <code>gD</code> on the Dirichlet boundary and gN on the Neumann boundary. Linearity is determined by whether the forcing function <code>f</code> is a function of two variables (x,t) or three (u,x,t) (with x=[:,1] and y=[:,2]).</p>
+<p>If they keyword <code>σ</code> is given, then this wraps the data that define a 2D stochastic heat equation</p>
+<pre class="codehilite"><code class="language-math">u_t = Δu + f + σdW_t</code></pre>
+
+
 <h3 id="constructors_1">Constructors</h3>
-<p>HeatProblem(sol,Du,f,isLinear): Defines the Dirichlet problem with solution sol, solution gradient Du = [u_x,u_y], f, and a boolean which states whether the problem is linear (i.e. linear if f does not depend on u).</p>
-<p>HeatProblem(u₀,f,gD,gN,isLinear): Defines the problem with initial value u₀ (as a function or vector), f, Dirichlet boundary function gD,  Neumann boundary function gN, and a boolean which states whether the problem is linear (i.e. linear if f does not depend on u).</p>
-<p>Note: If isLinear is true, then all functions must only be functions of (x,t). If isLinear is false, then f=f(u,x,t) and σ=σ(u,x,t) (if specified), while the other functions are only functions of (x,t).</p>
+<ul>
+<li>
+<p><code>HeatProblem(sol,Du,f)</code>: Defines the Dirichlet problem with solution <code>sol</code>, solution gradient <code>Du = [u_x,u_y]</code>, and the forcing function <code>f</code>.</p>
+</li>
+<li>
+<p><code>HeatProblem(u₀,f)</code>: Defines the problem with initial value <code>u₀</code> (as a function) and <code>f</code>. If your initial data is a vector, wrap it as u₀(x) = vector.</p>
+</li>
+</ul>
+<p>Note: If all functions are of (x,t), then the program assumes it's linear. Write your functions using x = x[:,1] and y = x[:,2].  Use f=f(u,x,t) and σ=σ(u,x,t) (if specified) for nonlinear problems (with the boundary conditions still (x,t))</p>
 <h3 id="keyword-arguments_1">Keyword Arguments</h3>
-<p>The constructors take the following keyword arguments:</p>
-<p>σ = The function which multiplies the noise dW. By default σ is 0.</p>
-<p>stochastic = A boolean which specifies if the problem is stochastic. By default stochastic is false.</p>
-<p>noiseType = A string which specifies the type of noise to be generated. By default noiseType is "White" for Gaussian Spacetime White Noise.</p>
+<ul>
+<li>
+<p><code>gD</code> = Dirichlet boundary function</p>
+</li>
+<li>
+<p><code>gN</code> = Neumann boundary function</p>
+</li>
+<li>
+<p><code>σ</code> = The function which multiplies the noise dW. By default σ is 0.</p>
+</li>
+<li>
+<p><code>noiseType</code> = A string which specifies the type of noise to be generated. By default noiseType is "White" for Gaussian Spacetime White Noise.</p>
+</li>
+</ul>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
 <p><a id='DifferentialEquations.poissonProblemExample_wave' href='#DifferentialEquations.poissonProblemExample_wave'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_wave</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution: u(x,y,t)= sin(2π.<em>x).</em>cos(2π.<em>y)/(8π</em>π)</p>
+<p>Example problem with solution: <code>u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code></p>
 <p><a id='DifferentialEquations.poissonProblemExample_noisyWave' href='#DifferentialEquations.poissonProblemExample_noisyWave'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_noisyWave</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with deterministic solution: u(x,y,t)= sin(2π.<em>x).</em>cos(2π.<em>y)/(8π</em>π)</p>
+<p>Example problem with deterministic solution: <code>u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code></p>
 <p><a id='DifferentialEquations.poissonProblemExample_birthdeath' href='#DifferentialEquations.poissonProblemExample_birthdeath'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_birthdeath</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem for nonlinear Poisson equation</p>
+<p>Example problem for nonlinear Poisson equation. Uses <code>f(u)=1-u/2</code>.</p>
 <p><a id='DifferentialEquations.heatProblemExample_diffuse' href='#DifferentialEquations.heatProblemExample_diffuse'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_diffuse</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution: u(x,y,t)=exp(-10((x-.5).^2 + (y-.5).^2 )-t)</p>
+<p>Example problem with solution: <code>u(x,y,t)=exp(-10((x-.5).^2 + (y-.5).^2 )-t)</code></p>
 <p><a id='DifferentialEquations.heatProblemExample_pure' href='#DifferentialEquations.heatProblemExample_pure'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_pure</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem which starts with 1 at (0.5,0.5) and solves with f=gD=0</p>
+<p>Example problem which starts with 1 at (0.5,0.5) and solves with <code>f=gD=0</code></p>
 <p><a id='DifferentialEquations.heatProblemExample_moving' href='#DifferentialEquations.heatProblemExample_moving'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_moving</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution: u(x,y,t)=0.1<em>(1-exp(-100</em>(t-0.5).^2)).*exp(-25((x-t+0.5).^2 + (y-t+0.5).^2))</p>
+<p>Example problem with solution: <code>u(x,y,t)=0.1*(1-exp(-100*(t-0.5).^2)).*exp(-25((x-t+0.5).^2 + (y-t+0.5).^2))</code></p>
 <p><a id='DifferentialEquations.heatProblemExample_birthdeath' href='#DifferentialEquations.heatProblemExample_birthdeath'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_birthdeath</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem which starts with 0 and solves with f(u)=1-.1u</p>
+<p>Example problem which starts with 0 and solves with <code>f(u)=1-u/2</code></p>
 <p><a id='DifferentialEquations.heatProblemExample_stochasticbirthdeath' href='#DifferentialEquations.heatProblemExample_stochasticbirthdeath'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_stochasticbirthdeath</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem which starts with 0 and solves with f(u)=1-.1u</p>
+<p>Example problem which starts with 0 and solves with <code>f(u)=1-u/2</code> with noise <code>σ(u)=10u^2</code></p>
 <p><a id='Related-Functions-1'></a></p>
 <h2 id="related-functions">Related Functions</h2>
 <p><a id='DifferentialEquations.PdeProblem' href='#DifferentialEquations.PdeProblem'>#</a>
@@ -305,10 +345,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mesh/" class="btn btn-neutral float-right" title="Mesh Generation">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mesh/" class="btn btn-neutral float-right" title="Meshes">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../commonTerms/" class="btn btn-neutral" title="Common Terms"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../overview/" class="btn btn-neutral" title="Overview of DifferentialEquations.jl Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -336,7 +376,7 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../commonTerms/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../mesh/" style="color: #fcfcfc">Next &raquo;</a></span>

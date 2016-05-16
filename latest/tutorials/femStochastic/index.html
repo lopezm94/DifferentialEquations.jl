@@ -118,13 +118,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../../man/problem/">Defining a Problem</a>
         
     </li>
@@ -132,7 +125,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/mesh/">Mesh Generation</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
@@ -250,8 +243,8 @@ function poissonProblemExample_noisyWave()
 end</code></pre>
 
 
-<p>using the same solving commands as shown in <a href="../../src/femStochasticPoissonSolo.jl">femStochasticPoissonSolo.jl</a>. This gives the following plot:</p>
-<p><img src="/src/examples/introductionStochasticExample.png" width="750" align="middle" /></p>
+<p>using the same solving commands as shown in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/test/femStochasticPoissonSolo.jl">femStochasticPoissonSolo.jl</a>. This gives the following plot:</p>
+<p><img src="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/examples/introductionStochasticExample.png" width="750" align="middle" /></p>
 <p><a id='Finite-Element-Stochastic-Heat-Equation-1'></a></p>
 <h2 id="finite-element-stochastic-heat-equation">Finite Element Stochastic Heat Equation</h2>
 <p>This will solve a nonlinear stochastic heat equation u_t=Δu+f+gdW with forcing function <code>f(u)=.5-u</code>, noise function <code>g(u)=100u^2</code> and initial condition <code>u0=0</code>. We would expect this system to rise towards the deterministic steady state <code>u=2</code> (but stay in mean a bit below it due to 1st order "Milstein" effects), gaining more noise as it increases. This is specified as follows:</p>
@@ -268,7 +261,7 @@ function heatProblemExample_stochasticbirthdeath()
 end</code></pre>
 
 
-<p>As shown in <a href="../../src/femStochasticHeatAnimationTest.jl">femStochasticHeatAnimationTest.jl</a>, we use the following code create an animation of the solution:</p>
+<p>As shown in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/test/femStochasticHeatAnimationTest.jl">femStochasticHeatAnimationTest.jl</a>, we use the following code create an animation of the solution:</p>
 <pre class="codehilite"><code class="language-julia">T = 5
 Δx = 1//2^(4)
 Δt = 1//2^(12)
@@ -279,7 +272,7 @@ res = fem_solveheat(femMesh::FEMmesh,pdeProb::HeatProblem,alg=&quot;Euler&quot;,
 solplot_animation(res::FEMSolution;zlim=(0,2),vmax=.1,cbar=false)</code></pre>
 
 
-<p><img src="/src/examples/stochasticHeatAnimation.gif" width="750" align="middle" /></p>
+<p><img src="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/examples/stochasticHeatAnimation.gif" width="750" align="middle" /></p>
               
             </div>
           </div>

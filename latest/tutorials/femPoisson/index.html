@@ -114,13 +114,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../../man/problem/">Defining a Problem</a>
         
     </li>
@@ -128,7 +121,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/mesh/">Mesh Generation</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
@@ -228,8 +221,8 @@
               
                 <p><a id='Poisson-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="poisson-equation-finite-element-method-example">Poisson Equation Finite Element Method Example</h1>
-<p>In this example we will solve the Poisson Equation <code>$Δu=f$</code>. The code for this example can be found in <a href="../tests/introductionExample.jl">tests/introductionExample.jl</a>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
-<pre class="codehilite"><code class="language-julia">&quot;Example problem with solution: u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)&quot;
+<p>In this example we will solve the Poisson Equation <code>$Δu=f$</code>. The code for this example can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/test/introductionExample.jl">test/introductionExample.jl</a>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
+<pre class="codehilite"><code class="language-julia">&quot;Example problem with solution: ``u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)``&quot;
 function poissonProblemExample_wave()
   f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
   sol(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
@@ -241,7 +234,7 @@ end
 pdeProb = poissonProblemExample_wave()</code></pre>
 
 
-<p>Note that in this case since the solution is known, the Dirichlet boundary condition <code>gD</code> is automatically set to match the true solution. The code for other example problems can be found in <a href="../src/examples/exampleProblems.jl">src/examples/exampleProblems.jl</a>. To solve this problem, we first have to generate a mesh. Here we will simply generate a mesh of triangles on the square [0,1]x[0,1] with Δx=2^(-5). To do so, we use the code:</p>
+<p>Note that in this case since the solution is known, the Dirichlet boundary condition <code>gD</code> is automatically set to match the true solution. The code for other example problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/examples/exampleProblems.jl">src/examples/exampleProblems.jl</a>. To solve this problem, we first have to generate a mesh. Here we will simply generate a mesh of triangles on the square [0,1]x[0,1] with Δx=2^(-5). To do so, we use the code:</p>
 <pre class="codehilite"><code class="language-julia">Δx = 1//2^(5)
 femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
 
@@ -255,7 +248,7 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
 
 
 <p>This gives us the following plot:</p>
-<p><img src="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/src/examples/introductionStochasticExample.png" width="750" align="middle"  /></p>
+<p><img src="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/examples/introductionExample.png" width="750" align="middle"  /></p>
               
             </div>
           </div>

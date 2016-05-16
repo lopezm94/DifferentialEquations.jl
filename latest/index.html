@@ -124,13 +124,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="man/commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="man/problem/">Defining a Problem</a>
         
     </li>
@@ -138,7 +131,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="man/mesh/">Mesh Generation</a>
+        <a class="" href="man/mesh/">Meshes</a>
         
     </li>
 
@@ -251,7 +244,7 @@
 <pre class="codehilite"><code class="language-julia">using DifferentialEquations</code></pre>
 
 
-<p>To understand the package in more detail, check out the following tutorials. Example codes for the latest features can be found in <a href="./test/">test/</a>. Note that for many of the examples in the test folder, you may wish to run them at lower Δx or Δt. These values were taken to be large in order make unit tests run faster!</p>
+<p>To understand the package in more detail, check out the following tutorials. Example codes for the latest features can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/test/">test/</a>. Note that for many of the examples in the test folder, you may wish to run them at lower Δx or Δt. These values were taken to be large in order make unit tests run faster!</p>
 <p>For the most up to date on using the package information, please contact me <a href="https://gitter.im/ChrisRackauckas/DifferentialEquations.jl">via the repository Gitter</a> or <a href="http://chrisrackauckas.github.io/DifferentialEquations.jl/latest/">read the latest documentation</a></p>
 <p><a id='Tutorials-1'></a></p>
 <h2 id="tutorials">Tutorials</h2>
@@ -269,7 +262,6 @@
 <h2 id="manual">Manual</h2>
 <ul>
 <li><a href="man/overview/#Overview-of-DifferentialEquations.jl-Usage-1">Overview of DifferentialEquations.jl Usage</a></li>
-<li><a href="man/commonTerms/#Common-Terms-1">Common Terms</a></li>
 <li><a href="man/problem/#Defining-a-Problem-1">Defining a Problem</a><ul>
 <li><a href="man/problem/#Poisson-Equation-Problem-1">Poisson Equation Problem</a></li>
 <li><a href="man/problem/#Heat-Equation-Problem-1">Heat Equation Problem</a></li>
@@ -277,10 +269,11 @@
 <li><a href="man/problem/#Related-Functions-1">Related Functions</a></li>
 </ul>
 </li>
-<li><a href="man/mesh/#Mesh-Generation-1">Mesh Generation</a><ul>
+<li><a href="man/mesh/#Meshes-1">Meshes</a><ul>
 <li><a href="man/mesh/#Mesh-Specification-1">Mesh Specification</a></li>
 <li><a href="man/mesh/#Mesh-Type-1">Mesh Type</a></li>
 <li><a href="man/mesh/#Mesh-Generation-Functions-1">Mesh Generation Functions</a></li>
+<li><a href="man/mesh/#Example-Meshes-1">Example Meshes</a></li>
 </ul>
 </li>
 <li><a href="man/solvers/#Information-on-Solvers-1">Information on Solvers</a><ul>
@@ -317,10 +310,10 @@
 <p><a id='Index-1'></a></p>
 <h2 id="index">Index</h2>
 <ul>
-<li><a href="internals/extras/#DifferentialEquations.CG2"><code>DifferentialEquations.CG2</code></a></li>
 <li><a href="internals/extras/#DifferentialEquations.checkIfLoaded"><code>DifferentialEquations.checkIfLoaded</code></a></li>
+<li><a href="internals/extras/#DifferentialEquations.getNoise"><code>DifferentialEquations.getNoise</code></a></li>
 <li><a href="internals/extras/#DifferentialEquations.modulechildren"><code>DifferentialEquations.modulechildren</code></a></li>
-<li><a href="internals/extras/#DifferentialEquations.quadfbasis2"><code>DifferentialEquations.quadfbasis2</code></a></li>
+<li><a href="internals/extras/#DifferentialEquations.numparameters"><code>DifferentialEquations.numparameters</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations"><code>DifferentialEquations</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.CFLμ"><code>DifferentialEquations.CFLμ</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.CFLν"><code>DifferentialEquations.CFLν</code></a></li>
@@ -328,11 +321,12 @@
 <li><a href="internals/femTools/#DifferentialEquations.assemblematrix"><code>DifferentialEquations.assemblematrix</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.getH1error"><code>DifferentialEquations.getH1error</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.getL2error"><code>DifferentialEquations.getL2error</code></a></li>
-<li><a href="internals/femTools/#DifferentialEquations.gradbasis"><code>DifferentialEquations.gradbasis</code></a></li>
-<li><a href="internals/femTools/#DifferentialEquations.gradu"><code>DifferentialEquations.gradu</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.meshgrid"><code>DifferentialEquations.meshgrid</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.quadfbasis"><code>DifferentialEquations.quadfbasis</code></a></li>
 <li><a href="internals/femTools/#DifferentialEquations.quadpts"><code>DifferentialEquations.quadpts</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.quadpts1"><code>DifferentialEquations.quadpts1</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.∇basis"><code>DifferentialEquations.∇basis</code></a></li>
+<li><a href="internals/femTools/#DifferentialEquations.∇u"><code>DifferentialEquations.∇u</code></a></li>
 <li><a href="man/convergence/#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}"><code>Base.length</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.ConvergenceSimulation"><code>DifferentialEquations.ConvergenceSimulation</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.conv_ests"><code>DifferentialEquations.conv_ests</code></a></li>
@@ -347,9 +341,18 @@
 <li><a href="man/convergence/#DifferentialEquations.convplot_node2vsΔt"><code>DifferentialEquations.convplot_node2vsΔt</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.convplot_node2vsΔx"><code>DifferentialEquations.convplot_node2vsΔx</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.FEMmesh"><code>DifferentialEquations.FEMmesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.Mesh"><code>DifferentialEquations.Mesh</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.SimpleMesh"><code>DifferentialEquations.SimpleMesh</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.fem_squaremesh"><code>DifferentialEquations.fem_squaremesh</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.findboundary"><code>DifferentialEquations.findboundary</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_Lshapemesh"><code>DifferentialEquations.meshExample_Lshapemesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_Lshapeunstructure"><code>DifferentialEquations.meshExample_Lshapeunstructure</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_bunny"><code>DifferentialEquations.meshExample_bunny</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_flowpastcylindermesh"><code>DifferentialEquations.meshExample_flowpastcylindermesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_lakemesh"><code>DifferentialEquations.meshExample_lakemesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_oilpump"><code>DifferentialEquations.meshExample_oilpump</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_wavymesh"><code>DifferentialEquations.meshExample_wavymesh</code></a></li>
+<li><a href="man/mesh/#DifferentialEquations.meshExample_wavyperturbmesh"><code>DifferentialEquations.meshExample_wavyperturbmesh</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.notime_squaremesh"><code>DifferentialEquations.notime_squaremesh</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.parabolic_squaremesh"><code>DifferentialEquations.parabolic_squaremesh</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.setboundary"><code>DifferentialEquations.setboundary</code></a></li>
@@ -423,5 +426,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-05-15 04:00:57.299272
+Build Date UTC : 2016-05-16 04:00:14.927458
 -->

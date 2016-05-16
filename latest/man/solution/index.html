@@ -107,13 +107,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../problem/">Defining a Problem</a>
         
     </li>
@@ -121,7 +114,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mesh/">Mesh Generation</a>
+        <a class="" href="../mesh/">Meshes</a>
         
     </li>
 
@@ -230,13 +223,27 @@
               
                 <p><a id='The-Solution-Type-1'></a></p>
 <h1 id="the-solution-type">The Solution Type</h1>
-<p>appxTrue!</p>
 <p><a id='Related-Functions-1'></a></p>
 <h2 id="related-functions">Related Functions</h2>
 <p><a id='DifferentialEquations.FEMSolution' href='#DifferentialEquations.FEMSolution'>#</a>
 <strong><code>DifferentialEquations.FEMSolution</code></strong> &mdash; <em>Type</em>.</p>
 <p>FEMSolution</p>
-<p>A type which holds the data for the solution to a finite element problem.</p>
+<p>Holds the data for the solution to a finite element problem.</p>
+<p><strong>Fields</strong></p>
+<ul>
+<li><code>femMesh::FEMmesh</code>: The finite element mesh the problem was solved on.</li>
+<li><code>u::Array{Float64}</code>: The solution (at the final timepoint)</li>
+<li><code>trueKnown::Bool</code>: Boolean flag for if the true solution is given.</li>
+<li><code>uTrue::AbstractArrayOrVoid</code>: The true solution at the final timepoint.</li>
+<li><code>l2Err::NumberOrVoid</code>: The L2 error between u and uTrue.</li>
+<li><code>h1Err::NumberOrVoid</code>: The H1 error between u and uTrue.</li>
+<li><code>maxErr::NumberOrVoid</code>: The nodal maximum error between u and uTrue.</li>
+<li><code>nodeErr2::NumberOrVoid</code>: The nodal l2 error between y abd uTrue.</li>
+<li><code>appxTrue::Bool</code>: Boolean flag for if uTrue was an approximation.</li>
+<li><code>uFull</code>::AbstractArrayOrVoid<code>: u over time. Only saved if</code>fullSave=true` is specified in the solver.</li>
+<li><code>tFull::AbstractArrayOrVoid</code>: All the t's in the solution. Only saved if <code>fullSave=true</code> is specified in the solver.</li>
+<li><code>fullSave::Bool</code>: True if solver saved the extra timepoints.</li>
+</ul>
 <p><a id='DifferentialEquations.appxTrue!' href='#DifferentialEquations.appxTrue!'>#</a>
 <strong><code>DifferentialEquations.appxTrue!</code></strong> &mdash; <em>Function</em>.</p>
 <p>appxTrue!(res,res2)</p>

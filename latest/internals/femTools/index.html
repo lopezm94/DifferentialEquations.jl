@@ -107,13 +107,6 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/commonTerms/">Common Terms</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../../man/problem/">Defining a Problem</a>
         
     </li>
@@ -121,7 +114,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/mesh/">Mesh Generation</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
@@ -263,18 +256,23 @@
 <p>Computes the CFL-condition μ= Δt/(Δx*Δx)</p>
 <p><a id='Solver-Tools-1'></a></p>
 <h2 id="solver-tools">Solver Tools</h2>
-<p><a id='DifferentialEquations.gradbasis' href='#DifferentialEquations.gradbasis'>#</a>
-<strong><code>DifferentialEquations.gradbasis</code></strong> &mdash; <em>Function</em>.</p>
-<p>gradbasis(node,elem)</p>
-<p>Returns the gradient of the barycentric basis elements.</p>
+<p><a id='DifferentialEquations.∇basis' href='#DifferentialEquations.∇basis'>#</a>
+<strong><code>DifferentialEquations.∇basis</code></strong> &mdash; <em>Function</em>.</p>
+<p>∇basis(node,elem)</p>
+<p>Returns the ∇u of the barycentric basis elements.</p>
 <p><a id='DifferentialEquations.quadfbasis' href='#DifferentialEquations.quadfbasis'>#</a>
 <strong><code>DifferentialEquations.quadfbasis</code></strong> &mdash; <em>Function</em>.</p>
 <p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdNode,mid,N,Dirichlet,Neumann,isLinear;gNquad𝒪=2)</p>
+<p>Performs the order 2 quadrature to calculate the vector from the term <code>&lt;f,v&gt;</code>.</p>
 <p><a id='DifferentialEquations.quadpts' href='#DifferentialEquations.quadpts'>#</a>
 <strong><code>DifferentialEquations.quadpts</code></strong> &mdash; <em>Function</em>.</p>
 <p>quadpts(𝒪)</p>
 <p>Returns the quadrature points and ω's for and 𝒪 ### quadrature in 2D.</p>
 <p>Reference: David Dunavant. High degree efficient symmetrical Gaussian quadrature rules for the triangle. International journal for numerical methods in engineering. 21(6):1129–1148, 1985.</p>
+<p><a id='DifferentialEquations.quadpts1' href='#DifferentialEquations.quadpts1'>#</a>
+<strong><code>DifferentialEquations.quadpts1</code></strong> &mdash; <em>Function</em>.</p>
+<p>quadpts1(𝒪)</p>
+<p>References: Pavel Holoborodko: http://www.holoborodko.com/pavel/numerical-methods/numerical-integration/</p>
 <p><a id='DifferentialEquations.accumarray' href='#DifferentialEquations.accumarray'>#</a>
 <strong><code>DifferentialEquations.accumarray</code></strong> &mdash; <em>Function</em>.</p>
 <p>accumarray(subs, val, sz=(maximum(subs),))</p>
@@ -289,10 +287,10 @@
 <p>Assembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.</p>
 <p><strong>Returns</strong></p>
 <p>A = Stiffness Matrix M = Mass Matrix area = A vector of the calculated areas for each element.</p>
-<p><a id='DifferentialEquations.gradu' href='#DifferentialEquations.gradu'>#</a>
-<strong><code>DifferentialEquations.gradu</code></strong> &mdash; <em>Function</em>.</p>
-<p>gradu(node,elem,u,Dλ=[])</p>
-<p>Estimates the gradient of u on the mesh (node,elem)</p>
+<p><a id='DifferentialEquations.∇u' href='#DifferentialEquations.∇u'>#</a>
+<strong><code>DifferentialEquations.∇u</code></strong> &mdash; <em>Function</em>.</p>
+<p>∇u(node,elem,u,Dλ=[])</p>
+<p>Estimates ∇u of u on the mesh (node,elem)</p>
 <p><a id='Error-Tools-1'></a></p>
 <h2 id="error-tools">Error Tools</h2>
 <p><a id='DifferentialEquations.getH1error' href='#DifferentialEquations.getH1error'>#</a>
