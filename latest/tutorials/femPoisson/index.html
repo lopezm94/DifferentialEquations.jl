@@ -221,7 +221,7 @@
               
                 <p><a id='Poisson-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="poisson-equation-finite-element-method-example">Poisson Equation Finite Element Method Example</h1>
-<p>In this example we will solve the Poisson Equation <code>$Δu=f$</code>. The code for this example can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/test/introductionExample.jl">test/introductionExample.jl</a>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
+<p>In this example we will solve the Poisson Equation <code>Δu=f</code>. The code for this example can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/test/introductionExample.jl">test/introductionExample.jl</a>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
 <pre class="codehilite"><code class="language-julia">&quot;Example problem with solution: ``u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)``&quot;
 function poissonProblemExample_wave()
   f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
@@ -248,7 +248,7 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
 
 
 <p>This gives us the following plot:</p>
-<p><img alt="Example Image" src="../&quot;https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/src/examples/introductionExample.png&quot;" /> width="750" align="middle"  /&gt;</p>
+<p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/src/examples/introductionExample.png" width="750" align="middle"  /></p>
               
             </div>
           </div>
