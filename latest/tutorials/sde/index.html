@@ -264,7 +264,7 @@
                 <p><a id='Stochastic-Differential-Equation-(SDE)-Example-1'></a></p>
 <h1 id="stochastic-differential-equation-sde-example">Stochastic Differential Equation (SDE) Example</h1>
 <p>In this example we will solve the equation</p>
-<pre class="codehilite"><code class="language-math">duₜ = f(uₜ,t)dt + Σσᵢ(uₜ,t)dWⁱₜ</code></pre>
+<pre class="codehilite"><code class="language-math">du = f(u,t)dt + Σσᵢ(u,t)dWⁱ</code></pre>
 
 
 <p>where <code>f(u,t)=αu</code> and <code>σ(u,t)=βu</code>. We know via Stochastic Calculus that the solution to this equation is <code>u(t,W)=u₀*exp((α-(β^2)/2)*t+β*W)</code>. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>

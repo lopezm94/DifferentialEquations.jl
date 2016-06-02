@@ -268,7 +268,7 @@
                 <p><a id='Defining-an-ODE-Problem-1'></a></p>
 <h1 id="defining-an-ode-problem">Defining an ODE Problem</h1>
 <p>To define an ODE Problem, you simply need to give the function <code>f</code> and the initial condition <code>u₀</code> which define an ODE</p>
-<pre class="codehilite"><code class="language-math">uₜ = f(uₜ,t)dt</code></pre>
+<pre class="codehilite"><code class="language-math">du/dt = f(u,t)dt</code></pre>
 
 
 <p><code>f</code> should be specified as <code>f(u,t)</code> and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well.</p>

@@ -268,7 +268,7 @@
                 <p><a id='Defining-a-SDE-Problem-1'></a></p>
 <h1 id="defining-a-sde-problem">Defining a SDE Problem</h1>
 <p>To define an SDE Problem, you simply need to give the forcing function <code>f</code>, the noise function <code>σ</code>, and the initial condition <code>u₀</code> which define an SDE</p>
-<pre class="codehilite"><code class="language-math">duₜ = f(uₜ,t)dt + Σσᵢ(uₜ,t)dWⁱₜ</code></pre>
+<pre class="codehilite"><code class="language-math">du = f(u,t)dt + Σσᵢ(u,t)dWⁱ</code></pre>
 
 
 <p><code>f</code> and <code>σ</code> should be specified as <code>f(u,t)</code> and  <code>σ(u,t)</code> respectively, and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well. A vector of <code>σ</code>s can also be defined to determine an SDE of higher Ito dimension.</p>
