@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Plot Functions - DifferentialEquations.jl</title>
+  <title>Defining an SDE Problem - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Plot Functions";
-    var mkdocs_page_input_path = "man/plot.md";
-    var mkdocs_page_url = "/man/plot/";
+    var mkdocs_page_name = "Defining an SDE Problem";
+    var mkdocs_page_input_path = "man/sdeProblem.md";
+    var mkdocs_page_url = "/man/sdeProblem/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -127,8 +127,19 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Defining an SDE Problem</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#defining-a-sde-problem">Defining a SDE Problem</a></li>
+                
+                    <li><a class="toctree-l4" href="#problem-type">Problem Type</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-problems">Example Problems</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -169,19 +180,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Plot Functions</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#plot-functions">Plot Functions</a></li>
-                
-                    <li><a class="toctree-l4" href="#standard-plots">Standard Plots</a></li>
-                
-                    <li><a class="toctree-l4" href="#extra-plot-functions">Extra Plot Functions</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../plot/">Plot Functions</a>
         
     </li>
 
@@ -251,7 +251,7 @@
         
       
     
-    <li>Plot Functions</li>
+    <li>Defining an SDE Problem</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -265,28 +265,55 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Plot-Functions-1'></a></p>
-<h1 id="plot-functions">Plot Functions</h1>
-<p><a id='Standard-Plots-1'></a></p>
-<h2 id="standard-plots">Standard Plots</h2>
-<p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>fullSave</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using all of the keyword arguments provided by Plots.jl. Please see Plots.jl's documentation for more information.</p>
-<p>A few extra arguments are provided addition to the Plots.jl keyword arguments. They are as follows:</p>
+                <p><a id='Defining-a-SDE-Problem-1'></a></p>
+<h1 id="defining-a-sde-problem">Defining a SDE Problem</h1>
+<p>To define an SDE Problem, you simply need to give the forcing function <code>f</code>, the noise function <code>σ</code>, and the initial condition <code>u₀</code> which define an SDE</p>
+<pre class="codehilite"><code class="language-math">duₜ = f(uₜ,t)dt + Σσᵢ(uₜ,t)dWⁱₜ</code></pre>
+
+
+<p><code>f</code> and <code>σ</code> should be specified as <code>f(u,t)</code> and  <code>σ(u,t)</code> respectively, and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well. A vector of <code>σ</code>s can also be defined to determine an SDE of higher Ito dimension.</p>
+<p><a id='Problem-Type-1'></a></p>
+<h2 id="problem-type">Problem Type</h2>
+<p><a id='DifferentialEquations.SDEProblem' href='#DifferentialEquations.SDEProblem'>#</a>
+<strong><code>DifferentialEquations.SDEProblem</code></strong> &mdash; <em>Type</em>.</p>
+<p>SDEProblem</p>
+<p>Wraps the data which defines an SDE problem</p>
+<pre class="codehilite"><code class="language-math">uₜ = f(uₜ,t)dt + Σσᵢ(uₜ,t)dWⁱₜ</code></pre>
+
+
+<p>with initial condition u₀.</p>
+<p><strong>Fields</strong></p>
 <ul>
-<li>plottrue: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
+<li><code>f</code>: The drift function in the SDE.</li>
+<li><code>σ</code>: The noise function in the SDE.</li>
+<li><code>u₀</code>: The initial condition.</li>
+<li><code>sol</code>: A function which describes the solution.</li>
+<li><code>knownSol</code>: True if the solution is given.</li>
+<li><code>numVars</code>: The number of variables in the system</li>
+<li><code>sizeu</code>: The size of the initial condition (and thus <code>u</code>)</li>
 </ul>
-<p><a id='Extra-Plot-Functions-1'></a></p>
-<h2 id="extra-plot-functions">Extra Plot Functions</h2>
-<p><a id='DifferentialEquations.animate' href='#DifferentialEquations.animate'>#</a>
-<strong><code>DifferentialEquations.animate</code></strong> &mdash; <em>Function</em>.</p>
-<p>animate(sol::FEMSolution)</p>
-<p>Plots an animation of the solution. Requires <code>fullSave=true</code> was enabled in the solver.</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li><code>zlim</code>: The limits on the z-axis in the simulation. Default nothing.</li>
-<li><code>cbar</code>: Boolean flag which turns on/off the color bar. Default true.</li>
-<li><code>plotfunc</code>: The plotting function to animate. Defaults to <code>Plots.surface</code>.</li>
-<li><code>size</code>: Size of the animation. Defaults to <code>(750*sol.prob.numVars,750)</code></li>
-</ul>
+<p><strong>Constructors</strong></p>
+<p>SDEProblem(f,σ,u₀;sol=nothing) : Defines the SDE with the specified functions and defines the solution if sol is given.</p>
+<p><a id='Example-Problems-1'></a></p>
+<h2 id="example-problems">Example Problems</h2>
+<p><a id='DifferentialEquations.twoDimlinearSDEExample' href='#DifferentialEquations.twoDimlinearSDEExample'>#</a>
+<strong><code>DifferentialEquations.twoDimlinearSDEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem of 8 linear SDEs (as a 4x2 matrix) with solution <code>u(t,W)=u₀*exp((α-(β^2)/2)*t+β*W)</code></p>
+<p><a id='DifferentialEquations.cubicSDEExample' href='#DifferentialEquations.cubicSDEExample'>#</a>
+<strong><code>DifferentialEquations.cubicSDEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem with solution <code>u(t,W)=((1+u₀)*exp(W)+u₀-1)./((1+u₀)*exp(W)+1-u₀)</code></p>
+<p><a id='DifferentialEquations.linearSDEExample' href='#DifferentialEquations.linearSDEExample'>#</a>
+<strong><code>DifferentialEquations.linearSDEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem with solution <code>u(t,W)=u₀*exp((α-(β^2)/2)*t+β*W)</code></p>
+<p><a id='DifferentialEquations.multiDimAdditiveSDEExample' href='#DifferentialEquations.multiDimAdditiveSDEExample'>#</a>
+<strong><code>DifferentialEquations.multiDimAdditiveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Multiple Ito dimension extension of additiveSDEExample</p>
+<p><a id='DifferentialEquations.waveSDEExample' href='#DifferentialEquations.waveSDEExample'>#</a>
+<strong><code>DifferentialEquations.waveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem with solution <code>u(t,W)=atan(0.1*W + tan(u₀))</code></p>
+<p><a id='DifferentialEquations.additiveSDEExample' href='#DifferentialEquations.additiveSDEExample'>#</a>
+<strong><code>DifferentialEquations.additiveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example additive noise problem with solution <code>u₀./sqrt(1+t) + β*(t+α*W)./sqrt(1+t)</code></p>
               
             </div>
           </div>
@@ -294,10 +321,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../convergence/" class="btn btn-neutral float-right" title="Convergence Simuations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../femProblem/" class="btn btn-neutral float-right" title="Defining a Finite Element Problem">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../solution/" class="btn btn-neutral" title="The Solution Type"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../odeProblem/" class="btn btn-neutral" title="Defining an ODE Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -325,10 +352,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../solution/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../odeProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../convergence/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../femProblem/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

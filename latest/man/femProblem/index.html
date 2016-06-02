@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Defining a Problem - DifferentialEquations.jl</title>
+  <title>Defining a Finite Element Problem - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Defining a Problem";
-    var mkdocs_page_input_path = "man/problem.md";
-    var mkdocs_page_url = "/man/problem/";
+    var mkdocs_page_name = "Defining a Finite Element Problem";
+    var mkdocs_page_input_path = "man/femProblem.md";
+    var mkdocs_page_url = "/man/femProblem/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,6 +71,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
         
     </li>
@@ -106,12 +120,26 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
-        <a class="current" href="./">Defining a Problem</a>
+        <a class="current" href="./">Defining a Finite Element Problem</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#defining-a-problem">Defining a Problem</a></li>
+                <li class="toctree-l3"><a href="#defining-a-fem-problem">Defining a FEM Problem</a></li>
                 
                     <li><a class="toctree-l4" href="#poisson-equation-problem">Poisson Equation Problem</a></li>
                 
@@ -123,6 +151,13 @@
                 
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -184,6 +219,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -213,7 +255,7 @@
         
       
     
-    <li>Defining a Problem</li>
+    <li>Defining a Finite Element Problem</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -227,8 +269,8 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Defining-a-Problem-1'></a></p>
-<h1 id="defining-a-problem">Defining a Problem</h1>
+                <p><a id='Defining-a-FEM-Problem-1'></a></p>
+<h1 id="defining-a-fem-problem">Defining a FEM Problem</h1>
 <p>Below are the definitions of the types which specify problems. Some general notes are:</p>
 <ul>
 <li>(x,t) vs (x,y,t): Mathematically one normally specifies equations in 2D as <code>f(x,y,t)</code>. However, in this code we use <code>x</code> as a vector. Thus you can think of <code>x</code>=<code>x[:,1]</code> and <code>y</code>=<code>x[:,2]</code>. Thus input equations are of the form <code>f(x,t)</code> no matter the dimension. If time is not included in the problem (for example, a Poisson equation problem), then we use <code>f(x)</code>. An example is the equation <code>u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> would be specified as <code>sol(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)</code>.</li>
@@ -266,6 +308,12 @@
 </li>
 <li>
 <p><code>noiseType</code> = A string which specifies the type of noise to be generated. By default <code>noiseType</code> is "White" for Gaussian Spacetime White Noise.</p>
+</li>
+<li>
+<p><code>numVars</code> = The number of variables in the Poisson system. Automatically calculated in many cases.</p>
+</li>
+<li>
+<p><code>D</code> = Vector of diffusion coefficients. Defaults to ones.</p>
 </li>
 </ul>
 <p><a id='Heat-Equation-Problem-1'></a></p>
@@ -306,9 +354,17 @@
 <li>
 <p><code>noiseType</code> = A string which specifies the type of noise to be generated. By default noiseType is "White" for Gaussian Spacetime White Noise.</p>
 </li>
+<li>
+<p><code>numVars</code> = Number of variables in the system. Automatically calculated from u₀ in most cases.</p>
+</li>
+<li>
+<p><code>D</code> = Array which defines the diffusion coefficients. Defaults to 1's.</p>
+</li>
 </ul>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
+<p><a id='Poisson-Equation-1'></a></p>
+<h3 id="poisson-equation">Poisson Equation</h3>
 <p><a id='DifferentialEquations.poissonProblemExample_wave' href='#DifferentialEquations.poissonProblemExample_wave'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_wave</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem with solution: <code>u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code></p>
@@ -318,6 +374,14 @@
 <p><a id='DifferentialEquations.poissonProblemExample_birthdeath' href='#DifferentialEquations.poissonProblemExample_birthdeath'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_birthdeath</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem for nonlinear Poisson equation. Uses <code>f(u)=1-u/2</code>.</p>
+<p><a id='DifferentialEquations.poissonProblemExample_birthdeathinteractingsystem' href='#DifferentialEquations.poissonProblemExample_birthdeathinteractingsystem'>#</a>
+<strong><code>DifferentialEquations.poissonProblemExample_birthdeathinteractingsystem</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which starts with 1/2 and solves the system <code>f(u)=1-u/2</code> and <code>f(v)=.5u-v</code></p>
+<p><a id='DifferentialEquations.poissonProblemExample_birthdeathsystem' href='#DifferentialEquations.poissonProblemExample_birthdeathsystem'>#</a>
+<strong><code>DifferentialEquations.poissonProblemExample_birthdeathsystem</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which starts with 1/2 and solves the system <code>f(u)=1-u/2</code> and <code>f(v)=1-v</code></p>
+<p><a id='Heat-Equation-1'></a></p>
+<h3 id="heat-equation">Heat Equation</h3>
 <p><a id='DifferentialEquations.heatProblemExample_diffuse' href='#DifferentialEquations.heatProblemExample_diffuse'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_diffuse</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem with solution: <code>u(x,y,t)=exp(-10((x-.5).^2 + (y-.5).^2 )-t)</code></p>
@@ -333,11 +397,26 @@
 <p><a id='DifferentialEquations.heatProblemExample_stochasticbirthdeath' href='#DifferentialEquations.heatProblemExample_stochasticbirthdeath'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_stochasticbirthdeath</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 0 and solves with <code>f(u)=1-u/2</code> with noise <code>σ(u)=10u^2</code></p>
+<p><a id='DifferentialEquations.heatProblemExample_birthdeathinteractingsystem' href='#DifferentialEquations.heatProblemExample_birthdeathinteractingsystem'>#</a>
+<strong><code>DifferentialEquations.heatProblemExample_birthdeathinteractingsystem</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which starts with 1/2 and solves the system <code>f(u)=1-u/2</code> and <code>f(v)=.5u-v</code></p>
+<p><a id='DifferentialEquations.heatProblemExample_gierermeinhardt' href='#DifferentialEquations.heatProblemExample_gierermeinhardt'>#</a>
+<strong><code>DifferentialEquations.heatProblemExample_gierermeinhardt</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which solves the Gierer-Meinhardt equations wtih quasi-random initial perturbations.</p>
+<p><a id='DifferentialEquations.heatProblemExample_birthdeathsystem' href='#DifferentialEquations.heatProblemExample_birthdeathsystem'>#</a>
+<strong><code>DifferentialEquations.heatProblemExample_birthdeathsystem</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which starts with 1/2 and solves the system <code>f(u)=1-u/2</code> and <code>f(v)=1-v</code></p>
+<p><a id='DifferentialEquations.heatProblemExample_diffusionconstants' href='#DifferentialEquations.heatProblemExample_diffusionconstants'>#</a>
+<strong><code>DifferentialEquations.heatProblemExample_diffusionconstants</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which solves the homogeneous Heat equation with all mass starting at (1/2,1/2) with two different diffusion constants.</p>
+<p><a id='DifferentialEquations.heatProblemExample_grayscott' href='#DifferentialEquations.heatProblemExample_grayscott'>#</a>
+<strong><code>DifferentialEquations.heatProblemExample_grayscott</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem which solves the Gray-Scott equations with quasi-random initial conditions</p>
 <p><a id='Related-Functions-1'></a></p>
 <h2 id="related-functions">Related Functions</h2>
-<p><a id='DifferentialEquations.PdeProblem' href='#DifferentialEquations.PdeProblem'>#</a>
-<strong><code>DifferentialEquations.PdeProblem</code></strong> &mdash; <em>Type</em>.</p>
-<p>PdeProblem: Defines PDE problems via its internal functions</p>
+<p><a id='DifferentialEquations.DEProblem' href='#DifferentialEquations.DEProblem'>#</a>
+<strong><code>DifferentialEquations.DEProblem</code></strong> &mdash; <em>Type</em>.</p>
+<p>PdeProblem: Defines differential equation problems via its internal functions</p>
               
             </div>
           </div>
@@ -345,10 +424,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mesh/" class="btn btn-neutral float-right" title="Meshes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../stokesProblem/" class="btn btn-neutral float-right" title="Defining a Stokes Problem">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../overview/" class="btn btn-neutral" title="Overview of DifferentialEquations.jl Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sdeProblem/" class="btn btn-neutral" title="Defining an SDE Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -376,10 +455,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../sdeProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../mesh/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../stokesProblem/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -71,6 +71,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../femPoisson/">Poisson Equation Finite Element Method Example</a>
         
     </li>
@@ -118,7 +132,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/problem/">Defining a Problem</a>
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -180,6 +215,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -230,16 +272,13 @@
 <p><a id='Finite-Element-Stochastic-Poisson-Equation-1'></a></p>
 <h2 id="finite-element-stochastic-poisson-equation">Finite Element Stochastic Poisson Equation</h2>
 <p>We can solve the same PDE as in the Poisson Tutorial except as the stochastic PDE,  <code>-Δu=f+gdW</code>, with additive space-time white noise by specifying the problem as:</p>
-<pre class="codehilite"><code class="language-julia">&quot;Example problem with deterministic solution: u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)&quot;
+<pre class="codehilite"><code class="language-julia">&quot;Example problem with deterministic solution: ``u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)``&quot;
 function poissonProblemExample_noisyWave()
   f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
   sol(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
   Du(x) = [cos(2*pi.*x[:,1]).*cos(2*pi.*x[:,2])./(4*pi) -sin(2π.*x[:,1]).*sin(2π.*x[:,2])./(4π)]
-  gN(x) = 0
-  isLinear = true
-  stochastic = true
-  σ(x) = 5 #Additive noise, a big amount!
-  return(PoissonProblem(f,sol,Du,gN,isLinear,σ=σ,stochastic=stochastic))
+  σ(x) = 5 #Additive noise
+  return(PoissonProblem(f,sol,Du,σ=σ))
 end</code></pre>
 
 
@@ -248,28 +287,24 @@ end</code></pre>
 <p><a id='Finite-Element-Stochastic-Heat-Equation-1'></a></p>
 <h2 id="finite-element-stochastic-heat-equation">Finite Element Stochastic Heat Equation</h2>
 <p>This will solve a nonlinear stochastic heat equation u_t=Δu+f+gdW with forcing function <code>f(u)=.5-u</code>, noise function <code>g(u)=100u^2</code> and initial condition <code>u0=0</code>. We would expect this system to rise towards the deterministic steady state <code>u=2</code> (but stay in mean a bit below it due to 1st order "Milstein" effects), gaining more noise as it increases. This is specified as follows:</p>
-<pre class="codehilite"><code class="language-julia">&quot;Example problem which starts with 0 and solves with f(u)=1-.1u&quot;
+<pre class="codehilite"><code class="language-julia">&quot;Example problem which starts with 0 and solves with ``f(u)=1-u/2`` with noise ``σ(u)=10u^2``&quot;
 function heatProblemExample_stochasticbirthdeath()
-  gD(x,t) = zeros(size(x,1))
   f(u,x,t)  = ones(size(x,1)) - .5u
-  u0(x) = zeros(size(x,1))
-  gN(x,t) = 0
-  isLinear = false
-  stochastic = true
-  σ(u,x,t) = 100u.^2
-  return(HeatProblem(u0,f,gD,gN,isLinear,σ=σ,stochastic=stochastic))
+  u₀(x) = zeros(size(x,1))
+  σ(u,x,t) = 1u.^2
+  return(HeatProblem(u₀,f,σ=σ))
 end</code></pre>
 
 
 <p>As shown in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/test/femStochasticHeatAnimationTest.jl">femStochasticHeatAnimationTest.jl</a>, we use the following code create an animation of the solution:</p>
 <pre class="codehilite"><code class="language-julia">T = 5
-Δx = 1//2^(4)
-Δt = 1//2^(12)
+Δx = 1//2^(3)
+Δt = 1//2^(11)
 femMesh = parabolic_squaremesh([0 1 0 1],Δx,Δt,T,&quot;Neumann&quot;)
-pdeProb = heatProblemExample_stochasticbirthdeath()
+prob = heatProblemExample_stochasticbirthdeath()
 
-res = fem_solveheat(femMesh::FEMmesh,pdeProb::HeatProblem,alg=&quot;Euler&quot;,fullSave=true)
-solplot_animation(res::FEMSolution;zlim=(0,2),vmax=.1,cbar=false)</code></pre>
+sol = solve(femMesh::FEMmesh,prob::HeatProblem,alg=&quot;Euler&quot;,fullSave=true,solver=&quot;LU&quot;)
+animate(sol::FEMSolution;zlim=(0,3),cbar=false)</code></pre>
 
 
 <p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/src/examples/stochasticHeatAnimation.gif" width="750" align="middle" /></p>

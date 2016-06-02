@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Plot Functions - DifferentialEquations.jl</title>
+  <title>Defining an ODE Problem - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Plot Functions";
-    var mkdocs_page_input_path = "man/plot.md";
-    var mkdocs_page_url = "/man/plot/";
+    var mkdocs_page_name = "Defining an ODE Problem";
+    var mkdocs_page_input_path = "man/odeProblem.md";
+    var mkdocs_page_url = "/man/odeProblem/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -120,8 +120,19 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Defining an ODE Problem</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#defining-an-ode-problem">Defining an ODE Problem</a></li>
+                
+                    <li><a class="toctree-l4" href="#problem-type">Problem Type</a></li>
+                
+                    <li><a class="toctree-l4" href="#example-problems">Example Problems</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -169,19 +180,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Plot Functions</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#plot-functions">Plot Functions</a></li>
-                
-                    <li><a class="toctree-l4" href="#standard-plots">Standard Plots</a></li>
-                
-                    <li><a class="toctree-l4" href="#extra-plot-functions">Extra Plot Functions</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../plot/">Plot Functions</a>
         
     </li>
 
@@ -251,7 +251,7 @@
         
       
     
-    <li>Plot Functions</li>
+    <li>Defining an ODE Problem</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -265,28 +265,42 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Plot-Functions-1'></a></p>
-<h1 id="plot-functions">Plot Functions</h1>
-<p><a id='Standard-Plots-1'></a></p>
-<h2 id="standard-plots">Standard Plots</h2>
-<p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>fullSave</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using all of the keyword arguments provided by Plots.jl. Please see Plots.jl's documentation for more information.</p>
-<p>A few extra arguments are provided addition to the Plots.jl keyword arguments. They are as follows:</p>
+                <p><a id='Defining-an-ODE-Problem-1'></a></p>
+<h1 id="defining-an-ode-problem">Defining an ODE Problem</h1>
+<p>To define an ODE Problem, you simply need to give the function <code>f</code> and the initial condition <code>u₀</code> which define an ODE</p>
+<pre class="codehilite"><code class="language-math">uₜ = f(uₜ,t)dt</code></pre>
+
+
+<p><code>f</code> should be specified as <code>f(u,t)</code> and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well.</p>
+<p><a id='Problem-Type-1'></a></p>
+<h2 id="problem-type">Problem Type</h2>
+<p><a id='DifferentialEquations.ODEProblem' href='#DifferentialEquations.ODEProblem'>#</a>
+<strong><code>DifferentialEquations.ODEProblem</code></strong> &mdash; <em>Type</em>.</p>
+<p>ODEProblem</p>
+<p>Wraps the data which defines an SDE problem</p>
+<pre class="codehilite"><code class="language-math">uₜ = f(uₜ,t)dt</code></pre>
+
+
+<p>with initial condition u₀.</p>
+<p><strong>Fields</strong></p>
 <ul>
-<li>plottrue: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
+<li><code>f</code>: The drift function in the ODE.</li>
+<li><code>u₀</code>: The initial condition.</li>
+<li><code>sol</code>: A function which describes the solution.</li>
+<li><code>knownSol</code>: True if the solution is given.</li>
+<li><code>numVars</code>: The number of variables in the system</li>
+<li><code>sizeu</code>: The size of the initial condition (and thus <code>u</code>)</li>
 </ul>
-<p><a id='Extra-Plot-Functions-1'></a></p>
-<h2 id="extra-plot-functions">Extra Plot Functions</h2>
-<p><a id='DifferentialEquations.animate' href='#DifferentialEquations.animate'>#</a>
-<strong><code>DifferentialEquations.animate</code></strong> &mdash; <em>Function</em>.</p>
-<p>animate(sol::FEMSolution)</p>
-<p>Plots an animation of the solution. Requires <code>fullSave=true</code> was enabled in the solver.</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li><code>zlim</code>: The limits on the z-axis in the simulation. Default nothing.</li>
-<li><code>cbar</code>: Boolean flag which turns on/off the color bar. Default true.</li>
-<li><code>plotfunc</code>: The plotting function to animate. Defaults to <code>Plots.surface</code>.</li>
-<li><code>size</code>: Size of the animation. Defaults to <code>(750*sol.prob.numVars,750)</code></li>
-</ul>
+<p><strong>Constructors</strong></p>
+<p>ODEProblem(f,u₀;sol=nothing) : Defines the SDE with the specified functions and defines the solution if sol is given.</p>
+<p><a id='Example-Problems-1'></a></p>
+<h2 id="example-problems">Example Problems</h2>
+<p><a id='DifferentialEquations.twoDimlinearODEExample' href='#DifferentialEquations.twoDimlinearODEExample'>#</a>
+<strong><code>DifferentialEquations.twoDimlinearODEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem of 8 linear ODEs (as a 4x2 matrix) with solution <code>u(t)=exp(α.*t)</code> and random initial conditions</p>
+<p><a id='DifferentialEquations.linearODEExample' href='#DifferentialEquations.linearODEExample'>#</a>
+<strong><code>DifferentialEquations.linearODEExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem with solution <code>u(t)=u₀*exp(α*t)</code></p>
               
             </div>
           </div>
@@ -294,10 +308,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../convergence/" class="btn btn-neutral float-right" title="Convergence Simuations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../sdeProblem/" class="btn btn-neutral float-right" title="Defining an SDE Problem">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../solution/" class="btn btn-neutral" title="The Solution Type"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../overview/" class="btn btn-neutral" title="Overview of DifferentialEquations.jl Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -325,10 +339,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../solution/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../convergence/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../sdeProblem/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

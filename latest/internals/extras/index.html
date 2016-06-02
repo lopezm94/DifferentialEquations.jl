@@ -71,6 +71,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
         
     </li>
@@ -107,7 +121,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/problem/">Defining a Problem</a>
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -170,8 +205,17 @@
             
                 <li class="toctree-l3"><a href="#extra-functions">Extra Functions</a></li>
                 
+                    <li><a class="toctree-l4" href="#making-build-work">Making Build Work</a></li>
+                
             
             </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../solverHelpers/">Solver Helpers</a>
         
     </li>
 
@@ -221,14 +265,6 @@
               
                 <p><a id='Extra-Functions-1'></a></p>
 <h1 id="extra-functions">Extra Functions</h1>
-<p><a id='DifferentialEquations.modulechildren' href='#DifferentialEquations.modulechildren'>#</a>
-<strong><code>DifferentialEquations.modulechildren</code></strong> &mdash; <em>Function</em>.</p>
-<p><code>modulechildren(m::Module)</code></p>
-<p>Returns the modules in m</p>
-<p><a id='DifferentialEquations.checkIfLoaded' href='#DifferentialEquations.checkIfLoaded'>#</a>
-<strong><code>DifferentialEquations.checkIfLoaded</code></strong> &mdash; <em>Function</em>.</p>
-<p><code>checkIfLoaded(pkg::AbstractString)</code></p>
-<p>Returns true if module "pkg" is defined in Main, otherwise false.</p>
 <p><a id='DifferentialEquations.getNoise' href='#DifferentialEquations.getNoise'>#</a>
 <strong><code>DifferentialEquations.getNoise</code></strong> &mdash; <em>Function</em>.</p>
 <p>getNoise(N,node,elem;noiseType="White")</p>
@@ -237,12 +273,110 @@
 <strong><code>DifferentialEquations.numparameters</code></strong> &mdash; <em>Function</em>.</p>
 <p>numparameters(f)</p>
 <p>Returns the number of parameters of <code>f</code> for the method which has the most parameters.</p>
+<p><a id='Making-Build-Work-1'></a></p>
+<h2 id="making-build-work">Making Build Work</h2>
+<p><a id='DifferentialEquations.solve' href='#DifferentialEquations.solve'>#</a>
+<strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Function</em>.</p>
+<p>solve(prob::ODEProblem,Δt,T)</p>
+<p>Solves the ODE defined by prob with initial Δt on the time interval [0,T].</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li>fullSave: Saves the result at every saveSteps steps. Default is false. saveSteps: If fullSave is true, then the output is saved every saveSteps steps.</li>
+<li>alg: String which defines the solver algorithm. Defult is "RK4". Possibilities are:</li>
+<li>"Euler" - The canonical forward Euler method.</li>
+<li>"Midpoint" - The second order midpoint method.</li>
+<li>"RK4" - The canonical Runge-Kutta Order 4 method.</li>
+<li>"ExplicitRK" - A general Runge-Kutta solver which takes in a tableau. Can be adaptive.</li>
+<li>"ImplicitEuler" - A 1st order implicit solver. Unconditionally stable.</li>
+<li>"Trapezoid" - A second order unconditionally stable implicit solver. Good for highly stiff.</li>
+<li>tableau - Takes in an object which defines a tableau. Default is Dormand-Prince 4/5.</li>
+<li>adaptive - Turns on adaptive timestepping for appropriate methods. Default is false.</li>
+<li>tol - The error tolerance of the adaptive method. Default is 1e-4.</li>
+<li>γ - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.</li>
+<li>qmax - Defines the maximum value possible for the adaptive q. Default is 10.</li>
+</ul>
+<p>solve(prob::SDEProblem,Δt,T)</p>
+<p>Solves the SDE as defined by prob with initial Δt on the time interval [0,T]</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li>fullSave: Saves the result at every saveSteps steps. Default is false. saveSteps: If fullSave is true, then the output is saved every saveSteps steps.</li>
+<li>alg: String which defines the solver algorithm. Defult is "EM". Possibilities are:</li>
+<li>"EM"- The Euler-Maruyama method.</li>
+<li>"RKMil" - An explicit Runge-Kutta discretization of the strong Order 1.0 Milstein method.</li>
+<li>"SRA" - The strong Order 1.5 method for additive SDEs due to Rossler.</li>
+<li>"SRI" - The strong Order 1.5 method for diagonal/scalar SDEs due to Rosser. Most efficient.</li>
+</ul>
+<p>solve(prob::StokesProblem,mesh::FDMMesh)</p>
+<p>Solves the given stationary Stokes problem on the given finite difference mesh.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>converrors</code>: Whether to calculate all of the errors along the convergence. Default is true.</li>
+<li><code>maxiters</code>: Maximum number of iterations before haulting. Default is 100.</li>
+<li><code>alg</code>: The solver algorithm. Default is "dgs". Other option is "multigrid".</li>
+<li><code>level</code>: The number of levels in the Multigrid. Default is 2.</li>
+<li><code>smoothSteps</code>: The number of Gauss-Seidel iterations to do at each smoothing step. Default is 10.</li>
+<li><code>coarseSteps</code>: The number of Gauss-Seidel iterations to do at the coarsegrid. Default is 40.</li>
+<li><code>gsiters</code>: The number of Gauss-Seidel iterations to do at each step. Default is 20.</li>
+</ul>
+<p><strong>Finite Element Heat Equation Solver</strong></p>
+<p><code>solve(femMesh::FEMmesh,pdeProb::HeatProblem)</code></p>
+<p>Takes in a definition for the heat equation <code>u_t = Δu + f</code> on <code>femMesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic heat equation <code>u_t = Δu + f + σdW_t</code>.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>alg</code> = Solution algorithm. Default is Euler. The choices are:</li>
+<li>Linear     * Euler (Explicit)     * Implicit Euler (Implicit)     * Crank-Nicholson (Implicit)</li>
+<li>Nonlinear     * Euler (Explicit)     * Implicit Euler (Nonlinear Solve)     * Crank-Nicholson (Nonlinear Solve)     * Semi-Implicit Euler (Implicit)     * Semi-Implicit Crank-Nicholson (Implicit)</li>
+</ul>
+<p>Explicit algorithms only require solving matrix multiplications <code>Au</code>. Implicit algorithms require solving the linear equation <code>Ax=b</code> where <code>x</code> is the unknown. Nonlinear Solve algorithms require solving the nonlinear equation f(x)=0 using methods like Newton's method and is provided by NLSolve.jl. Explicit algorithms have the least stability and should be used either small Δt and non-stiff equations. The implicit algorithms have better stability, but for nonlinear equations require costly nonlinear solves in order to be solved exactly. The semi-implicit algorithms discretize with part of the equation implicit and another part explicit in order to allow for the algorithm to not require a nonlinear solve, but at the cost of some stability (though still vastly better at stability than explicit algorithms).</p>
+<ul>
+<li><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:</li>
+<li><code>Direct</code> = Solves using `` (no factorization). Not recommended.</li>
+<li><code>Cholesky</code> = Cholsky decomposition. Only stable of <code>I ± ΔtM⁻¹A</code> is positive definite.     This means that this works best when Δt is small. When applicable, this is the fastest.</li>
+<li><code>LU</code> = LU-Decomposition. A good mix between fast and stable.</li>
+<li><code>QR</code> = QR-Decomposition. Less numerical roundoff error than <code>LU</code>, but slightly slower.</li>
+<li><code>SVD</code> = SVD-Decomposition. By far the slowest, but the most robust to roundoff error.</li>
+<li><code>CG</code> = Conjugate-Gradient. Best when the space is very large and <code>I ± ΔtM⁻¹A</code> is positive definite.</li>
+<li><code>GMRES</code> = GMRES. Best when the space is very large and <code>I ± ΔtM⁻¹A</code> is not positive definite.</li>
+<li><code>fullSave</code> = Makes the algorithm save the output at every <code>saveSteps</code> timesteps. By default fullSave is false.</li>
+<li><code>saveSteps</code> = If <code>fullSave=true</code>, then this is the number of steps between the saves.</li>
+<li><code>autodiff</code> = Whether or not autodifferentiation (as provided by AutoDiff.jl) is used for the nonlinear solving. By default autodiff is false.</li>
+<li><code>method</code> = Method the nonlinear solver uses. Defaults to <code>:trust_region</code>.</li>
+<li><code>show_trace</code> = Whether to show the output of the nonlinear solver. Defaults to false.</li>
+<li><code>iterations</code> = Maximum numer of iterations in the nonlinear solver. Defaults to 1000.</li>
+</ul>
+<p><strong>Finite Element Poisson Equation Solver</strong></p>
+<p>solve(femMesh::FEMmesh,pdeProb::PoissonProblem)</p>
+<p>Takes in a definition for the heat equation <code>-Δu = f</code> on <code>femMesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic Poisson equation <code>-Δu = f + σdW</code>.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:</li>
+<li><code>Direct</code> = Solves <code>Ax=b</code> using ``</li>
+<li><code>CG</code> = Conjugate-Gradient. Best when the space is very large and <code>I ± ΔtM⁻¹A</code> is positive definite.</li>
+<li><code>GMRES</code> = GMRES. Best when the space is very large and <code>I ± ΔtM⁻¹A</code> is not positive definite.</li>
+<li><code>saveSteps</code> = If <code>fullSave=true</code>, then this is the number of steps between the saves.</li>
+<li><code>autodiff</code> = Whether or not autodifferentiation (as provided by AutoDiff.jl) is used for the nonlinear solving. By default autodiff is false.</li>
+<li><code>method</code> = Method the nonlinear solver uses. Defaults to <code>:trust_region</code>.</li>
+<li><code>show_trace</code> = Whether to show the output of the nonlinear solver. Defaults to false.</li>
+<li><code>iterations</code> = Maximum numer of iterations in the nonlinear solver. Defaults to 1000.</li>
+</ul>
+<p><a id='Base.size' href='#Base.size'>#</a>
+<strong><code>Base.size</code></strong> &mdash; <em>Function</em>.</p>
+<p>size(mesh::FDMMesh)</p>
+<p>Returns gridSize.</p>
+<p><a id='Base.length' href='#Base.length'>#</a>
+<strong><code>Base.length</code></strong> &mdash; <em>Function</em>.</p>
+<p>Base.length(tab::ExplicitRK)</p>
+<p>Defines the length of a Runge-Kutta method to be the number of stages.</p>
+<p>length(simres::ConvergenceSimulation)</p>
+<p>Returns the number of simultations in the Convergence Simulation</p>
               
             </div>
           </div>
           <footer>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../solverHelpers/" class="btn btn-neutral float-right" title="Solver Helpers">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../femTools/" class="btn btn-neutral" title="Internal Finite Element Tools"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -275,6 +409,8 @@
       
         <span><a href="../femTools/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
+      
+        <span style="margin-left: 15px"><a href="../solverHelpers/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

@@ -71,6 +71,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
         
     </li>
@@ -107,7 +121,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../problem/">Defining a Problem</a>
+        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -127,6 +162,8 @@
                     <li><a class="toctree-l4" href="#mesh-generation-functions">Mesh Generation Functions</a></li>
                 
                     <li><a class="toctree-l4" href="#example-meshes">Example Meshes</a></li>
+                
+                    <li><a class="toctree-l4" href="#plot-functions">Plot Functions</a></li>
                 
             
             </ul>
@@ -180,6 +217,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
         
     </li>
 
@@ -348,6 +392,13 @@ parabolic_squaremesh(square,Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
 <p><a id='DifferentialEquations.meshExample_wavyperturbmesh' href='#DifferentialEquations.meshExample_wavyperturbmesh'>#</a>
 <strong><code>DifferentialEquations.meshExample_wavyperturbmesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_wavyperturbmesh() : Returns a 3D SimpleMesh.</p>
+<p><a id='Plot-Functions-1'></a></p>
+<h2 id="plot-functions">Plot Functions</h2>
+<p>The plot functionality is provided by a Plots.jl recipe. What is plotted is a "trisurf" of the mesh. To plot a mesh, simply use:</p>
+<pre class="codehilite"><code class="language-julia">plot(mesh::Mesh)</code></pre>
+
+
+<p>All of the functionality (keyword arguments) provided by Plots.jl are able to be used in this command. Please see the Plots.jl documentation for more information.</p>
               
             </div>
           </div>
@@ -358,7 +409,7 @@ parabolic_squaremesh(square,Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
         <a href="../solvers/" class="btn btn-neutral float-right" title="Information on Solvers">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../problem/" class="btn btn-neutral" title="Defining a Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../stokesProblem/" class="btn btn-neutral" title="Defining a Stokes Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -386,7 +437,7 @@ parabolic_squaremesh(square,Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../problem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../stokesProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../solvers/" style="color: #fcfcfc">Next &raquo;</a></span>

@@ -70,6 +70,20 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">Poisson Equation Finite Element Method Example</a>
         
@@ -114,7 +128,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/problem/">Defining a Problem</a>
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -176,6 +211,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -227,11 +269,9 @@ function poissonProblemExample_wave()
   f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
   sol(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
   Du(x) = [cos(2*pi.*x[:,1]).*cos(2*pi.*x[:,2])./(4*pi) -sin(2π.*x[:,1]).*sin(2π.*x[:,2])./(4π)]
-  gN(x) = 0
-  isLinear = true
-  return(PoissonProblem(f,sol,Du,gN,isLinear))
+  return(PoissonProblem(f,sol,Du))
 end
-pdeProb = poissonProblemExample_wave()</code></pre>
+prob = poissonProblemExample_wave()</code></pre>
 
 
 <p>Note that in this case since the solution is known, the Dirichlet boundary condition <code>gD</code> is automatically set to match the true solution. The code for other example problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/examples/exampleProblems.jl">src/examples/exampleProblems.jl</a>. To solve this problem, we first have to generate a mesh. Here we will simply generate a mesh of triangles on the square [0,1]x[0,1] with Δx=2^(-5). To do so, we use the code:</p>
@@ -240,11 +280,11 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
 
 
 <p>Note that by specifying "Dirichlet" our boundary conditions is set on all boundaries to Dirichlet. This gives an FEMmesh object which stores a finite element mesh in the same layout as <a href="http://www.math.uci.edu/~chenlong/programming.html">iFEM</a>. Notice this code shows that the package supports the use of rationals in meshes. Other numbers such as floating point and integers can be used as well. Finally, to solve the equation we use</p>
-<pre class="codehilite"><code class="language-julia">res = fem_solvepoisson(femMesh::FEMmesh,pdeProb::PoissonProblem,solver=&quot;GMRES&quot;)</code></pre>
+<pre class="codehilite"><code class="language-julia">sol = solve(femMesh,pdeProb)</code></pre>
 
 
 <p>fem_solvepoisson takes in a mesh and a PoissonProblem and uses the solver to compute the solution. Here the solver was chosen to be GMRES. Other solvers can be found in the documentation. This reurns a FEMSolution object which holds data about the solution, such as the solution values (u), the true solution (uTrue), error estimates, etc. To plot the solution, we use the command</p>
-<pre class="codehilite"><code class="language-julia">solplot(res,savefile=&quot;introductionExample.png&quot;)</code></pre>
+<pre class="codehilite"><code class="language-julia">plot(sol::FEMSolution,plottrue=true)</code></pre>
 
 
 <p>This gives us the following plot:</p>
@@ -259,7 +299,7 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
         <a href="../femHeat/" class="btn btn-neutral float-right" title="Heat Equation Finite Element Method Example">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../.." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sde/" class="btn btn-neutral" title="Stochastic Differential Equation Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -287,7 +327,7 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../sde/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../femHeat/" style="color: #fcfcfc">Next &raquo;</a></span>

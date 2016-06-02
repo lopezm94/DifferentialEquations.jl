@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Plot Functions - DifferentialEquations.jl</title>
+  <title>Solver Helpers - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Plot Functions";
-    var mkdocs_page_input_path = "man/plot.md";
-    var mkdocs_page_url = "/man/plot/";
+    var mkdocs_page_name = "Solver Helpers";
+    var mkdocs_page_input_path = "internals/solverHelpers.md";
+    var mkdocs_page_url = "/internals/solverHelpers/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -114,81 +114,70 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../overview/">Overview of DifferentialEquations.jl Usage</a>
+        <a class="" href="../../man/overview/">Overview of DifferentialEquations.jl Usage</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mesh/">Meshes</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../solvers/">Information on Solvers</a>
+        <a class="" href="../../man/solvers/">Information on Solvers</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../solution/">The Solution Type</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Plot Functions</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#plot-functions">Plot Functions</a></li>
-                
-                    <li><a class="toctree-l4" href="#standard-plots">Standard Plots</a></li>
-                
-                    <li><a class="toctree-l4" href="#extra-plot-functions">Extra Plot Functions</a></li>
-                
-            
-            </ul>
+        <a class="" href="../../man/solution/">The Solution Type</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../convergence/">Convergence Simuations</a>
+        <a class="" href="../../man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/convergence/">Convergence Simuations</a>
         
     </li>
 
@@ -203,21 +192,32 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../femTools/">Internal Finite Element Tools</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/extras/">Extra Functions</a>
+        <a class="" href="../extras/">Extra Functions</a>
         
     </li>
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Solver Helpers</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#solver-helpers">Solver Helpers</a></li>
+                
+                    <li><a class="toctree-l4" href="#ode">ODE</a></li>
+                
+                    <li><a class="toctree-l4" href="#stationary-stokes">Stationary Stokes</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -247,11 +247,11 @@
     
       
         
-          <li>Manual &raquo;</li>
+          <li>Internal Documentation &raquo;</li>
         
       
     
-    <li>Plot Functions</li>
+    <li>Solver Helpers</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -265,28 +265,57 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Plot-Functions-1'></a></p>
-<h1 id="plot-functions">Plot Functions</h1>
-<p><a id='Standard-Plots-1'></a></p>
-<h2 id="standard-plots">Standard Plots</h2>
-<p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>fullSave</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using all of the keyword arguments provided by Plots.jl. Please see Plots.jl's documentation for more information.</p>
-<p>A few extra arguments are provided addition to the Plots.jl keyword arguments. They are as follows:</p>
-<ul>
-<li>plottrue: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
-</ul>
-<p><a id='Extra-Plot-Functions-1'></a></p>
-<h2 id="extra-plot-functions">Extra Plot Functions</h2>
-<p><a id='DifferentialEquations.animate' href='#DifferentialEquations.animate'>#</a>
-<strong><code>DifferentialEquations.animate</code></strong> &mdash; <em>Function</em>.</p>
-<p>animate(sol::FEMSolution)</p>
-<p>Plots an animation of the solution. Requires <code>fullSave=true</code> was enabled in the solver.</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li><code>zlim</code>: The limits on the z-axis in the simulation. Default nothing.</li>
-<li><code>cbar</code>: Boolean flag which turns on/off the color bar. Default true.</li>
-<li><code>plotfunc</code>: The plotting function to animate. Defaults to <code>Plots.surface</code>.</li>
-<li><code>size</code>: Size of the animation. Defaults to <code>(750*sol.prob.numVars,750)</code></li>
-</ul>
+                <p><a id='Solver-Helpers-1'></a></p>
+<h1 id="solver-helpers">Solver Helpers</h1>
+<p>This package includes the documentation for the helper functions for the various solvers.</p>
+<p><a id='ODE-1'></a></p>
+<h2 id="ode">ODE</h2>
+<p><a id='Base.length-Tuple{DifferentialEquations.ExplicitRK}' href='#Base.length-Tuple{DifferentialEquations.ExplicitRK}'>#</a>
+<strong><code>Base.length</code></strong> &mdash; <em>Method</em>.</p>
+<p>Base.length(tab::ExplicitRK)</p>
+<p>Defines the length of a Runge-Kutta method to be the number of stages.</p>
+<p><a id='Stationary-Stokes-1'></a></p>
+<h2 id="stationary-stokes">Stationary Stokes</h2>
+<p><a id='DifferentialEquations.GSδq!' href='#DifferentialEquations.GSδq!'>#</a>
+<strong><code>DifferentialEquations.GSδq!</code></strong> &mdash; <em>Function</em>.</p>
+<p>GSδq!(δq,rp,Δxs)</p>
+<p>Performs a Gauss-Seidel iteration for δq.</p>
+<p><a id='DifferentialEquations.GSu!' href='#DifferentialEquations.GSu!'>#</a>
+<strong><code>DifferentialEquations.GSu!</code></strong> &mdash; <em>Function</em>.</p>
+<p>GSu!(u,f₁,Δxs,p,ugD,grids,ux,uy)</p>
+<p>Performs a Gauss-Seidel iteration on u.</p>
+<p><a id='DifferentialEquations.calc_rp!' href='#DifferentialEquations.calc_rp!'>#</a>
+<strong><code>DifferentialEquations.calc_rp!</code></strong> &mdash; <em>Function</em>.</p>
+<p>calc_rp!(rp,u,v,Δxs,g,px,py)</p>
+<p>Calculates the rp from the u and v's.</p>
+<p><a id='DifferentialEquations.update_p!' href='#DifferentialEquations.update_p!'>#</a>
+<strong><code>DifferentialEquations.update_p!</code></strong> &mdash; <em>Function</em>.</p>
+<p>update_p!(p,δq,Δxs)</p>
+<p>Updates p given δq</p>
+<p><a id='DifferentialEquations.update_v!' href='#DifferentialEquations.update_v!'>#</a>
+<strong><code>DifferentialEquations.update_v!</code></strong> &mdash; <em>Function</em>.</p>
+<p>update_v!(v,δq,Δxs)</p>
+<p>Updates v given δq</p>
+<p><a id='DifferentialEquations.uzawa_p!' href='#DifferentialEquations.uzawa_p!'>#</a>
+<strong><code>DifferentialEquations.uzawa_p!</code></strong> &mdash; <em>Function</em>.</p>
+<p>uzawa_p!(p,u,v,Δxs,g,px,py)</p>
+<p>Solves for p from u and v using an Uzawa update.</p>
+<p><a id='DifferentialEquations.stokes_restriction' href='#DifferentialEquations.stokes_restriction'>#</a>
+<strong><code>DifferentialEquations.stokes_restriction</code></strong> &mdash; <em>Function</em>.</p>
+<p>stokes_restriction(u,v,p,Δxs,grids,mins,maxs,ugD,vgD)</p>
+<p>Restricts the Stokes problem to the coarsegrid.</p>
+<p><a id='DifferentialEquations.stokes_prolongation' href='#DifferentialEquations.stokes_prolongation'>#</a>
+<strong><code>DifferentialEquations.stokes_prolongation</code></strong> &mdash; <em>Function</em>.</p>
+<p>stokes_prolongation(u,v,p,Δxs,grids,mins,maxs,ugD,vgD)</p>
+<p>Prolongates the Stokes problem to the fine grid</p>
+<p><a id='DifferentialEquations.update_u!' href='#DifferentialEquations.update_u!'>#</a>
+<strong><code>DifferentialEquations.update_u!</code></strong> &mdash; <em>Function</em>.</p>
+<p>update_u!(u,δq,Δxs)</p>
+<p>Updates u given δq</p>
+<p><a id='DifferentialEquations.GSv!' href='#DifferentialEquations.GSv!'>#</a>
+<strong><code>DifferentialEquations.GSv!</code></strong> &mdash; <em>Function</em>.</p>
+<p>GSv!(v,f₂,Δxs,p,vgD,grids,vx,vy)</p>
+<p>Performs a Gauss-Seidel iteration on v.</p>
               
             </div>
           </div>
@@ -294,10 +323,8 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../convergence/" class="btn btn-neutral float-right" title="Convergence Simuations">Next <span class="icon icon-circle-arrow-right"></span></a>
       
-      
-        <a href="../solution/" class="btn btn-neutral" title="The Solution Type"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../extras/" class="btn btn-neutral" title="Extra Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -325,10 +352,8 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../solution/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../extras/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
-      
-        <span style="margin-left: 15px"><a href="../convergence/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

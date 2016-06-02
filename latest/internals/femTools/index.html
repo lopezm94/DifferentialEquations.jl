@@ -71,6 +71,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
         
     </li>
@@ -107,7 +121,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/problem/">Defining a Problem</a>
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -180,6 +215,13 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../extras/">Extra Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../solverHelpers/">Solver Helpers</a>
         
     </li>
 
@@ -262,8 +304,8 @@
 <p>Returns the ∇u of the barycentric basis elements.</p>
 <p><a id='DifferentialEquations.quadfbasis' href='#DifferentialEquations.quadfbasis'>#</a>
 <strong><code>DifferentialEquations.quadfbasis</code></strong> &mdash; <em>Function</em>.</p>
-<p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdNode,mid,N,Dirichlet,Neumann,isLinear;gNquad𝒪=2)</p>
-<p>Performs the order 2 quadrature to calculate the vector from the term <code>&lt;f,v&gt;</code>.</p>
+<p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdNode,mid,N,Dirichlet,Neumann,isLinear,numVars;gNquad𝒪=2)</p>
+<p>Performs the order 2 quadrature to calculate the vector from the term <code>&lt;f,v&gt;</code> for linear elements.</p>
 <p><a id='DifferentialEquations.quadpts' href='#DifferentialEquations.quadpts'>#</a>
 <strong><code>DifferentialEquations.quadpts</code></strong> &mdash; <em>Function</em>.</p>
 <p>quadpts(𝒪)</p>
