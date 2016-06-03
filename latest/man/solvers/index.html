@@ -277,25 +277,7 @@
 <h3 id="ode">ODE</h3>
 <p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,Number,Number}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,Number,Number}'>#</a>
 <strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
-<p>solve(prob::ODEProblem,Δt,T)</p>
-<p>Solves the ODE defined by prob with initial Δt on the time interval [0,T].</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li>fullSave: Saves the result at every saveSteps steps. Default is false. saveSteps: If fullSave is true, then the output is saved every saveSteps steps.</li>
-<li>alg: String which defines the solver algorithm. Defult is "RK4". Possibilities are:</li>
-<li>"Euler" - The canonical forward Euler method.</li>
-<li>"Midpoint" - The second order midpoint method.</li>
-<li>"RK4" - The canonical Runge-Kutta Order 4 method.</li>
-<li>"ExplicitRK" - A general Runge-Kutta solver which takes in a tableau. Can be adaptive.</li>
-<li>"ImplicitEuler" - A 1st order implicit solver. Unconditionally stable.</li>
-<li>"Trapezoid" - A second order unconditionally stable implicit solver. Good for highly stiff.</li>
-<li>"Rosenbrock23" - A fast solver which is good for stiff equations.</li>
-<li>tableau - Takes in an object which defines a tableau. Default is Dormand-Prince 4/5.</li>
-<li>adaptive - Turns on adaptive timestepping for appropriate methods. Default is false.</li>
-<li>tol - The error tolerance of the adaptive method. Default is 1e-4.</li>
-<li>γ - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.</li>
-<li>qmax - Defines the maximum value possible for the adaptive q. Default is 10.</li>
-</ul>
+<p>nothing</p>
 <p><a id='ODE-Solver-Extras-1'></a></p>
 <h4 id="ode-solver-extras">ODE Solver Extras</h4>
 <p><a id='DifferentialEquations.ExplicitRK' href='#DifferentialEquations.ExplicitRK'>#</a>
@@ -340,17 +322,7 @@
 <h3 id="sde">SDE</h3>
 <p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,Number,Number}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,Number,Number}'>#</a>
 <strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
-<p>solve(prob::SDEProblem,Δt,T)</p>
-<p>Solves the SDE as defined by prob with initial Δt on the time interval [0,T]</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li>fullSave: Saves the result at every saveSteps steps. Default is false. saveSteps: If fullSave is true, then the output is saved every saveSteps steps.</li>
-<li>alg: String which defines the solver algorithm. Defult is "EM". Possibilities are:</li>
-<li>"EM"- The Euler-Maruyama method.</li>
-<li>"RKMil" - An explicit Runge-Kutta discretization of the strong Order 1.0 Milstein method.</li>
-<li>"SRA" - The strong Order 1.5 method for additive SDEs due to Rossler.</li>
-<li>"SRI" - The strong Order 1.5 method for diagonal/scalar SDEs due to Rosser. Most efficient.</li>
-</ul>
+<p>nothing</p>
 <p><a id='SDE-Solver-Extras-1'></a></p>
 <h4 id="sde-solver-extras">SDE Solver Extras</h4>
 <p><a id='DifferentialEquations.monteCarloSim' href='#DifferentialEquations.monteCarloSim'>#</a>

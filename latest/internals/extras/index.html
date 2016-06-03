@@ -296,8 +296,8 @@
 <li>γ - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.</li>
 <li>qmax - Defines the maximum value possible for the adaptive q. Default is 10.</li>
 </ul>
-<p>solve(prob::SDEProblem,Δt,T)</p>
-<p>Solves the SDE as defined by prob with initial Δt on the time interval [0,T]</p>
+<p>solve(prob::SDEProblem,tspan=[0,1];Δt=0)</p>
+<p>Solves the SDE as defined by prob with initial Δt on the time interval tspan. If not given, tspan defaults to [0,1]. If</p>
 <p><strong>Keyword Arguments</strong></p>
 <ul>
 <li>fullSave: Saves the result at every saveSteps steps. Default is false. saveSteps: If fullSave is true, then the output is saved every saveSteps steps.</li>
