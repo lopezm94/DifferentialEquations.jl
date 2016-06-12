@@ -301,11 +301,11 @@
 <p><strong>Keyword Arguments</strong></p>
 <ul>
 <li>fullSave: Saves the result at every saveSteps steps. Default is false. saveSteps: If fullSave is true, then the output is saved every saveSteps steps.</li>
-<li>alg: String which defines the solver algorithm. Defult is "EM". Possibilities are:</li>
+<li>alg: String which defines the solver algorithm. Defult is "SRI". Possibilities are:</li>
 <li>"EM"- The Euler-Maruyama method.</li>
 <li>"RKMil" - An explicit Runge-Kutta discretization of the strong Order 1.0 Milstein method.</li>
 <li>"SRA" - The strong Order 1.5 method for additive SDEs due to Rossler.</li>
-<li>"SRI" - The strong Order 1.5 method for diagonal/scalar SDEs due to Rosser. Most efficient.</li>
+<li>"SRI" - The strong Order 1.5 method for diagonal/scalar SDEs due to Rossler. Most efficient.</li>
 </ul>
 <p>solve(prob::StokesProblem,mesh::FDMMesh)</p>
 <p>Solves the given stationary Stokes problem on the given finite difference mesh.</p>
