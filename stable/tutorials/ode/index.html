@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Chris Rackauckas">
+  
+  <title>Ordinary Differential Equation Example - DifferentialEquations.jl</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ordinary Differential Equation Example";
+    var mkdocs_page_input_path = "tutorials/ode.md";
+    var mkdocs_page_url = "/tutorials/ode/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> DifferentialEquations.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Ordinary Differential Equation Example</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#ordinary-differential-equation-ode-example">Ordinary Differential Equation (ODE) Example</a></li>
+                
+                    <li><a class="toctree-l4" href="#other-algorithms">Other Algorithms</a></li>
+                
+                    <li><a class="toctree-l4" href="#systems-of-equations">Systems of Equations</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femPoisson/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femHeat/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femStochastic/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/overview/">Overview of DifferentialEquations.jl Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/mesh/">Meshes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/solvers/">Information on Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/solution/">The Solution Type</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/convergence/">Convergence Simuations</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Internal Documentation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">DifferentialEquations.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Tutorial &raquo;</li>
+        
+      
+    
+    <li>Ordinary Differential Equation Example</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Ordinary-Differential-Equation-(ODE)-Example-1'></a></p>
+<h1 id="ordinary-differential-equation-ode-example">Ordinary Differential Equation (ODE) Example</h1>
+<p>In this example we will solve the equation</p>
+<pre class="codehilite"><code class="language-math">du/dt = f(u,t)</code></pre>
+
+
+<p>where <code>f(u,t)=αu</code>. We know via Calculus that the solution to this equation is <code>u(t)=u₀*exp(α*t)</code>. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
+<pre class="codehilite"><code class="language-julia">&quot;&quot;&quot;Example problem with solution ``u(t)=u₀*exp(α*t)``&quot;&quot;&quot;
+function linearODEExample(;α=1,u₀=1/2)
+  f(u,t) = α*u
+  sol(u₀,t) = u₀*exp(α*t)
+  return(ODEProblem(f,u₀,sol=sol))
+end</code></pre>
+
+
+<p>Then we setup some parameters:</p>
+<pre class="codehilite"><code class="language-julia">Δt = 1//2^(4) #The initial step size. It will automatically determined if not given.
+tspan = [0,1] # The timespan. This is the default if not given.</code></pre>
+
+
+<p>We then send these items to the solver.</p>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;Euler&quot;)</code></pre>
+
+
+<p>Plotting commands are provided via a recipe to Plots.jl. To plot the solution object, simply call plot:</p>
+<pre class="codehilite"><code class="language-julia">plot(sol,plottrue=true)
+#Use Plots.jl's gui() command to display the plot.
+Plots.gui()
+#Shown is both the true solution and the approximated solution.</code></pre>
+
+
+<p><a id='Other-Algorithms-1'></a></p>
+<h3 id="other-algorithms">Other Algorithms</h3>
+<p>More keyword arguments can be found in the Plots.jl documentation. When we plot this solution, we see that it is off from the true solution. We can choose a better algorithm by specifying:</p>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;ExplicitRK&quot;)
+plot(sol,plottrue=true)
+Plots.gui()</code></pre>
+
+
+<p>The <code>"ExplicitRK"</code> algorithms are general Runge-Kutta solvers. It defaults to Dormand-Prince 4/5, the same solver as MATLAB's <code>ode45</code>. Please see the solver documentation for more algorithms.</p>
+<p>Notice that this solution tracks the true solution really well. Thus we can solve the problem in less timesteps by turning on adaptive timestepping. To do so, you simply pass a keyword argument:</p>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;ExplicitRK&quot;,adaptive=true)
+plot(sol,plottrue=true)
+Plots.gui()</code></pre>
+
+
+<p><a id='Systems-of-Equations-1'></a></p>
+<h3 id="systems-of-equations">Systems of Equations</h3>
+<p>We can also solve systems of equations. DifferentialEquations.jl can handle any size problem, so instead of showing it for a vector, let's let u be a matrix! To do this, we simply need to have u₀ be a matrix, and define f such that it takes in a matrix and outputs a matrix. We can define a matrix of linear ODEs as follows:</p>
+<pre class="codehilite"><code class="language-julia">&quot;&quot;&quot;Example problem of 8 linear ODEs (as a 4x2 matrix) with
+solution ``u(t)=exp(α.*t)`` and random initial conditions&quot;&quot;&quot;
+function twoDimlinearODEExample(;α=ones(4,2),u₀=rand(4,2).*ones(4,2)/2)
+  f(u,t) = α.*u
+  sol(u₀,t) = u₀.*exp(α.*t)
+  return(ODEProblem(f,u₀,sol=sol))
+end
+prob = twoDimlinearODEExample()</code></pre>
+
+
+<p>Here our ODE is on a 4x2 matrix. Since we are using .*, this is 8 independent ODEs, but you can do whatever you want. To solve the ODE, we do the same steps as before.</p>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;ExplicitRK&quot;)
+plot(sol,plottrue=true)
+Plots.gui()</code></pre>
+
+
+<p>Notice now we have 8 solutions and 8 true solutions, but since we used the high order method, the true solutions are covered by the approximations.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sde/" class="btn btn-neutral float-right" title="Stochastic Differential Equation Example">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../.." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sde/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

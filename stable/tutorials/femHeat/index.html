@@ -71,6 +71,20 @@
         
             
     <li class="toctree-l1 ">
+        <a class="" href="../ode/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
         <a class="" href="../femPoisson/">Poisson Equation Finite Element Method Example</a>
         
     </li>
@@ -114,21 +128,35 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/commonTerms/">Common Terms</a>
+        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/problem/">Defining a Problem</a>
+        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/mesh/">Mesh Generation</a>
+        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
@@ -183,6 +211,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -229,28 +264,25 @@
                 <p><a id='Heat-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="heat-equation-finite-element-method-example">Heat Equation Finite Element Method Example</h1>
 <p>In this example we will solve the heat equation <code>u_t=Δu+f</code>. To do this, we define a HeatProblem which contains the function <code>f</code> and the boundary conditions. We specify one as follows:</p>
-<pre class="codehilite"><code class="language-julia">&quot;Example problem which starts with 0 and solves with f(u)=1-.1u&quot;
+<pre class="codehilite"><code class="language-julia">&quot;Example problem which starts with 0 and solves with ``f(u)=1-u/2``&quot;
 function heatProblemExample_birthdeath()
-  gD(x,t) = zeros(size(x,1))
   f(u,x,t)  = ones(size(x,1)) - .5u
-  u0(x) = zeros(size(x,1))
-  gN(x,t) = 0
-  isLinear = false
-  return(HeatProblem(u0,f,gD,gN,isLinear))
+  u₀(x) = zeros(size(x,1))
+  return(HeatProblem(u₀,f))
 end
-pdeProb = heatProblemExample_birthdeath()</code></pre>
+prob = heatProblemExample_birthdeath()</code></pre>
 
 
-<p>Here the equation we chose was nonlinear since <code>f</code> depends on the variable <code>u</code>. Thus we specify f=f(u,x,t) and set isLinear = false. If <code>f</code> did not depend on u, then we would specify f=f(x,t) and <code>isLinear = true</code>. <code>gD</code> specifies the condition on the Dirichlet part of the boundary and <code>gN</code> specifies the condition on the Neumann part of the boundary. <code>u0</code> specifies the initial condition. These together give a HeatProblem object which holds everything which specifies a Heat Equation Problem.</p>
+<p>Here the equation we chose was nonlinear since <code>f</code> depends on the variable <code>u</code>. Thus we specify f=f(u,x,t). If <code>f</code> did not depend on u, then we would specify f=f(x,t). We do need to specify <code>gD</code> (the Dirichlet boundary condition) and <code>gN</code> (the Neumann boundary condition) since both are zero. <code>u0</code> specifies the initial condition. These together give a HeatProblem object which holds everything which specifies a Heat Equation Problem.</p>
 <p>We then generate a mesh. We will solve the equation on the parabolic cylinder [0,1]^2 x [0,1]. You can think of this as the cube, or at every time point from 0 to 1, the domain is the unit square. To generate this mesh, we use the command</p>
 <pre class="codehilite"><code class="language-julia">T = 1
 Δx = 1//2^(3)
 Δt = 1//2^(7)
-femMesh = parabolic_squaremesh([0 1 0 1],Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
+femMesh = parabolic_squaremesh([0 1 0 1],Δx,Δt,T,&quot;Neumann&quot;)</code></pre>
 
 
-<p>We then call the appropriate solver</p>
-<pre class="codehilite"><code class="language-julia">res = fem_solveheat(femMesh::FEMmesh,pdeProb::HeatProblem,alg=&quot;Euler&quot;)</code></pre>
+<p>We then call the solver</p>
+<pre class="codehilite"><code class="language-julia">sol = solve(femMesh::FEMmesh,prob::HeatProblem,alg=&quot;Euler&quot;)</code></pre>
 
 
 <p>Here we have chosen to use the Euler algorithm to solve the equation. Other algorithms and their descriptions can be found in the solvers part of the documentation.</p>
