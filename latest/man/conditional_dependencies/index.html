@@ -338,6 +338,7 @@
 <p><a id='What-Methods-Require-Conditional-Dependencies?-1'></a></p>
 <h2 id="what-methods-require-conditional-dependencies">What Methods Require Conditional Dependencies?</h2>
 <p>That's a good question! The implicit algorithms implemented in DifferentialEquations.jl require <a href="https://github.com/EconForge/NLsolve.jl">NLsolve.jl</a>, and can optionally use <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> for increased performance. Also, the <code>load</code> function for the premade meshes requires <a href="https://github.com/JuliaIO/JLD.jl">JLD.jl</a>.</p>
+<p>Lastly, there is a special conditional dependency for <a href="http://junolab.org/">Juno</a>. If you are using Juno, then the progress bar functionality is works. If you're not using Juno, then it won't do anything.</p>
 <p>The other conditional dependencies are external solvers wrapped by DifferentialEquations.jl Currently these include:</p>
 <ul>
 <li>ODE.jl</li>

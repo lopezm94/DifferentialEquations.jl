@@ -322,7 +322,7 @@
 <p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>save_timeseries</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using <a href="https://juliaplots.github.io/supported/">all of the keyword arguments provided by Plots.jl</a>. Please see <a href="https://juliaplots.github.io/">Plots.jl's documentation</a> for more information.</p>
 <p>A few extra arguments are provided addition to the Plots.jl keyword arguments. They are as follows:</p>
 <ul>
-<li>plottrue: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
+<li>plot_analytic: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
 <li>filename: Specifies the filename to save an animation. Only applies to the <code>animate</code> function.</li>
 <li>fps: Determines the fps in an animation. Only applies to the <code>animate</code> function.</li>
 </ul>
@@ -332,13 +332,13 @@
 <strong><code>DifferentialEquations.animate</code></strong> &mdash; <em>Function</em>.</p>
 <p>animate(sol::FEMSolution)</p>
 <p>Plots an animation of the solution. Requires <code>save_timeseries=true</code> was enabled in the solver.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/general/plotrecipes.jl#L1-5' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/b282ddaf2e0d4149a8e8afce5ac3ce968e41c919/src/general/plotrecipes.jl#L1-5' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
     <pre class="documenter-inline"><span class="nf">animate</span><span class="p">(</span><span class="n">sol</span><span class="p">::</span><span class="n">DifferentialEquations.FEMSolution</span><span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/general/plotrecipes.jl#L7">src/general/plotrecipes.jl:7</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/b282ddaf2e0d4149a8e8afce5ac3ce968e41c919/src/general/plotrecipes.jl#L7">src/general/plotrecipes.jl:7</a>
 </li>
 </ul>
               

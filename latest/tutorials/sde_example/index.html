@@ -319,29 +319,38 @@
 du = f(u,t)dt + Σσᵢ(u,t)dWⁱ
 $$</p>
 <p>where $f(u,t)=αu$ and $σ(u,t)=βu$. We know via Stochastic Calculus that the solution to this equation is $u(t,W)=u₀<em>exp((α-(β^2)/2)</em>t+β*W)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
-<pre class="codehilite"><code class="language-julia">α=1
+<pre class="codehilite"><code class="language-julia">using DifferentialEquations
+α=1
 β=1
 u₀=1/2
 f(u,t) = α*u
 σ(u,t) = β*u
-prob = SDEProblem(f,σ,u₀)
 Δt = 1//2^(4) #The initial timestepping size. It will automatically assigned if not given.
 tspan = [0,1] # The timespan. This is the default if not given.</code></pre>
 
 
+<p>For reference, let's also give the <code>SDEProblem</code> the analytical solution. Note that each of the problem types allow for this, but it's always optional. This can be a good way to judge how accurate the algorithms are, or is used to test convergence of the algorithms for methods developers. Thus we define the problem object with:</p>
+<pre class="codehilite"><code class="language-julia">analytic(u₀,t,W) = u₀*exp((α-(β^2)/2)*t+β*W)
+prob = SDEProblem(f,σ,u₀,analytic=analytic)</code></pre>
+
+
 <p>and then we pass this information to the solver and plot:</p>
 <pre class="codehilite"><code class="language-julia">#We can plot using the classic Euler-Maruyama algorithm as follows:
-sol =solve(prob::SDEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:EM)
-plot(sol,plottrue=true)
+sol =solve(prob::SDEProblem,tspan,Δt=Δt,alg=:EM)
+plot(sol,plot_analytic=true)
 #Use Plots.jl's gui() command to display the plot.
 Plots.gui()</code></pre>
 
 
-<p>We can choose a better solver as well:</p>
+<p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/examples/plots/introSDEplot.png" width="750" align="middle"  /></p>
+<p>We can choose a higher-order solver for a more accurate result:</p>
 <pre class="codehilite"><code class="language-julia">#We can choose a better method as follows:
-sol =solve(prob::SDEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:SRI)
-plot(sol,plottrue=true)
+sol =solve(prob::SDEProblem,tspan,Δt=Δt,alg=:SRIW1Optimized)
+plot(sol,plot_analytic=true)
 Plots.gui()</code></pre>
+
+
+<p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/examples/plots/introSDEplotSRI.png" width="750" align="middle"  /></p>
               
             </div>
           </div>
