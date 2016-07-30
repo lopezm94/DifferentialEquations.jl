@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Defining a Stokes Problem - DifferentialEquations.jl</title>
+  <title>Conditional Dependencies - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Defining a Stokes Problem";
-    var mkdocs_page_input_path = "man/StokesProblem.md";
-    var mkdocs_page_url = "/man/StokesProblem/";
+    var mkdocs_page_name = "Conditional Dependencies";
+    var mkdocs_page_input_path = "man/conditional_dependencies.md";
+    var mkdocs_page_url = "/man/conditional_dependencies/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -184,19 +184,8 @@
 
         
             
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Defining a Stokes Problem</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#defining-a-stokes-problem">Defining a Stokes Problem</a></li>
-                
-                    <li><a class="toctree-l4" href="#problem-type">Problem Type</a></li>
-                
-                    <li><a class="toctree-l4" href="#example-problems">Example Problems</a></li>
-                
-            
-            </ul>
+    <li class="toctree-l1 ">
+        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -230,8 +219,21 @@
 
         
             
-    <li class="toctree-l1 ">
-        <a class="" href="../conditional_dependencies/">Conditional Dependencies</a>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Conditional Dependencies</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#conditional-dependencies">Conditional Dependencies</a></li>
+                
+                    <li><a class="toctree-l4" href="#the-conditional-dependency-notification">The Conditional Dependency Notification</a></li>
+                
+                    <li><a class="toctree-l4" href="#what-methods-require-conditional-dependencies">What Methods Require Conditional Dependencies?</a></li>
+                
+                    <li><a class="toctree-l4" href="#installation-instructions">Installation Instructions</a></li>
+                
+            
+            </ul>
         
     </li>
 
@@ -301,7 +303,7 @@
         
       
     
-    <li>Defining a Stokes Problem</li>
+    <li>Conditional Dependencies</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -315,87 +317,45 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Defining-a-Stokes-Problem-1'></a></p>
-<h1 id="defining-a-stokes-problem">Defining a Stokes Problem</h1>
-<p><a id='Problem-Type-1'></a></p>
-<h2 id="problem-type">Problem Type</h2>
-<p><a id='DifferentialEquations.StokesProblem' href='#DifferentialEquations.StokesProblem'>#</a>
-<strong><code>DifferentialEquations.StokesProblem</code></strong> &mdash; <em>Type</em>.</p>
-<p>StokesProblem</p>
-<p>Defines the solution to a stationary Stokes problem:</p>
-<p>$$</p>
-<p>$$</p>
-<p><strong>Fields</strong></p>
+                <p><a id='Conditional-Dependencies-1'></a></p>
+<h1 id="conditional-dependencies">Conditional Dependencies</h1>
+<p>DifferentialEquations.jl is conditionally dependent on some packages which may not be required for all users. The upside is that you can run DifferentialEquations.jl without installing these packages. However, the downside is that you will have to do the installation yourself (normal dependencies do a silent install). Luckily DifferentialEquations.jl warns you about missing dependencies when calling a method which requires one. This part of the manual will detail how to see if you're missing a conditional dependency and how to alleviate the issue.</p>
+<p><a id='The-Conditional-Dependency-Notification-1'></a></p>
+<h2 id="the-conditional-dependency-notification">The Conditional Dependency Notification</h2>
+<p>When a conditional dependency is required, DifferentialEquations.jl will import the package the first time the method is called. When this happens, you will receive a notification as follows:</p>
+<pre class="codehilite"><code class="language-julia">[DifferentialEquations.jl] Initializing backend: PkgName</code></pre>
+
+
+<p>where PkgName is the name of the package it is importing. DifferentialEquations.jl will then run a standard startup procedure on this package. If it fails, you will receive the message</p>
+<pre class="codehilite"><code class="language-julia">WARNING: Couldn't initialize PkgName.  (might need to install it?)</code></pre>
+
+
+<p>Most likely the issue is that you need to install the package. Go to the package's Github repository for information on installing the package, and then come back to try again. If that does not work, you may need the latest version of the package by checking out master:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.checkout(&quot;PkgName&quot;)</code></pre>
+
+
+<p>If all else fails, please ask for help on <a href="https://gitter.im/ChrisRackauckas/DifferentialEquations.jl">via the repository Gitter</a>.</p>
+<p><a id='What-Methods-Require-Conditional-Dependencies?-1'></a></p>
+<h2 id="what-methods-require-conditional-dependencies">What Methods Require Conditional Dependencies?</h2>
+<p>That's a good question! The implicit algorithms implemented in DifferentialEquations.jl require <a href="https://github.com/EconForge/NLsolve.jl">NLsolve.jl</a>, and can optionally use <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> for increased performance. Also, the <code>load</code> function for the premade meshes requires <a href="https://github.com/JuliaIO/JLD.jl">JLD.jl</a>.</p>
+<p>The other conditional dependencies are external solvers wrapped by DifferentialEquations.jl Currently these include:</p>
 <ul>
-<li><code>f₁::Function</code></li>
-<li><code>f₂::Function</code></li>
-<li><code>g::Function</code></li>
-<li><code>ugD::Function</code></li>
-<li><code>vgD::Function</code></li>
-<li><code>uanalytic::Function</code></li>
-<li><code>vanalytic::Function</code></li>
-<li><code>panalytic::Function</code></li>
-<li><code>trueknown::Bool</code></li>
+<li>ODE.jl</li>
+<li>ODEInterface.jl</li>
 </ul>
-<p><strong>Constructors</strong></p>
-<p><code>StokesProblem(f₁,f₂,g,uanalytic,vanalytic,panalytic)</code></p>
-<p><code>StokesProblem(f₁,f₂,g,ugD,vgD)</code></p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/general/problems.jl#L405-431' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre><span class="nf">StokesProblem</span><span class="p">(</span>
-    <span class="n">f₁</span><span class="p">,
-</span>    <span class="n">f₂</span><span class="p">,
-</span>    <span class="n">g</span><span class="p">,
-</span>    <span class="n">ugD</span><span class="p">,
-</span>    <span class="n">vgD</span>
-<span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/general/problems.jl#L443">src/general/problems.jl:443</a>
-</li>
-<li>
-    <pre><span class="nf">StokesProblem</span><span class="p">(</span>
-    <span class="n">f₁</span><span class="p">,
-</span>    <span class="n">f₂</span><span class="p">,
-</span>    <span class="n">g</span><span class="p">,
-</span>    <span class="n">uanalytic</span><span class="p">,
-</span>    <span class="n">vanalytic</span><span class="p">,
-</span>    <span class="n">panalytic</span>
-<span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/general/problems.jl#L442">src/general/problems.jl:442</a>
-</li>
+<p><a id='Installation-Instructions-1'></a></p>
+<h2 id="installation-instructions">Installation Instructions</h2>
+<p>For most of the conditional dependencies, the installation instructions are standard. However, for some of the newest features, special instructions may be required. The best way to stay up-to-date on this information is to checkout the following resources:</p>
+<ul>
+<li>The packages which are conditional dependencies and use a standard installation can be found in the <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/test/REQUIRE">/test/REQUIRE</a> file.</li>
+<li>Any special installation instructions are handled via <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/test/ci_setup.jl">the ci_setup.jl file</a>.</li>
 </ul>
-
-<p><em>Hiding 1 method defined outside of this package.</em></p>
-<p><a id='Example-Problems-1'></a></p>
-<h2 id="example-problems">Example Problems</h2>
-<p><a id='DifferentialEquations.dirichletzeroStokesExample' href='#DifferentialEquations.dirichletzeroStokesExample'>#</a>
-<strong><code>DifferentialEquations.dirichletzeroStokesExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problme for solving the trivial stationary Stokes equation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/premades/premade_problems.jl#L384' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">dirichletzeroStokesExample</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/premades/premade_problems.jl#L386">src/premades/premade_problems.jl:386</a>
-</li>
-</ul>
-
-<p><a id='DifferentialEquations.homogeneousStokesExample' href='#DifferentialEquations.homogeneousStokesExample'>#</a>
-<strong><code>DifferentialEquations.homogeneousStokesExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem for a homogeneous stationary Stokes equation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/premades/premade_problems.jl#L373' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">homogeneousStokesExample</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/1d28b4af4481cf07f73bbbbfac6bfca89ada5577/src/premades/premade_problems.jl#L375">src/premades/premade_problems.jl:375</a>
-</li>
-</ul>
+<p>The current special installation instructions are as follows:</p>
+<p><a id='ODE.jl.-1'></a></p>
+<h3 id="odejl">ODE.jl.</h3>
+<p>The wrapper currently only works on the development branch of ODE.jl at JuliaODE/ODE.jl. To install this version of ODE.jl, use the following commands:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.clone(&quot;https://github.com/JuliaODE/ODE.jl&quot;)
+Pkg.checkout(&quot;ODE&quot;,&quot;dev&quot;)</code></pre>
               
             </div>
           </div>
@@ -403,10 +363,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../mesh/" class="btn btn-neutral float-right" title="Meshes">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../internals/contributors_guide/" class="btn btn-neutral float-right" title="Contributor's Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../FEMProblem/" class="btn btn-neutral" title="Defining a Finite Element Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../convergence/" class="btn btn-neutral" title="Convergence Simuations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -434,10 +394,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../FEMProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../convergence/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../mesh/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../internals/contributors_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

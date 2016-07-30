@@ -246,6 +246,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/conditional_dependencies/">Conditional Dependencies</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -325,7 +332,7 @@
 <h1 id="differentialequationsjl-documentation">DifferentialEquations.jl Documentation</h1>
 <p>This is a package for solving numerically solving differential equations in Julia by Chris Rackauckas. The purpose of this package is to supply efficient Julia implementations of solvers for various differential equations. Equations within the realm of this package include ordinary differential equations (ODEs), stochastic ordinary differential equations (SODEs or SDEs), stochastic partial differential equations (SPDEs), partial differential equations (with both finite difference and finite element methods), differential algebraic equations, and differential delay equations. It includes algorithms from very recent research, as well as algorithms optimized for HPC applications. It integrates with the Julia package sphere, for example using Juno's progress meter, and wraps other differential equation solvers so that many different methods for solving the equations can be accessed by simply switching a keyword argument.</p>
 <p>All of the algorithms are thoroughly tested to ensure accuracy. Convergence tests are included in the <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/test">test/</a> folder. The algorithms were also tested to show correctness with nontrivial behavior such as Turing morphogenesis. Example IJulia notebooks <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">can be found in the examples folder</a>. If you find any example where there seems to be an error, please open an issue.</p>
-<p>If you have any questions, or just want to chat about solvers/using the package, please feel free to message me in the Gitter channel. For bug reports, feature requests, etc., please submit an issue. If you're interested in contributing, please see the <a href="./internals/contributors_guide">Contributor's Guide</a>.</p>
+<p>If you have any questions, or just want to chat about solvers/using the package, please feel free to message me in the <a href="https://gitter.im/ChrisRackauckas/DifferentialEquations.jl?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge">Gitter channel</a>. For bug reports, feature requests, etc., please submit an issue. If you're interested in contributing, please see the <a href="./internals/contributors_guide">Contributor's Guide</a>.</p>
 <p><a id='Using-the-Package-1'></a></p>
 <h2 id="using-the-package">Using the Package</h2>
 <p>To install the package, use the following command inside the Julia REPL:</p>
@@ -389,7 +396,7 @@
 <li>
 <p>Dormand-Prince 7/8</p>
 <ul>
-<li>Stiff Solvers</li>
+<li>Stiff Solvers. Requires <a href="https://github.com/EconForge/NLsolve.jl">NLsolve.jl</a> and optionally <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a>. See <a href="./man/conditional_dependencies">Conditional Dependencies</a>.</li>
 </ul>
 </li>
 <li>
@@ -399,7 +406,7 @@
 <li>
 <p>Rosenbrock32</p>
 <ul>
-<li>Wrappers for ODEInterface.jl</li>
+<li>Wrappers for ODEInterface.jl. See <a href="./man/conditional_dependencies">Conditional Dependencies</a>.</li>
 </ul>
 </li>
 <li>
@@ -412,7 +419,7 @@
 <li>
 <p>seulex - Extrapolation based on linear implicit Euler</p>
 <ul>
-<li>Wrappers for ODE.jl</li>
+<li>Wrappers for ODE.jl. See <a href="./man/conditional_dependencies">Conditional Dependencies</a>.</li>
 </ul>
 </li>
 <li>
@@ -475,7 +482,7 @@
 <ul>
 <li>Direct</li>
 <li>Factorizations (LU, Cholesky, QR, SVD)</li>
-<li>Conjugate-Gradient</li>
+<li>Conjugate-Gradient (CG)</li>
 <li>GMRES</li>
 </ul>
 </li>
@@ -585,10 +592,23 @@
 <li><a href="man/convergence/#Related-Functions-1">Related Functions</a></li>
 </ul>
 </li>
+<li><a href="man/conditional_dependencies/#Conditional-Dependencies-1">Conditional Dependencies</a><ul>
+<li><a href="man/conditional_dependencies/#The-Conditional-Dependency-Notification-1">The Conditional Dependency Notification</a></li>
+<li><a href="man/conditional_dependencies/#What-Methods-Require-Conditional-Dependencies?-1">What Methods Require Conditional Dependencies?</a></li>
+<li><a href="man/conditional_dependencies/#Installation-Instructions-1">Installation Instructions</a></li>
+</ul>
+</li>
 </ul>
 <p><a id='Internal-Documentation-1'></a></p>
 <h2 id="internal-documentation">Internal Documentation</h2>
 <ul>
+<li><a href="internals/contributors_guide/#Contributor's-Guide-1">Contributor's Guide</a><ul>
+<li><a href="internals/contributors_guide/#Developing-New-Solver-Algorithms-1">Developing New Solver Algorithms</a></li>
+<li><a href="internals/contributors_guide/#Adding-Conditional-Dependencies-1">Adding Conditional Dependencies</a></li>
+<li><a href="internals/contributors_guide/#Developing-A-New-Problem-1">Developing A New Problem</a></li>
+<li><a href="internals/contributors_guide/#Other-Help-1">Other Help</a></li>
+</ul>
+</li>
 <li><a href="internals/fem_tools/#Internal-Finite-Element-Tools-1">Internal Finite Element Tools</a><ul>
 <li><a href="internals/fem_tools/#General-1">General</a></li>
 <li><a href="internals/fem_tools/#Mesh-Tools-1">Mesh Tools</a></li>
@@ -631,8 +651,8 @@
 <li><a href="man/StokesProblem/#DifferentialEquations.StokesProblem"><code>DifferentialEquations.StokesProblem</code></a></li>
 <li><a href="man/solution/#DifferentialEquations.StokesSolution"><code>DifferentialEquations.StokesSolution</code></a></li>
 <li><a href="internals/extras/#DifferentialEquations.Tableau"><code>DifferentialEquations.Tableau</code></a></li>
-<li><a href="internals/extras/#Base.length"><code>Base.length</code></a></li>
 <li><a href="man/convergence/#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}"><code>Base.length</code></a></li>
+<li><a href="internals/extras/#Base.length"><code>Base.length</code></a></li>
 <li><a href="internals/solver_helpers/#Base.length-Tuple{DifferentialEquations.ExplicitRK}"><code>Base.length</code></a></li>
 <li><a href="internals/extras/#Base.size"><code>Base.size</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.CFLμ"><code>DifferentialEquations.CFLμ</code></a></li>
@@ -702,12 +722,12 @@
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts"><code>DifferentialEquations.quadpts</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts1"><code>DifferentialEquations.quadpts1</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.setboundary"><code>DifferentialEquations.setboundary</code></a></li>
-<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/femheat_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/fempoisson_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/ode_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="internals/extras/#DifferentialEquations.solve"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/femheat_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/ode_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/fempoisson_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_prolongation"><code>DifferentialEquations.stokes_prolongation</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_restriction"><code>DifferentialEquations.stokes_restriction</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.test_convergence"><code>DifferentialEquations.test_convergence</code></a></li>
@@ -769,5 +789,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-07-30 13:40:52.887797
+Build Date UTC : 2016-07-30 20:06:17.710890
 -->
