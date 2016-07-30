@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Chris Rackauckas">
+  
+  <title>Ordinary Differential Equation Solvers - DifferentialEquations.jl</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Ordinary Differential Equation Solvers";
+    var mkdocs_page_input_path = "solvers/ode_solve.md";
+    var mkdocs_page_url = "/solvers/ode_solve/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> DifferentialEquations.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorial</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Ordinary Differential Equation Solvers</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#ordinary-differential-equation-solvers">Ordinary Differential Equation Solvers</a></li>
+                
+                    <li><a class="toctree-l4" href="#pros-and-cons-of-different-methods">Pros and Cons of Different Methods</a></li>
+                
+                    <li><a class="toctree-l4" href="#ode-solver-extras">ODE Solver Extras</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/overview/">Overview of DifferentialEquations.jl Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/mesh/">Meshes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/solution/">The Solution Type</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/convergence/">Convergence Simuations</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Internal Documentation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">DifferentialEquations.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Solver Options &raquo;</li>
+        
+      
+    
+    <li>Ordinary Differential Equation Solvers</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Ordinary-Differential-Equation-Solvers-1'></a></p>
+<h1 id="ordinary-differential-equation-solvers">Ordinary Differential Equation Solvers</h1>
+<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray{T,N}}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray{T,N}}'>#</a>
+<strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
+<p>solve(prob::ODEProblem,Δt,T)</p>
+<p>Solves the ODE defined by prob with initial Δt on the time interval [0,T].</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>Δt</code>: Sets the initial stepsize. Defaults to an automatic choice.</li>
+<li><code>save_timeseries</code>: Saves the result at every timeseries_steps steps. Default is true.</li>
+<li><code>timeseries_steps</code>: Denotes how many steps between saving a value for the timeseries. Defaults to 1.</li>
+<li><code>tableau</code>: The tableau for an <code>:ExplicitRK</code> algorithm. Defaults to a Dormand-Prince 4/5 method.</li>
+<li><code>adaptive</code> - Turns on adaptive timestepping for appropriate methods. Default is true.</li>
+<li><code>γ</code> - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.</li>
+<li><code>qmax</code> - Defines the maximum value possible for the adaptive q. Default is 10.</li>
+<li><code>ablstol</code> - Absolute tolerance in adaptive timestepping. Defaults to 1e-3.</li>
+<li><code>reltol</code> - Relative tolerance in adaptive timestepping. Defaults to 1e-6.</li>
+<li><code>maxiters</code> - Maximum number of iterations before stopping. Defaults to 1e9.</li>
+<li><code>Δtmax</code> - Maximum Δt for adaptive timestepping. Defaults to half the timespan.</li>
+<li><code>Δtmin</code> - Minimum Δt for adaptive timestepping. Defaults to 1e-10.</li>
+<li><code>autodiff</code> - Turns on/off the use of autodifferentiation (via ForwardDiff) in the implicit solvers which use <code>NLsolve</code>. Default is true.</li>
+<li><code>internalnorm</code> - The norm for which error estimates are calculated. Default is 2.</li>
+<li><code>progressbar</code> - Turns on/off the Juno progressbar. Defualt is false.</li>
+<li>
+<p><code>progress_steps</code> - Numbers of steps between updates of the progress bar. Default is 1000.</p>
+</li>
+<li>
+<p><code>alg</code>: String which defines the solver algorithm. Defult is <code>:ExplicitRK</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>.</p>
+</li>
+</ul>
+<p>The possibilities for the solvers are:   * DifferentialEquations.jl       - <code>:Euler</code>- The canonical forward Euler method.       - <code>:Midpoint</code> - The second order midpoint method.       - <code>:RK4</code> - The canonical Runge-Kutta Order 4 method.       - <code>:ExplicitRK</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive. Tableaus     are specified via the keyword argument <code>tab=tableau</code>. The default tableau is     for Dormand-Prine 4/5. Other supplied tableaus include:           * <code>constructRalston()</code> - Returns a tableau for Ralston's method           * <code>constructRKF()</code> - Returns a tableau for Runge-Kutta-Fuhlberg 4/5           * <code>constructBogakiShampine()</code> - Returns a tableau for Bogakai-Shampine's 2/3 method.           * <code>constructCashKarp()</code> - Returns a tableau for the Cash-Karp method 4/5.           * <code>constructDormandPrince()</code> - Returns a tableau for Dormand-Prince 4/5.           * <code>constructRKF8()</code> - Returns a tableau for Runge-Kutta-Fuhlberg Order 7/8 method.           * <code>constructDormandPrice8()</code> - Returns a tableau for the Dormand-Prince Order 7/8 method.       - <code>:ImplicitEuler</code> - A 1st order implicit solver. Unconditionally stable.       - <code>:Trapezoid</code> - A second order unconditionally stable implicit solver. Good for highly stiff.       - <code>:Rosenbrock32</code> - A fast solver which is good for stiff equations.   * ODEInterface.jl       - <code>:dopri5</code> - Hairer's classic implementation of the Dormand-Prince 4/5 method.       - <code>:dop853</code> - Explicit Runge-Kutta 8(5,3) by Dormand-Prince       - <code>:odex</code> - GBS extrapolation-algorithm based on the midpoint rule       - <code>:seulex</code> - extrapolation-algorithm bsed on the linear implicit Euler method       - <code>:radau</code> - implicit Runge-Kutta (Rdau IIA) of variable order between 5 and 13       - <code>:radau5</code> - implicit Runge-Kutta method (Radau IIA) of order 5   * ODE.jl       - <code>:ode23</code> - Bogakai-Shampine's 2/3 method       - <code>:ode45</code> - Dormand-Prince's 4/5 method       - <code>:ode78</code> - Runge-Kutta-Fuhlberg 7/8 method       - <code>:ode23s</code> - Rosenbrock's 2/3 method       - <code>:ode1</code> - Forward Euler       - <code>:ode2_midpoint</code> - Midpoint Method       - <code>:ode2_heun</code> - Heun's Method       - <code>:ode4</code> - RK4       - <code>:ode45_fe</code> - Runge-Kutta-Fuhlberg 4/5 method</p>
+<p><a id='Pros-and-Cons-of-Different-Methods-1'></a></p>
+<h2 id="pros-and-cons-of-different-methods">Pros and Cons of Different Methods</h2>
+<p><a id='ODE-Solver-Extras-1'></a></p>
+<h2 id="ode-solver-extras">ODE Solver Extras</h2>
+<p><a id='DifferentialEquations.ExplicitRK' href='#DifferentialEquations.ExplicitRK'>#</a>
+<strong><code>DifferentialEquations.ExplicitRK</code></strong> &mdash; <em>Type</em>.</p>
+<p>ExplicitRK</p>
+<p>Holds a tableau which defines an explicit Runge-Kutta method.</p>
+<p><a id='DifferentialEquations.ODE_DEFAULT_TABLEAU' href='#DifferentialEquations.ODE_DEFAULT_TABLEAU'>#</a>
+<strong><code>DifferentialEquations.ODE_DEFAULT_TABLEAU</code></strong> &mdash; <em>Constant</em>.</p>
+<p>ODE_DEFAULT_TABLEAU</p>
+<p>Sets the default tableau for the ODE solver. Currently Dormand-Prince 4/5.</p>
+<p><a id='DifferentialEquations.constructCashKarp' href='#DifferentialEquations.constructCashKarp'>#</a>
+<strong><code>DifferentialEquations.constructCashKarp</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructCashKarp()</p>
+<p>Constructs the tableau object for the Cash-Karp Order 4/5 method.</p>
+<p><a id='DifferentialEquations.constructRalston' href='#DifferentialEquations.constructRalston'>#</a>
+<strong><code>DifferentialEquations.constructRalston</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructRalston()</p>
+<p>Constructs the tableau object for Ralston's Order 2 method.</p>
+<p><a id='DifferentialEquations.constructDormandPrince' href='#DifferentialEquations.constructDormandPrince'>#</a>
+<strong><code>DifferentialEquations.constructDormandPrince</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructDormandPrince()</p>
+<p>Constructs the tableau object for the Dormand-Prince Order 4/5 method.</p>
+<p><a id='DifferentialEquations.constructDormandPrince8' href='#DifferentialEquations.constructDormandPrince8'>#</a>
+<strong><code>DifferentialEquations.constructDormandPrince8</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructDormandPrice8()</p>
+<p>Constructs the tableau object for the Dormand-Prince Order 7/8 method.</p>
+<p><a id='DifferentialEquations.constructBogakiShampine' href='#DifferentialEquations.constructBogakiShampine'>#</a>
+<strong><code>DifferentialEquations.constructBogakiShampine</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructBogakiShampine()</p>
+<p>Constructs the tableau object for the Bogakai-Shampine Order 2/3 method.</p>
+<p><a id='DifferentialEquations.constructHuen' href='#DifferentialEquations.constructHuen'>#</a>
+<strong><code>DifferentialEquations.constructHuen</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructHuen()</p>
+<p>Constructs the tableau object for Huen's Order 2 method.</p>
+<p><a id='DifferentialEquations.constructRKF' href='#DifferentialEquations.constructRKF'>#</a>
+<strong><code>DifferentialEquations.constructRKF</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructRKF()</p>
+<p>Constructs the tableau object for the Runge-Kutta-Fuhlberg Order 4/5 method.</p>
+<p><a id='DifferentialEquations.constructRKF8' href='#DifferentialEquations.constructRKF8'>#</a>
+<strong><code>DifferentialEquations.constructRKF8</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructRKF8()</p>
+<p>Constructs the tableau object for the Runge-Kutta-Fuhlberg Order 7/8 method.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sde_solve/" class="btn btn-neutral float-right" title="Stochastic Differential Equation Solvers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../tutorials/femstochastic_example/" class="btn btn-neutral" title="Stochastic Finite Element Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../../tutorials/femstochastic_example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../sde_solve/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>

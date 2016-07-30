@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Plot Functions - DifferentialEquations.jl</title>
+  <title>Stochastic Differential Equation Example - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Plot Functions";
-    var mkdocs_page_input_path = "man/plot.md";
-    var mkdocs_page_url = "/man/plot/";
+    var mkdocs_page_name = "Stochastic Differential Equation Example";
+    var mkdocs_page_input_path = "tutorials/sde_example.md";
+    var mkdocs_page_url = "/tutorials/sde_example/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,35 +71,42 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
+        <a class="" href="../ode_example/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Stochastic Differential Equation Example</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#stochastic-differential-equation-sde-example">Stochastic Differential Equation (SDE) Example</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
+        <a class="" href="../fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        <a class="" href="../femstochastic_example/">Stochastic Finite Element Examples</a>
         
     </li>
 
@@ -157,74 +164,63 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../overview/">Overview of DifferentialEquations.jl Usage</a>
+        <a class="" href="../../man/overview/">Overview of DifferentialEquations.jl Usage</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../FEMProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mesh/">Meshes</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../solution/">The Solution Type</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Plot Functions</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#plot-functions">Plot Functions</a></li>
-                
-                    <li><a class="toctree-l4" href="#standard-plots">Standard Plots</a></li>
-                
-                    <li><a class="toctree-l4" href="#extra-plot-functions">Extra Plot Functions</a></li>
-                
-            
-            </ul>
+        <a class="" href="../../man/solution/">The Solution Type</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../convergence/">Convergence Simuations</a>
+        <a class="" href="../../man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/convergence/">Convergence Simuations</a>
         
     </li>
 
@@ -290,11 +286,11 @@
     
       
         
-          <li>Manual &raquo;</li>
+          <li>Tutorial &raquo;</li>
         
       
     
-    <li>Plot Functions</li>
+    <li>Stochastic Differential Equation Example</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -308,23 +304,37 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Plot-Functions-1'></a></p>
-<h1 id="plot-functions">Plot Functions</h1>
-<p><a id='Standard-Plots-1'></a></p>
-<h2 id="standard-plots">Standard Plots</h2>
-<p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>save_timeseries</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using <a href="https://juliaplots.github.io/supported/">all of the keyword arguments provided by Plots.jl</a>. Please see <a href="https://juliaplots.github.io/">Plots.jl's documentation</a> for more information.</p>
-<p>A few extra arguments are provided addition to the Plots.jl keyword arguments. They are as follows:</p>
-<ul>
-<li>plottrue: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
-<li>filename: Specifies the filename to save an animation. Only applies to the <code>animate</code> function.</li>
-<li>fps: Determines the fps in an animation. Only applies to the <code>animate</code> function.</li>
-</ul>
-<p><a id='Extra-Plot-Functions-1'></a></p>
-<h2 id="extra-plot-functions">Extra Plot Functions</h2>
-<p><a id='DifferentialEquations.animate' href='#DifferentialEquations.animate'>#</a>
-<strong><code>DifferentialEquations.animate</code></strong> &mdash; <em>Function</em>.</p>
-<p>animate(sol::FEMSolution)</p>
-<p>Plots an animation of the solution. Requires <code>save_timeseries=true</code> was enabled in the solver.</p>
+                <p><a id='Stochastic-Differential-Equation-(SDE)-Example-1'></a></p>
+<h1 id="stochastic-differential-equation-sde-example">Stochastic Differential Equation (SDE) Example</h1>
+<p>This tutorial will introduce you to the functionality for solving SDE. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
+<p>In this example we will solve the equation</p>
+<pre class="codehilite"><code class="language-math">du = f(u,t)dt + Σσᵢ(u,t)dWⁱ</code></pre>
+
+
+<p>where <code>f(u,t)=αu</code> and <code>σ(u,t)=βu</code>. We know via Stochastic Calculus that the solution to this equation is <code>u(t,W)=u₀*exp((α-(β^2)/2)*t+β*W)</code>. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
+<pre class="codehilite"><code class="language-julia">α=1
+β=1
+u₀=1/2
+f(u,t) = α*u
+σ(u,t) = β*u
+prob = SDEProblem(f,σ,u₀)
+Δt = 1//2^(4) #The initial timestepping size. It will automatically assigned if not given.
+tspan = [0,1] # The timespan. This is the default if not given.</code></pre>
+
+
+<p>and then we pass this information to the solver and plot:</p>
+<pre class="codehilite"><code class="language-julia">#We can plot using the classic Euler-Maruyama algorithm as follows:
+sol =solve(prob::SDEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:EM)
+plot(sol,plottrue=true)
+#Use Plots.jl's gui() command to display the plot.
+gui()</code></pre>
+
+
+<p>We can choose a better solver as well:</p>
+<pre class="codehilite"><code class="language-julia">#We can choose a better method as follows:
+sol =solve(prob::SDEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:SRI)
+plot(sol,plottrue=true)
+gui()</code></pre>
               
             </div>
           </div>
@@ -332,10 +342,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../convergence/" class="btn btn-neutral float-right" title="Convergence Simuations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../fempoisson_example/" class="btn btn-neutral float-right" title="Poisson Equation Finite Element Method Example">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../solution/" class="btn btn-neutral" title="The Solution Type"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ode_example/" class="btn btn-neutral" title="Ordinary Differential Equation Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -363,10 +373,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../solution/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../ode_example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../convergence/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../fempoisson_example/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

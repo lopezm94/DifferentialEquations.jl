@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Defining an ODE Problem - DifferentialEquations.jl</title>
+  <title>Defining a Stokes Problem - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Defining an ODE Problem";
-    var mkdocs_page_input_path = "man/odeProblem.md";
-    var mkdocs_page_url = "/man/odeProblem/";
+    var mkdocs_page_name = "Defining a Stokes Problem";
+    var mkdocs_page_input_path = "man/StokesProblem.md";
+    var mkdocs_page_url = "/man/StokesProblem/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,35 +71,78 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -120,12 +163,33 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../FEMProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
-        <a class="current" href="./">Defining an ODE Problem</a>
+        <a class="current" href="./">Defining a Stokes Problem</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#defining-an-ode-problem">Defining an ODE Problem</a></li>
+                <li class="toctree-l3"><a href="#defining-a-stokes-problem">Defining a Stokes Problem</a></li>
                 
                     <li><a class="toctree-l4" href="#problem-type">Problem Type</a></li>
                 
@@ -139,35 +203,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../femProblem/">Defining a Finite Element Problem</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
         <a class="" href="../mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../solvers/">Information on Solvers</a>
         
     </li>
 
@@ -203,7 +239,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -217,7 +260,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -251,7 +294,7 @@
         
       
     
-    <li>Defining an ODE Problem</li>
+    <li>Defining a Stokes Problem</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -265,42 +308,40 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Defining-an-ODE-Problem-1'></a></p>
-<h1 id="defining-an-ode-problem">Defining an ODE Problem</h1>
-<p>To define an ODE Problem, you simply need to give the function <code>f</code> and the initial condition <code>u₀</code> which define an ODE</p>
-<pre class="codehilite"><code class="language-math">du/dt = f(u,t)dt</code></pre>
-
-
-<p><code>f</code> should be specified as <code>f(u,t)</code> and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well.</p>
+                <p><a id='Defining-a-Stokes-Problem-1'></a></p>
+<h1 id="defining-a-stokes-problem">Defining a Stokes Problem</h1>
 <p><a id='Problem-Type-1'></a></p>
 <h2 id="problem-type">Problem Type</h2>
-<p><a id='DifferentialEquations.ODEProblem' href='#DifferentialEquations.ODEProblem'>#</a>
-<strong><code>DifferentialEquations.ODEProblem</code></strong> &mdash; <em>Type</em>.</p>
-<p>ODEProblem</p>
-<p>Wraps the data which defines an SDE problem</p>
-<pre class="codehilite"><code class="language-math">uₜ = f(uₜ,t)dt</code></pre>
+<p><a id='DifferentialEquations.StokesProblem' href='#DifferentialEquations.StokesProblem'>#</a>
+<strong><code>DifferentialEquations.StokesProblem</code></strong> &mdash; <em>Type</em>.</p>
+<p>StokesProblem</p>
+<p>Defines the solution to a stationary Stokes problem:</p>
+<pre class="codehilite"><code class="language-math"></code></pre>
 
 
-<p>with initial condition u₀.</p>
 <p><strong>Fields</strong></p>
 <ul>
-<li><code>f</code>: The drift function in the ODE.</li>
-<li><code>u₀</code>: The initial condition.</li>
-<li><code>sol</code>: A function which describes the solution.</li>
-<li><code>knownSol</code>: True if the solution is given.</li>
-<li><code>numVars</code>: The number of variables in the system</li>
-<li><code>sizeu</code>: The size of the initial condition (and thus <code>u</code>)</li>
+<li><code>f₁::Function</code></li>
+<li><code>f₂::Function</code></li>
+<li><code>g::Function</code></li>
+<li><code>ugD::Function</code></li>
+<li><code>vgD::Function</code></li>
+<li><code>uanalytic::Function</code></li>
+<li><code>vanalytic::Function</code></li>
+<li><code>panalytic::Function</code></li>
+<li><code>trueKnown::Bool</code></li>
 </ul>
 <p><strong>Constructors</strong></p>
-<p>ODEProblem(f,u₀;sol=nothing) : Defines the SDE with the specified functions and defines the solution if sol is given.</p>
+<p><code>StokesProblem(f₁,f₂,g,uanalytic,vanalytic,panalytic)</code></p>
+<p><code>StokesProblem(f₁,f₂,g,ugD,vgD)</code></p>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
-<p><a id='DifferentialEquations.twoDimlinearODEExample' href='#DifferentialEquations.twoDimlinearODEExample'>#</a>
-<strong><code>DifferentialEquations.twoDimlinearODEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem of 8 linear ODEs (as a 4x2 matrix) with solution <code>u(t)=exp(α.*t)</code> and random initial conditions</p>
-<p><a id='DifferentialEquations.linearODEExample' href='#DifferentialEquations.linearODEExample'>#</a>
-<strong><code>DifferentialEquations.linearODEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution <code>u(t)=u₀*exp(α*t)</code></p>
+<p><a id='DifferentialEquations.dirichletzeroStokesExample' href='#DifferentialEquations.dirichletzeroStokesExample'>#</a>
+<strong><code>DifferentialEquations.dirichletzeroStokesExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problme for solving the trivial stationary Stokes equation.</p>
+<p><a id='DifferentialEquations.homogeneousStokesExample' href='#DifferentialEquations.homogeneousStokesExample'>#</a>
+<strong><code>DifferentialEquations.homogeneousStokesExample</code></strong> &mdash; <em>Function</em>.</p>
+<p>Example problem for a homogeneous stationary Stokes equation.</p>
               
             </div>
           </div>
@@ -308,10 +349,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../sdeProblem/" class="btn btn-neutral float-right" title="Defining an SDE Problem">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../mesh/" class="btn btn-neutral float-right" title="Meshes">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../overview/" class="btn btn-neutral" title="Overview of DifferentialEquations.jl Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../FEMProblem/" class="btn btn-neutral" title="Defining a Finite Element Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -339,10 +380,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../overview/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../FEMProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../sdeProblem/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../mesh/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

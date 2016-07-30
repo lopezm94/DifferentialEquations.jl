@@ -25,8 +25,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Internal Finite Element Tools";
-    var mkdocs_page_input_path = "internals/femTools.md";
-    var mkdocs_page_url = "/internals/femTools/";
+    var mkdocs_page_input_path = "internals/fem_tools.md";
+    var mkdocs_page_url = "/internals/fem_tools/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,35 +71,78 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -121,28 +164,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -150,13 +193,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../man/mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../man/solvers/">Information on Solvers</a>
         
     </li>
 
@@ -191,6 +227,13 @@
 
         
             
+    <li class="toctree-l1 ">
+        <a class="" href="../contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
     <li class="toctree-l1 current">
         <a class="current" href="./">Internal Finite Element Tools</a>
         
@@ -221,7 +264,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../solverHelpers/">Solver Helpers</a>
+        <a class="" href="../solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -273,21 +316,10 @@
 <h1 id="internal-finite-element-tools">Internal Finite Element Tools</h1>
 <p><a id='General-1'></a></p>
 <h2 id="general">General</h2>
-<p><a id='DifferentialEquations' href='#DifferentialEquations'>#</a>
-<strong><code>DifferentialEquations</code></strong> &mdash; <em>Module</em>.</p>
-<h3 id="differentialequations">DifferentialEquations</h3>
-<p>This is a package for solving numerically solving differential equations in Julia by Chris Rackauckas. The purpose of this package is to supply efficient Julia implementations of solvers for various differential equations. Equations within the realm of this package include stochastic ordinary differential equations (SODEs or SDEs), stochastic partial differential equations (SPDEs), partial differential equations (with both finite difference and finite element methods), and differential delay equations. For ordinary differential equation solvers, see <a href="https://github.com/JuliaLang/ODE.jl">ODE.jl</a></p>
-<p>This package is for efficient and parallel implementations of research-level algorithms, many of which are quite recent. These algorithms aim to be optimized for HPC applications, including the use of GPUs, Xeon Phis, and multi-node parallelism. With the easy to use plot/convergence testing algorithms, this package also provides a good sandbox for developing novel numerical schemes.</p>
+<p><a id='Main.DifferentialEquations' href='#Main.DifferentialEquations'>#</a>
+<strong><code>Main.DifferentialEquations</code></strong> &mdash; <em>Module</em>.</p>
 <p><a id='Mesh-Tools-1'></a></p>
 <h2 id="mesh-tools">Mesh Tools</h2>
-<p><a id='DifferentialEquations.meshgrid' href='#DifferentialEquations.meshgrid'>#</a>
-<strong><code>DifferentialEquations.meshgrid</code></strong> &mdash; <em>Function</em>.</p>
-<p>meshgrid(vx,vy,vz)</p>
-<p>Computes an (x,y,z)-grid from the vectors (vx,vy,vz). For more information, see the MATLAB documentation.</p>
-<p>meshgrid(vx,vy)</p>
-<p>Computes an (x,y)-grid from the vectors (vx,vy). For more information, see the MATLAB documentation.</p>
-<p>meshgrid(vx)</p>
-<p>Computes an (x,y)-grid from the vectors (vx,vx). For more information, see the MATLAB documentation.</p>
 <p><a id='DifferentialEquations.CFLν' href='#DifferentialEquations.CFLν'>#</a>
 <strong><code>DifferentialEquations.CFLν</code></strong> &mdash; <em>Function</em>.</p>
 <p>CFLν(Δt,Δx)</p>
@@ -304,7 +336,7 @@
 <p>Returns the ∇u of the barycentric basis elements.</p>
 <p><a id='DifferentialEquations.quadfbasis' href='#DifferentialEquations.quadfbasis'>#</a>
 <strong><code>DifferentialEquations.quadfbasis</code></strong> &mdash; <em>Function</em>.</p>
-<p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdNode,mid,N,Dirichlet,Neumann,isLinear,numVars;gNquad𝒪=2)</p>
+<p>quadfbasis(f,gD,gN,A,u,node,elem,area,bdnode,mid,N,dirichlet,neumann,islinear,numvars;gNquad𝒪=2)</p>
 <p>Performs the order 2 quadrature to calculate the vector from the term <code>&lt;f,v&gt;</code> for linear elements.</p>
 <p><a id='DifferentialEquations.quadpts' href='#DifferentialEquations.quadpts'>#</a>
 <strong><code>DifferentialEquations.quadpts</code></strong> &mdash; <em>Function</em>.</p>
@@ -315,17 +347,13 @@
 <strong><code>DifferentialEquations.quadpts1</code></strong> &mdash; <em>Function</em>.</p>
 <p>quadpts1(𝒪)</p>
 <p>References: Pavel Holoborodko: http://www.holoborodko.com/pavel/numerical-methods/numerical-integration/</p>
-<p><a id='DifferentialEquations.accumarray' href='#DifferentialEquations.accumarray'>#</a>
-<strong><code>DifferentialEquations.accumarray</code></strong> &mdash; <em>Function</em>.</p>
-<p>accumarray(subs, val, sz=(maximum(subs),))</p>
-<p>See MATLAB's documentation for more details.</p>
 <p><a id='DifferentialEquations.assemblematrix' href='#DifferentialEquations.assemblematrix'>#</a>
 <strong><code>DifferentialEquations.assemblematrix</code></strong> &mdash; <em>Function</em>.</p>
-<p>assemblematrix(node,elem;lumpflag=false,K=[])</p>
+<p>assemblematrix(FEMmesh::FEMmesh;lumpflag=false,K=[])</p>
 <p>Assembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.</p>
 <p><strong>Returns</strong></p>
 <p>A = Stiffness Matrix M = Mass Matrix area = A vector of the calculated areas for each element.</p>
-<p>assemblematrix(FEMmesh::FEMmesh;lumpflag=false,K=[])</p>
+<p>assemblematrix(node,elem;lumpflag=false,K=[])</p>
 <p>Assembles the stiffness matrix A as an approximation to Δ on the finite element mesh (node,elem). Also generates the mass matrix M. If lumpflag=true, then the mass matrix is lumped resulting in a diagonal mass matrix. Specify a diffusion constant along the nodes via K.</p>
 <p><strong>Returns</strong></p>
 <p>A = Stiffness Matrix M = Mass Matrix area = A vector of the calculated areas for each element.</p>
@@ -338,12 +366,12 @@
 <p><a id='DifferentialEquations.getH1error' href='#DifferentialEquations.getH1error'>#</a>
 <strong><code>DifferentialEquations.getH1error</code></strong> &mdash; <em>Function</em>.</p>
 <p>function getH1error(node,elem,Du,uh,K=[],quad𝒪=[])</p>
-<p>getH1error(femMesh::FEMmesh,Du,u)</p>
+<p>getH1error(fem_mesh::FEMmesh,Du,u)</p>
 <p>Estimates the H1 error between uexact and uh on the mesh (node,elem). It reads the mesh to estimate the element type and uses this to choose a quadrature 𝒪 unless specified. If K is specified then it is the diffusion coefficient matrix.</p>
 <p><a id='DifferentialEquations.getL2error' href='#DifferentialEquations.getL2error'>#</a>
 <strong><code>DifferentialEquations.getL2error</code></strong> &mdash; <em>Function</em>.</p>
 <p>getL2error(node,elem,uexact,uh,quad𝒪=[])</p>
-<p>getL2error(femMesh::FEMmesh,sol,u)</p>
+<p>getL2error(fem_mesh::FEMmesh,sol,u)</p>
 <p>Estimates the L2 error between uexact and uh on the mesh (node,elem). It reads the mesh to estimate the element type and uses this to choose a quadrature 𝒪 unless specified.</p>
               
             </div>
@@ -355,7 +383,7 @@
         <a href="../extras/" class="btn btn-neutral float-right" title="Extra Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../../man/convergence/" class="btn btn-neutral" title="Convergence Simuations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../contributors_guide/" class="btn btn-neutral" title="Contributor's Guide"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -383,7 +411,7 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../../man/convergence/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../contributors_guide/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
         <span style="margin-left: 15px"><a href="../extras/" style="color: #fcfcfc">Next &raquo;</a></span>

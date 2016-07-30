@@ -71,35 +71,78 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -121,28 +164,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -150,13 +193,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../solvers/">Information on Solvers</a>
         
     </li>
 
@@ -205,7 +241,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -219,7 +262,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -270,7 +313,7 @@
                 <p><a id='Convergence-Simulations-1'></a></p>
 <h1 id="convergence-simulations">Convergence Simulations</h1>
 <p>The convergence simulation type is useful for deriving order of convergence estimates from a group of simulations. This object will automatically assemble error vectors into a more useful manner and provide plotting functionality. Convergence estimates are also given by pair-wise estimates.</p>
-<p><code>ConvergenceSimulation</code>s can either be created by passing the constructor the approrpiate solution array or by using one of the provided <code>testConvergence</code> functions.</p>
+<p><code>ConvergenceSimulation</code>s can either be created by passing the constructor the appropriate solution array or by using one of the provided <code>test_convergence</code> functions.</p>
 <p><a id='The-ConvergenceSimulation-Type-1'></a></p>
 <h2 id="the-convergencesimulation-type">The ConvergenceSimulation Type</h2>
 <p><a id='DifferentialEquations.ConvergenceSimulation' href='#DifferentialEquations.ConvergenceSimulation'>#</a>
@@ -286,7 +329,7 @@
 <li><code>maxErrors</code>: Vector of the nodal maximum errors.</li>
 <li><code>node2Errors</code>: Vector of the nodal l2 errors.</li>
 <li><code>N</code>: The number of simulations.</li>
-<li><code>auxData</code>: Auxillary data of the convergence simluation. Entries can include:</li>
+<li><code>auxdata</code>: Auxillary data of the convergence simluation. Entries can include:</li>
 <li><code>Δts</code>: The Δt's in the simulations.</li>
 <li><code>Δxs</code>: The Δx's in the simulations.</li>
 <li><code>μs</code>: The CFL μ's in the simulations.</li>
@@ -296,7 +339,7 @@
 <li><code>ConvEst_l2</code>: The L2 error order of convergence estimate for the convergence simulation.   Generated via <code>log2(error[i+1]/error[i])</code>. Thus only valid if generated by halving/doubling   the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_l2)</li>
 <li><code>ConvEst_max</code>: The nodal maximum error order of convergence estimate for the convergence simulation.   Generated via <code>log2(error[i+1]/error[i])</code>. Thus only valid if generated by halving/doubling   the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_max)</li>
 <li><code>ConvEst_node2</code>: The nodal l2 error order of convergence estimate for the convergence simulation.   Generated via <code>log2(error[i+1]/error[i])</code>. Thus only valid if generated by halving/doubling   the Δt/Δx. If alternate scaling, modify by dividing of log(base,ConvEst_node2)</li>
-<li><code>convergenceAxis</code>: The axis along which convergence is calculated. For example, if   we calculate the Δt convergence, convergenceAxis is the Δts used in the calculation.</li>
+<li><code>convergence_axis</code>: The axis along which convergence is calculated. For example, if   we calculate the Δt convergence, convergence_axis is the Δts used in the calculation.</li>
 </ul>
 <p><a id='Plot-Functions-1'></a></p>
 <h2 id="plot-functions">Plot Functions</h2>
@@ -323,40 +366,40 @@
 <p>Computes the pairwise convergence estimate for a convergence test done by halving/doubling stepsizes via</p>
 <p>log2(error[i+1]/error[i])</p>
 <p>Returns the mean of the convergence estimates</p>
-<p><a id='DifferentialEquations.testConvergence' href='#DifferentialEquations.testConvergence'>#</a>
-<strong><code>DifferentialEquations.testConvergence</code></strong> &mdash; <em>Function</em>.</p>
-<p>testConvergence(Δxs::AbstractArray,prob::PoissonProblem)</p>
-<p>Tests the convergence of the solver algorithm on the given Poisson problem with Δxs as given. Uses the square mesh [0,1]x[0,1].</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li><code>solver</code>: Which solver to use. Default is "Direct".</li>
-</ul>
-<p>testConvergence(Δts::AbstractArray,Δxs::AbstractArray,prob::HeatProblem,convergenceAxis)</p>
-<p>Tests the convergence of the solver algorithm on the given Heat problem with the Δts and Δxs as given. Uses the square mesh [0,1]x[0,1]. The convergence axis is the axis along which convergence is calculated. For example, when testing Δt convergence, <code>convergenceAxis = Δts</code>.</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li><code>T</code>: The final time. Defaults to 1</li>
-<li><code>alg</code>: The algorithm to test. Default is "Euler".</li>
-</ul>
-<p>testConvergence(Δts::AbstractArray,prob::ODEProblem)</p>
-<p>Tests the order of the time convergence of the given algorithm on the given problem solved over the given Δts.</p>
-<p><strong>Keyword Arguments</strong></p>
-<ul>
-<li><code>T</code>: The final time. Default is 1</li>
-<li><code>fullSave</code>: Denotes whether to save at every saveSteps steps. Default is true.</li>
-<li><code>saveSteps</code>: Denotes the steps to save at if <code>fullSave=true</code>. Default is 1</li>
-<li><code>alg</code>: The algorithm to test. Defaults to "Euler".</li>
-<li><code>tableau</code>: The tableau used for generic methods. Defaults to DEFAULT_TABLEAU.</li>
-</ul>
-<p>testConvergence(Δts::AbstractArray,prob::SDEProblem)</p>
+<p><a id='DifferentialEquations.test_convergence' href='#DifferentialEquations.test_convergence'>#</a>
+<strong><code>DifferentialEquations.test_convergence</code></strong> &mdash; <em>Function</em>.</p>
+<p>test_convergence(Δts::AbstractArray,prob::SDEProblem)</p>
 <p>Tests the strong order time convergence of the given algorithm on the given problem solved over the given Δts.</p>
 <p><strong>Keyword Arguments</strong></p>
 <ul>
 <li><code>T</code>: The final time. Default is 1</li>
 <li><code>numMonte</code>: The number of simulations for each Δt. Default is 10000.</li>
-<li><code>fullSave</code>: Denotes whether to save at every saveSteps steps. Default is true.</li>
-<li><code>saveSteps</code>: Denotes the steps to save at if <code>fullSave=true</code>. Default is 1</li>
+<li><code>save_timeseries</code>: Denotes whether to save at every timeseries_steps steps. Default is true.</li>
+<li><code>timeseries_steps</code>: Denotes the steps to save at if <code>save_timeseries=true</code>. Default is 1</li>
 <li><code>alg</code>: The algorithm to test. Defaults to "EM".</li>
+</ul>
+<p>test_convergence(Δts::AbstractArray,prob::ODEProblem)</p>
+<p>Tests the order of the time convergence of the given algorithm on the given problem solved over the given Δts.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>T</code>: The final time. Default is 1</li>
+<li><code>save_timeseries</code>: Denotes whether to save at every timeseries_steps steps. Default is true.</li>
+<li><code>timeseries_steps</code>: Denotes the steps to save at if <code>save_timeseries=true</code>. Default is 1</li>
+<li><code>alg</code>: The algorithm to test. Defaults to "Euler".</li>
+<li><code>tableau</code>: The tableau used for generic methods. Defaults to ODE_DEFAULT_TABLEAU.</li>
+</ul>
+<p>test_convergence(Δts::AbstractArray,Δxs::AbstractArray,prob::HeatProblem,convergence_axis)</p>
+<p>Tests the convergence of the solver algorithm on the given Heat problem with the Δts and Δxs as given. Uses the square mesh [0,1]x[0,1]. The convergence axis is the axis along which convergence is calculated. For example, when testing Δt convergence, <code>convergence_axis = Δts</code>.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>T</code>: The final time. Defaults to 1</li>
+<li><code>alg</code>: The algorithm to test. Default is "Euler".</li>
+</ul>
+<p>test_convergence(Δxs::AbstractArray,prob::PoissonProblem)</p>
+<p>Tests the convergence of the solver algorithm on the given Poisson problem with Δxs as given. Uses the square mesh [0,1]x[0,1].</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>solver</code>: Which solver to use. Default is "Direct".</li>
 </ul>
               
             </div>
@@ -365,7 +408,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../../internals/femTools/" class="btn btn-neutral float-right" title="Internal Finite Element Tools">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../internals/contributors_guide/" class="btn btn-neutral float-right" title="Contributor's Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../plot/" class="btn btn-neutral" title="Plot Functions"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -399,7 +442,7 @@
         <span><a href="../plot/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../../internals/femTools/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../internals/contributors_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

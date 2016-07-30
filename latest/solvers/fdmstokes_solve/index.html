@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Heat Equation Finite Element Method Example - DifferentialEquations.jl</title>
+  <title>Stationary Stokes Equation Finite Difference Method Solvers - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Heat Equation Finite Element Method Example";
-    var mkdocs_page_input_path = "tutorials/femHeat.md";
-    var mkdocs_page_url = "/tutorials/femHeat/";
+    var mkdocs_page_name = "Stationary Stokes Equation Finite Difference Method Solvers";
+    var mkdocs_page_input_path = "solvers/fdmstokes_solve.md";
+    var mkdocs_page_url = "/solvers/fdmstokes_solve/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,42 +71,87 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femheat_solve/">Heat Equation Finite Element Method Solvers</a>
         
     </li>
 
         
             
     <li class="toctree-l1 current">
-        <a class="current" href="./">Heat Equation Finite Element Method Example</a>
+        <a class="current" href="./">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
             <ul>
             
-                <li class="toctree-l3"><a href="#heat-equation-finite-element-method-example">Heat Equation Finite Element Method Example</a></li>
+                <li class="toctree-l3"><a href="#finite-difference-method-stokes-equation-solvers">Finite Difference Method Stokes Equation Solvers</a></li>
+                
+                    <li><a class="toctree-l4" href="#stokes-equation">Stokes Equation</a></li>
                 
             
             </ul>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../femStochastic/">Stochastic Finite Element Examples</a>
         
     </li>
 
@@ -128,28 +173,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -157,13 +202,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../man/mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../man/solvers/">Information on Solvers</a>
         
     </li>
 
@@ -199,7 +237,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -213,7 +258,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -243,11 +288,11 @@
     
       
         
-          <li>Tutorial &raquo;</li>
+          <li>Solver Options &raquo;</li>
         
       
     
-    <li>Heat Equation Finite Element Method Example</li>
+    <li>Stationary Stokes Equation Finite Difference Method Solvers</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -261,31 +306,24 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Heat-Equation-Finite-Element-Method-Example-1'></a></p>
-<h1 id="heat-equation-finite-element-method-example">Heat Equation Finite Element Method Example</h1>
-<p>In this example we will solve the heat equation <code>u_t=Δu+f</code>. To do this, we define a HeatProblem which contains the function <code>f</code> and the boundary conditions. We specify one as follows:</p>
-<pre class="codehilite"><code class="language-julia">&quot;Example problem which starts with 0 and solves with ``f(u)=1-u/2``&quot;
-function heatProblemExample_birthdeath()
-  f(u,x,t)  = ones(size(x,1)) - .5u
-  u₀(x) = zeros(size(x,1))
-  return(HeatProblem(u₀,f))
-end
-prob = heatProblemExample_birthdeath()</code></pre>
-
-
-<p>Here the equation we chose was nonlinear since <code>f</code> depends on the variable <code>u</code>. Thus we specify f=f(u,x,t). If <code>f</code> did not depend on u, then we would specify f=f(x,t). We do need to specify <code>gD</code> (the Dirichlet boundary condition) and <code>gN</code> (the Neumann boundary condition) since both are zero. <code>u0</code> specifies the initial condition. These together give a HeatProblem object which holds everything which specifies a Heat Equation Problem.</p>
-<p>We then generate a mesh. We will solve the equation on the parabolic cylinder [0,1]^2 x [0,1]. You can think of this as the cube, or at every time point from 0 to 1, the domain is the unit square. To generate this mesh, we use the command</p>
-<pre class="codehilite"><code class="language-julia">T = 1
-Δx = 1//2^(3)
-Δt = 1//2^(7)
-femMesh = parabolic_squaremesh([0 1 0 1],Δx,Δt,T,&quot;Neumann&quot;)</code></pre>
-
-
-<p>We then call the solver</p>
-<pre class="codehilite"><code class="language-julia">sol = solve(femMesh::FEMmesh,prob::HeatProblem,alg=&quot;Euler&quot;)</code></pre>
-
-
-<p>Here we have chosen to use the Euler algorithm to solve the equation. Other algorithms and their descriptions can be found in the solvers part of the documentation.</p>
+                <p><a id='Finite-Difference-Method-Stokes-Equation-Solvers-1'></a></p>
+<h1 id="finite-difference-method-stokes-equation-solvers">Finite Difference Method Stokes Equation Solvers</h1>
+<p><a id='Stokes-Equation-1'></a></p>
+<h2 id="stokes-equation">Stokes Equation</h2>
+<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}'>#</a>
+<strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
+<p>solve(prob::StokesProblem,mesh::FDMMesh)</p>
+<p>Solves the given stationary Stokes problem on the given finite difference mesh.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>converrors</code>: Whether to calculate all of the errors along the convergence. Default is true.</li>
+<li><code>maxiters</code>: Maximum number of iterations before haulting. Default is 100.</li>
+<li><code>alg</code>: The solver algorithm. Default is "dgs". Other option is "multigrid".</li>
+<li><code>level</code>: The number of levels in the Multigrid. Default is 2.</li>
+<li><code>smoothSteps</code>: The number of Gauss-Seidel iterations to do at each smoothing step. Default is 10.</li>
+<li><code>coarseSteps</code>: The number of Gauss-Seidel iterations to do at the coarsegrid. Default is 40.</li>
+<li><code>gsiters</code>: The number of Gauss-Seidel iterations to do at each step. Default is 20.</li>
+</ul>
               
             </div>
           </div>
@@ -293,10 +331,10 @@ femMesh = parabolic_squaremesh([0 1 0 1],Δx,Δt,T,&quot;Neumann&quot;)</code></
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../femStochastic/" class="btn btn-neutral float-right" title="Stochastic Finite Element Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../../man/overview/" class="btn btn-neutral float-right" title="Overview of DifferentialEquations.jl Usage">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../femPoisson/" class="btn btn-neutral" title="Poisson Equation Finite Element Method Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../femheat_solve/" class="btn btn-neutral" title="Heat Equation Finite Element Method Solvers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -324,10 +362,10 @@ femMesh = parabolic_squaremesh([0 1 0 1],Δx,Δt,T,&quot;Neumann&quot;)</code></
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../femPoisson/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../femheat_solve/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../femStochastic/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../../man/overview/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

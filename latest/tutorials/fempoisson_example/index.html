@@ -25,8 +25,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Poisson Equation Finite Element Method Example";
-    var mkdocs_page_input_path = "tutorials/femPoisson.md";
-    var mkdocs_page_url = "/tutorials/femPoisson/";
+    var mkdocs_page_input_path = "tutorials/fempoisson_example.md";
+    var mkdocs_page_url = "/tutorials/fempoisson_example/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,14 +71,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
@@ -99,14 +99,57 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -128,28 +171,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -157,13 +200,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../man/mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../man/solvers/">Information on Solvers</a>
         
     </li>
 
@@ -199,7 +235,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -213,7 +256,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -263,32 +306,28 @@
               
                 <p><a id='Poisson-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="poisson-equation-finite-element-method-example">Poisson Equation Finite Element Method Example</h1>
-<p>In this example we will solve the Poisson Equation <code>Δu=f</code>. The code for this example can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/test/introductionExample.jl">test/introductionExample.jl</a>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
-<pre class="codehilite"><code class="language-julia">&quot;Example problem with solution: ``u(x,y)= sin(2π.*x).*cos(2π.*y)/(8π*π)``&quot;
-function poissonProblemExample_wave()
-  f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
-  sol(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
-  Du(x) = [cos(2*pi.*x[:,1]).*cos(2*pi.*x[:,2])./(4*pi) -sin(2π.*x[:,1]).*sin(2π.*x[:,2])./(4π)]
-  return(PoissonProblem(f,sol,Du))
-end
-prob = poissonProblemExample_wave()</code></pre>
+<p>This tutorial will introduce you to the functionality for solving a PDE. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
+<p>In this example we will solve the Poisson Equation <code>Δu=f</code>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
+<pre class="codehilite"><code class="language-julia">f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
+gD(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
+prob = PoissonProblem(f,gD)</code></pre>
 
 
-<p>Note that in this case since the solution is known, the Dirichlet boundary condition <code>gD</code> is automatically set to match the true solution. The code for other example problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/examples/exampleProblems.jl">src/examples/exampleProblems.jl</a>. To solve this problem, we first have to generate a mesh. Here we will simply generate a mesh of triangles on the square [0,1]x[0,1] with Δx=2^(-5). To do so, we use the code:</p>
+<p>Here we chose the dirichlet boundary condition <code>gD</code> to give the theoretical solution.  Other example problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/src/premades/premade_problems.jl">src/examples/exampleProblems.jl</a>. To solve this problem, we first have to generate a mesh. Here we will simply generate a mesh of triangles on the square [0,1]x[0,1] with Δx=2^(-5). To do so, we use the code:</p>
 <pre class="codehilite"><code class="language-julia">Δx = 1//2^(5)
-femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
+fem_mesh = notime_squaremesh([0 1 0 1],Δx,:dirichlet)</code></pre>
 
 
-<p>Note that by specifying "Dirichlet" our boundary conditions is set on all boundaries to Dirichlet. This gives an FEMmesh object which stores a finite element mesh in the same layout as <a href="http://www.math.uci.edu/~chenlong/programming.html">iFEM</a>. Notice this code shows that the package supports the use of rationals in meshes. Other numbers such as floating point and integers can be used as well. Finally, to solve the equation we use</p>
-<pre class="codehilite"><code class="language-julia">sol = solve(femMesh,pdeProb)</code></pre>
+<p>Note that by specifying :dirichlet our boundary conditions is set on all boundaries to dirichlet. This gives an FEMmesh object which stores a finite element mesh in the same layout as <a href="http://www.math.uci.edu/~chenlong/programming.html">iFEM</a>. Notice this code shows that the package supports the use of rationals in meshes. Other numbers such as floating point and integers can be used as well. Finally, to solve the equation we use</p>
+<pre class="codehilite"><code class="language-julia">sol = solve(fem_mesh,pdeProb)</code></pre>
 
 
-<p>fem_solvepoisson takes in a mesh and a PoissonProblem and uses the solver to compute the solution. Here the solver was chosen to be GMRES. Other solvers can be found in the documentation. This reurns a FEMSolution object which holds data about the solution, such as the solution values (u), the true solution (uTrue), error estimates, etc. To plot the solution, we use the command</p>
-<pre class="codehilite"><code class="language-julia">plot(sol::FEMSolution,plottrue=true)</code></pre>
+<p>fem_solvepoisson takes in a mesh and a PoissonProblem and uses the solver to compute the solution. Here the solver was chosen to be GMRES. Other solvers can be found in the documentation. This returns a FEMSolution object which holds data about the solution, such as the solution values (u). To plot the solution, we use the command</p>
+<pre class="codehilite"><code class="language-julia">plot(sol::FEMSolution)</code></pre>
 
 
-<p>This gives us the following plot:</p>
-<p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/src/examples/introductionExample.png" width="750" align="middle"  /></p>
+<p>Here is the plot shown against the analytical solution to show the accuracy:</p>
+<p><img src="https://raw.githubusercontent.com/ChrisRackauckas/DifferentialEquations.jl/master/examples/plots/introductionExample.png" width="750" align="middle"  /></p>
               
             </div>
           </div>
@@ -296,10 +335,10 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../femHeat/" class="btn btn-neutral float-right" title="Heat Equation Finite Element Method Example">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../femheat_example/" class="btn btn-neutral float-right" title="Heat Equation Finite Element Method Example">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../sde/" class="btn btn-neutral" title="Stochastic Differential Equation Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sde_example/" class="btn btn-neutral" title="Stochastic Differential Equation Example"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -327,10 +366,10 @@ femMesh = notime_squaremesh([0 1 0 1],Δx,&quot;Dirichlet&quot;)</code></pre>
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../sde/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../sde_example/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../femHeat/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../femheat_example/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

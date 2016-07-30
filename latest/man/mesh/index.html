@@ -71,35 +71,78 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -121,28 +164,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -167,13 +210,6 @@
                 
             
             </ul>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../solvers/">Information on Solvers</a>
         
     </li>
 
@@ -209,7 +245,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -223,7 +266,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -292,23 +335,23 @@
 <ul>
 <li><code>node</code>: The nodes in the (node,elem) structure.</li>
 <li><code>elem</code>: The elements in the (node,elem) structure.</li>
-<li><code>bdNode</code>: Vector of indices for the boundary nodes.</li>
-<li><code>freeNode</code>: Vector of indices for the free (non-Dirichlet bound) nodes.</li>
-<li><code>bdEdge</code>: Indices of the edges in totalEdge which are on the boundary.</li>
-<li><code>isBdNode</code>: Boolean which is true for nodes on the boundary.</li>
-<li><code>isBdElem</code>: Boolean which is true for elements on the boundary.</li>
-<li><code>bdFlag</code>: Flag which describes the type of boundary condition. 1=&gt; Dirichlet, 2=&gt;Neumann, 3=&gt;Robin.</li>
-<li><code>totalEdge</code>: Vector of the edges.</li>
+<li><code>bdnode</code>: Vector of indices for the boundary nodes.</li>
+<li><code>freenode</code>: Vector of indices for the free (non-dirichlet bound) nodes.</li>
+<li><code>bdedge</code>: Indices of the edges in totaledge which are on the boundary.</li>
+<li><code>is_bdnode</code>: Boolean which is true for nodes on the boundary.</li>
+<li><code>is_bdelem</code>: Boolean which is true for elements on the boundary.</li>
+<li><code>bdflag</code>: Flag which describes the type of boundary condition. 1=&gt; dirichlet, 2=&gt;neumann, 3=&gt;robin.</li>
+<li><code>totaledge</code>: Vector of the edges.</li>
 <li><code>area</code>: Vector which is the area for each element.</li>
-<li><code>Dirichlet</code>: Indices for the nodes on the boundary which have a Dirichlet boundary condition.</li>
-<li><code>Neumann</code>: Indices for the nodes on the boundary which have a Neumann boundary condition.</li>
-<li><code>Robin</code>: Indices for the nodes on the boundary which have a Robin boundary condition.</li>
+<li><code>dirichlet</code>: Indices for the nodes on the boundary which have a dirichlet boundary condition.</li>
+<li><code>neumann</code>: Indices for the nodes on the boundary which have a neumann boundary condition.</li>
+<li><code>robin</code>: Indices for the nodes on the boundary which have a robin boundary condition.</li>
 <li><code>N::Int</code>: The number of nodes.</li>
 <li><code>NT</code>::Int: The number of triangles (elements).</li>
 <li><code>Δx</code>: The spatial discretization size. If non-uniform, this is the average.</li>
 <li><code>Δt</code>: The time discretization size. If adaptive, this is the initial.</li>
 <li><code>T</code>::Number: The end time.</li>
-<li><code>numIters</code>::Int: The number of iterations to go from 0 to T using Δt.</li>
+<li><code>numiters</code>::Int: The number of iterations to go from 0 to T using Δt.</li>
 <li><code>μ</code>: The CFL μ stability parameter.</li>
 <li><code>ν</code>: The CFL ν stability parameter.</li>
 <li><code>evolutionEq</code>: True for a mesh which has non-trivial time components.</li>
@@ -329,41 +372,41 @@
 <h2 id="mesh-generation-functions">Mesh Generation Functions</h2>
 <p><a id='DifferentialEquations.findboundary' href='#DifferentialEquations.findboundary'>#</a>
 <strong><code>DifferentialEquations.findboundary</code></strong> &mdash; <em>Function</em>.</p>
-<p>findboundary(elem,bdFlag=[])</p>
-<p>findboundary(femMesh::FEMmesh,bdFlag=[])</p>
-<p>Finds elements which are on the boundary of the domain. If bdFlag is given, then those indices are added as nodes for a Dirichlet boundary condition (useful for creating cracks and other cutouts of domains).</p>
+<p>findboundary(elem,bdflag=[])</p>
+<p>findboundary(fem_mesh::FEMmesh,bdflag=[])</p>
+<p>Finds elements which are on the boundary of the domain. If bdflag is given, then those indices are added as nodes for a dirichlet boundary condition (useful for creating cracks and other cutouts of domains).</p>
 <p><strong>Returns</strong></p>
-<p>bdNode = Vector of indices for bdNode. Using node[:,bdNode] returns boundary nodes.</p>
-<p>bdEdge = Vector of indices for boundary edges.</p>
-<p>isBdNode = Vector of booleans size N which donotes which are on the boundary</p>
-<p>isBdElem = Vector of booleans size NT which denotes which are on the boundary</p>
+<p>bdnode = Vector of indices for bdnode. Using node[:,bdnode] returns boundary nodes.</p>
+<p>bdedge = Vector of indices for boundary edges.</p>
+<p>is_bdnode = Vector of booleans size N which donotes which are on the boundary</p>
+<p>is_bdelem = Vector of booleans size NT which denotes which are on the boundary</p>
 <p><a id='DifferentialEquations.setboundary' href='#DifferentialEquations.setboundary'>#</a>
 <strong><code>DifferentialEquations.setboundary</code></strong> &mdash; <em>Function</em>.</p>
-<p>setboundary(node::AbstractArray,elem::AbstractArray,bdType)</p>
-<p>setboundary(femMesh::FEMmesh,bdType)</p>
-<p>Takes in the femMesh and creates an array bdFlag which denotes the boundary types. 1 stands for Dirichlet, 2 for Neumann, 3 for Robin.</p>
+<p>setboundary(node::AbstractArray,elem::AbstractArray,bdtype)</p>
+<p>setboundary(fem_mesh::FEMmesh,bdtype)</p>
+<p>Takes in the fem_mesh and creates an array bdflag which denotes the boundary types. 1 stands for dirichlet, 2 for neumann, 3 for robin.</p>
 <p><a id='DifferentialEquations.fem_squaremesh' href='#DifferentialEquations.fem_squaremesh'>#</a>
 <strong><code>DifferentialEquations.fem_squaremesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>fem_squaremesh(square,h)</p>
 <p>Returns the grid in the iFEM form of the two arrays (node,elem)</p>
 <p><a id='DifferentialEquations.notime_squaremesh' href='#DifferentialEquations.notime_squaremesh'>#</a>
 <strong><code>DifferentialEquations.notime_squaremesh</code></strong> &mdash; <em>Function</em>.</p>
-<p>notime_squaremesh(square,Δx,bdType)</p>
+<p>notime_squaremesh(square,Δx,bdtype)</p>
 <p>Computes the (node,elem) square mesh for the square with the chosen Δx and boundary settings.</p>
 <h3 id="example">Example</h3>
 <pre class="codehilite"><code class="language-julia">square=[0 1 0 1] #Unit Square
 Δx=.25
-notime_squaremesh(square,Δx,&quot;Dirichlet&quot;)</code></pre>
+notime_squaremesh(square,Δx,&quot;dirichlet&quot;)</code></pre>
 
 
 <p><a id='DifferentialEquations.parabolic_squaremesh' href='#DifferentialEquations.parabolic_squaremesh'>#</a>
 <strong><code>DifferentialEquations.parabolic_squaremesh</code></strong> &mdash; <em>Function</em>.</p>
-<p>parabolic_squaremesh(square,Δx,Δt,T,bdType)</p>
+<p>parabolic_squaremesh(square,Δx,Δt,T,bdtype)</p>
 <p>Computes the (node,elem) x [0,T] parabolic square mesh for the square with the chosen Δx and boundary settings and with the constant time intervals Δt.</p>
 <h3 id="example_1">Example</h3>
 <pre class="codehilite"><code class="language-julia">square=[0 1 0 1] #Unit Square
 Δx=.25; Δt=.25;T=2
-parabolic_squaremesh(square,Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
+parabolic_squaremesh(square,Δx,Δt,T,:dirichlet)</code></pre>
 
 
 <p><a id='Example-Meshes-1'></a></p>
@@ -406,10 +449,10 @@ parabolic_squaremesh(square,Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../solvers/" class="btn btn-neutral float-right" title="Information on Solvers">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../solution/" class="btn btn-neutral float-right" title="The Solution Type">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../stokesProblem/" class="btn btn-neutral" title="Defining a Stokes Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../StokesProblem/" class="btn btn-neutral" title="Defining a Stokes Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -437,10 +480,10 @@ parabolic_squaremesh(square,Δx,Δt,T,&quot;Dirichlet&quot;)</code></pre>
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../stokesProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../StokesProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../solvers/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../solution/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

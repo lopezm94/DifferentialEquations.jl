@@ -25,8 +25,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Ordinary Differential Equation Example";
-    var mkdocs_page_input_path = "tutorials/ode.md";
-    var mkdocs_page_url = "/tutorials/ode/";
+    var mkdocs_page_input_path = "tutorials/ode_example.md";
+    var mkdocs_page_url = "/tutorials/ode_example/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -89,28 +89,71 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -132,28 +175,28 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/femProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../man/stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -161,13 +204,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../../man/mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../man/solvers/">Information on Solvers</a>
         
     </li>
 
@@ -203,7 +239,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -217,7 +260,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -267,17 +310,16 @@
               
                 <p><a id='Ordinary-Differential-Equation-(ODE)-Example-1'></a></p>
 <h1 id="ordinary-differential-equation-ode-example">Ordinary Differential Equation (ODE) Example</h1>
+<p>This tutorial will introduce you to the functionality for solving ODEs. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
 <p>In this example we will solve the equation</p>
 <pre class="codehilite"><code class="language-math">du/dt = f(u,t)</code></pre>
 
 
 <p>where <code>f(u,t)=αu</code>. We know via Calculus that the solution to this equation is <code>u(t)=u₀*exp(α*t)</code>. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
-<pre class="codehilite"><code class="language-julia">&quot;&quot;&quot;Example problem with solution ``u(t)=u₀*exp(α*t)``&quot;&quot;&quot;
-function linearODEExample(;α=1,u₀=1/2)
-  f(u,t) = α*u
-  sol(u₀,t) = u₀*exp(α*t)
-  return(ODEProblem(f,u₀,sol=sol))
-end</code></pre>
+<pre class="codehilite"><code class="language-julia">α=1
+u₀=1/2
+f(u,t) = u
+prob = ODEProblem(f,u₀)</code></pre>
 
 
 <p>Then we setup some parameters:</p>
@@ -286,11 +328,11 @@ tspan = [0,1] # The timespan. This is the default if not given.</code></pre>
 
 
 <p>We then send these items to the solver.</p>
-<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;Euler&quot;)</code></pre>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:Euler)</code></pre>
 
 
 <p>Plotting commands are provided via a recipe to Plots.jl. To plot the solution object, simply call plot:</p>
-<pre class="codehilite"><code class="language-julia">plot(sol,plottrue=true)
+<pre class="codehilite"><code class="language-julia">plot(sol)
 #Use Plots.jl's gui() command to display the plot.
 Plots.gui()
 #Shown is both the true solution and the approximated solution.</code></pre>
@@ -298,39 +340,32 @@ Plots.gui()
 
 <p><a id='Other-Algorithms-1'></a></p>
 <h3 id="other-algorithms">Other Algorithms</h3>
-<p>More keyword arguments can be found in the Plots.jl documentation. When we plot this solution, we see that it is off from the true solution. We can choose a better algorithm by specifying:</p>
-<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;ExplicitRK&quot;)
-plot(sol,plottrue=true)
+<p>We can choose a better algorithm by specifying:</p>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:ExplicitRK)
+plot(sol)
 Plots.gui()</code></pre>
 
 
 <p>The <code>"ExplicitRK"</code> algorithms are general Runge-Kutta solvers. It defaults to Dormand-Prince 4/5, the same solver as MATLAB's <code>ode45</code>. Please see the solver documentation for more algorithms.</p>
-<p>Notice that this solution tracks the true solution really well. Thus we can solve the problem in less timesteps by turning on adaptive timestepping. To do so, you simply pass a keyword argument:</p>
-<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;ExplicitRK&quot;,adaptive=true)
-plot(sol,plottrue=true)
+<p>We can solve the problem in less timesteps by turning on adaptive timestepping. To do so, you simply pass a keyword argument:</p>
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:ExplicitRK,adaptive=true)
+plot(sol)
 Plots.gui()</code></pre>
 
 
 <p><a id='Systems-of-Equations-1'></a></p>
 <h3 id="systems-of-equations">Systems of Equations</h3>
 <p>We can also solve systems of equations. DifferentialEquations.jl can handle any size problem, so instead of showing it for a vector, let's let u be a matrix! To do this, we simply need to have u₀ be a matrix, and define f such that it takes in a matrix and outputs a matrix. We can define a matrix of linear ODEs as follows:</p>
-<pre class="codehilite"><code class="language-julia">&quot;&quot;&quot;Example problem of 8 linear ODEs (as a 4x2 matrix) with
-solution ``u(t)=exp(α.*t)`` and random initial conditions&quot;&quot;&quot;
-function twoDimlinearODEExample(;α=ones(4,2),u₀=rand(4,2).*ones(4,2)/2)
-  f(u,t) = α.*u
-  sol(u₀,t) = u₀.*exp(α.*t)
-  return(ODEProblem(f,u₀,sol=sol))
-end
-prob = twoDimlinearODEExample()</code></pre>
+<pre class="codehilite"><code class="language-julia">u₀=rand(4,2).*ones(4,2)/2
+α=ones(4,2)
+f(u,t) = α.*u
+prob = ODEProblem(f,u₀)</code></pre>
 
 
 <p>Here our ODE is on a 4x2 matrix. Since we are using .*, this is 8 independent ODEs, but you can do whatever you want. To solve the ODE, we do the same steps as before.</p>
-<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,fullSave=true,alg=&quot;ExplicitRK&quot;)
-plot(sol,plottrue=true)
+<pre class="codehilite"><code class="language-julia">sol =solve(prob::ODEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:ExplicitRK)
+plot(sol)
 Plots.gui()</code></pre>
-
-
-<p>Notice now we have 8 solutions and 8 true solutions, but since we used the high order method, the true solutions are covered by the approximations.</p>
               
             </div>
           </div>
@@ -338,7 +373,7 @@ Plots.gui()</code></pre>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../sde/" class="btn btn-neutral float-right" title="Stochastic Differential Equation Example">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../sde_example/" class="btn btn-neutral float-right" title="Stochastic Differential Equation Example">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../.." class="btn btn-neutral" title="Introduction"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -372,7 +407,7 @@ Plots.gui()</code></pre>
         <span><a href="../.." style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../sde/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../sde_example/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

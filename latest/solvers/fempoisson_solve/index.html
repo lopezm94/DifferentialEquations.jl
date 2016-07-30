@@ -8,7 +8,7 @@
   
   <meta name="author" content="Chris Rackauckas">
   
-  <title>Plot Functions - DifferentialEquations.jl</title>
+  <title>Poisson Equation Finite Element Method Solvers - DifferentialEquations.jl</title>
   
 
   <link rel="shortcut icon" href="../../img/favicon.ico">
@@ -24,9 +24,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Plot Functions";
-    var mkdocs_page_input_path = "man/plot.md";
-    var mkdocs_page_url = "/man/plot/";
+    var mkdocs_page_name = "Poisson Equation Finite Element Method Solvers";
+    var mkdocs_page_input_path = "solvers/fempoisson_solve.md";
+    var mkdocs_page_url = "/solvers/fempoisson_solve/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -114,35 +114,42 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        <a class="" href="../ode_solve/">Ordinary Differential Equation Solvers</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        <a class="" href="../sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Poisson Equation Finite Element Method Solvers</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#finite-element-method-poisson-equation-solvers">Finite Element Method Poisson Equation Solvers</a></li>
+                
+            
+            </ul>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        <a class="" href="../femheat_solve/">Heat Equation Finite Element Method Solvers</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
+        <a class="" href="../fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -157,74 +164,63 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../overview/">Overview of DifferentialEquations.jl Usage</a>
+        <a class="" href="../../man/overview/">Overview of DifferentialEquations.jl Usage</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../FEMProblem/">Defining a Finite Element Problem</a>
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../mesh/">Meshes</a>
+        <a class="" href="../../man/mesh/">Meshes</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../solution/">The Solution Type</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 current">
-        <a class="current" href="./">Plot Functions</a>
-        
-            <ul>
-            
-                <li class="toctree-l3"><a href="#plot-functions">Plot Functions</a></li>
-                
-                    <li><a class="toctree-l4" href="#standard-plots">Standard Plots</a></li>
-                
-                    <li><a class="toctree-l4" href="#extra-plot-functions">Extra Plot Functions</a></li>
-                
-            
-            </ul>
+        <a class="" href="../../man/solution/">The Solution Type</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../convergence/">Convergence Simuations</a>
+        <a class="" href="../../man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/convergence/">Convergence Simuations</a>
         
     </li>
 
@@ -290,11 +286,11 @@
     
       
         
-          <li>Manual &raquo;</li>
+          <li>Solver Options &raquo;</li>
         
       
     
-    <li>Plot Functions</li>
+    <li>Poisson Equation Finite Element Method Solvers</li>
     <li class="wy-breadcrumbs-aside">
       
         
@@ -308,23 +304,22 @@
           <div role="main">
             <div class="section">
               
-                <p><a id='Plot-Functions-1'></a></p>
-<h1 id="plot-functions">Plot Functions</h1>
-<p><a id='Standard-Plots-1'></a></p>
-<h2 id="standard-plots">Standard Plots</h2>
-<p>Plotting functionality is provided by a recipe to Plots.jl. To use plot solutions, simply call the <code>plot(type)</code> and the plotter will generate appropriate plots. If <code>save_timeseries</code> was used, the plotters can generate animations of the solutions to evolution equations. Plots can be customized using <a href="https://juliaplots.github.io/supported/">all of the keyword arguments provided by Plots.jl</a>. Please see <a href="https://juliaplots.github.io/">Plots.jl's documentation</a> for more information.</p>
-<p>A few extra arguments are provided addition to the Plots.jl keyword arguments. They are as follows:</p>
+                <p><a id='Finite-Element-Method-Poisson-Equation-Solvers-1'></a></p>
+<h1 id="finite-element-method-poisson-equation-solvers">Finite Element Method Poisson Equation Solvers</h1>
+<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}'>#</a>
+<strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
+<p><strong>Finite Element Poisson Equation Solver</strong></p>
+<p>solve(fem_mesh::FEMmesh,pdeProb::PoissonProblem)</p>
+<p>Takes in a definition for the heat equation <code>-Δu = f</code> on <code>fem_mesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic Poisson equation <code>-Δu = f + σdW</code>.</p>
+<p><strong>Keyword Arguments</strong></p>
 <ul>
-<li>plottrue: Specifies whether the true solution (if known) should be plotted alongside the numerically approximated solution. Default is false.</li>
-<li>filename: Specifies the filename to save an animation. Only applies to the <code>animate</code> function.</li>
-<li>fps: Determines the fps in an animation. Only applies to the <code>animate</code> function.</li>
+<li><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:     - <code>:Direct</code> = Solves <code>Ax=b</code> using <code>`     -</code>:CG<code>= Conjugate-Gradient. Best when the space is very large and</code>I ± ΔtM⁻¹A<code>is positive definite.     -</code>:GMRES<code>= GMRES. Best when the space is very large and</code>I ± ΔtM⁻¹A` is not positive definite.</li>
+<li><code>timeseries_steps</code> = If <code>save_timeseries=true</code>, then this is the number of steps between the saves.</li>
+<li><code>autodiff</code> = Whether or not autodifferentiation (as provided by AutoDiff.jl) is used for the nonlinear solving. By default autodiff is false.</li>
+<li><code>method</code> = Method the nonlinear solver uses. Defaults to <code>:trust_region</code>.</li>
+<li><code>show_trace</code> = Whether to show the output of the nonlinear solver. Defaults to false.</li>
+<li><code>iterations</code> = Maximum numer of iterations in the nonlinear solver. Defaults to 1000.</li>
 </ul>
-<p><a id='Extra-Plot-Functions-1'></a></p>
-<h2 id="extra-plot-functions">Extra Plot Functions</h2>
-<p><a id='DifferentialEquations.animate' href='#DifferentialEquations.animate'>#</a>
-<strong><code>DifferentialEquations.animate</code></strong> &mdash; <em>Function</em>.</p>
-<p>animate(sol::FEMSolution)</p>
-<p>Plots an animation of the solution. Requires <code>save_timeseries=true</code> was enabled in the solver.</p>
               
             </div>
           </div>
@@ -332,10 +327,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../convergence/" class="btn btn-neutral float-right" title="Convergence Simuations">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../femheat_solve/" class="btn btn-neutral float-right" title="Heat Equation Finite Element Method Solvers">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../solution/" class="btn btn-neutral" title="The Solution Type"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../sde_solve/" class="btn btn-neutral" title="Stochastic Differential Equation Solvers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -363,10 +358,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../solution/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../sde_solve/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../convergence/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../femheat_solve/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>

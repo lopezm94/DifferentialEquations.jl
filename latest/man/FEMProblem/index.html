@@ -25,8 +25,8 @@
   <script>
     // Current page data
     var mkdocs_page_name = "Defining a Finite Element Problem";
-    var mkdocs_page_input_path = "man/femProblem.md";
-    var mkdocs_page_url = "/man/femProblem/";
+    var mkdocs_page_input_path = "man/FEMProblem.md";
+    var mkdocs_page_url = "/man/FEMProblem/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js"></script>
@@ -71,35 +71,78 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/ode/">Ordinary Differential Equation Example</a>
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/sde/">Stochastic Differential Equation Example</a>
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femPoisson/">Poisson Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femHeat/">Heat Equation Finite Element Method Example</a>
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../tutorials/femStochastic/">Stochastic Finite Element Examples</a>
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
         
     </li>
 
@@ -121,14 +164,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../odeProblem/">Defining an ODE Problem</a>
+        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
         
     </li>
 
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../sdeProblem/">Defining an SDE Problem</a>
+        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
         
     </li>
 
@@ -157,7 +200,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../stokesProblem/">Defining a Stokes Problem</a>
+        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
         
     </li>
 
@@ -165,13 +208,6 @@
             
     <li class="toctree-l1 ">
         <a class="" href="../mesh/">Meshes</a>
-        
-    </li>
-
-        
-            
-    <li class="toctree-l1 ">
-        <a class="" href="../solvers/">Information on Solvers</a>
         
     </li>
 
@@ -207,7 +243,14 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/femTools/">Internal Finite Element Tools</a>
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
         
     </li>
 
@@ -221,7 +264,7 @@
         
             
     <li class="toctree-l1 ">
-        <a class="" href="../../internals/solverHelpers/">Solver Helpers</a>
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
         
     </li>
 
@@ -286,31 +329,31 @@
 <pre class="codehilite"><code class="language-math">-Δu = f</code></pre>
 
 
-<p>with bounday conditions <code>gD</code> on the Dirichlet boundary and gN on the Neumann boundary. Linearity is determined by whether the forcing function <code>f</code> is a function of two variables (x,t) or three (u,x,t) (with x=[:,1] and y=[:,2]).</p>
+<p>with bounday conditions <code>gD</code> on the dirichlet boundary and gN on the neumann boundary. Linearity is determined by whether the forcing function <code>f</code> is a function of two variables (x,t) or three (u,x,t) (with x=[:,1] and y=[:,2]).</p>
 <p>If they keyword <code>σ</code> is given, then this wraps the data that define a 2D stochastic heat equation</p>
 <pre class="codehilite"><code class="language-math">-Δu = f + σdW</code></pre>
 
 
 <h3 id="constructors">Constructors</h3>
-<p>PoissonProblem(f,sol,Du): Defines the Dirichlet problem with solution <code>sol</code>, solution gradient <code>Du = [u_x,u_y]</code>, and forcing function <code>f</code></p>
+<p>PoissonProblem(f,analytic,Du): Defines the dirichlet problem with analytical solution <code>analytic</code>, solution gradient <code>Du = [u_x,u_y]</code>, and forcing function <code>f</code></p>
 <p>PoissonProblem(u₀,f): Defines the problem with initial value <code>u₀</code> (as a function) and f. If your initial data is a vector, wrap it as u₀(x) = vector.</p>
 <p>Note: If all functions are of (x,t), then the program assumes it's linear. Write your functions using x = x[:,1] and y = x[:,2].  Use f=f(u,x,t) and σ=σ(u,x,t) (if specified) for nonlinear problems (with the boundary conditions still (x,t))</p>
 <h3 id="keyword-arguments">Keyword Arguments</h3>
 <ul>
 <li>
-<p><code>gD</code> = Dirichlet boundary function</p>
+<p><code>gD</code> = dirichlet boundary function</p>
 </li>
 <li>
-<p><code>gN</code> = Neumann boundary function</p>
+<p><code>gN</code> = neumann boundary function</p>
 </li>
 <li>
 <p><code>σ</code> = The function which multiplies the noise <code>dW</code>. By default <code>σ</code> is 0.</p>
 </li>
 <li>
-<p><code>noiseType</code> = A string which specifies the type of noise to be generated. By default <code>noiseType</code> is "White" for Gaussian Spacetime White Noise.</p>
+<p><code>noisetype</code> = A string which specifies the type of noise to be generated. By default <code>noisetype</code> is :White for Gaussian Spacetime White Noise.</p>
 </li>
 <li>
-<p><code>numVars</code> = The number of variables in the Poisson system. Automatically calculated in many cases.</p>
+<p><code>numvars</code> = The number of variables in the Poisson system. Automatically calculated in many cases.</p>
 </li>
 <li>
 <p><code>D</code> = Vector of diffusion coefficients. Defaults to ones.</p>
@@ -325,7 +368,7 @@
 <pre class="codehilite"><code class="language-math">u_t = Δu + f</code></pre>
 
 
-<p>with bounday conditions <code>gD</code> on the Dirichlet boundary and gN on the Neumann boundary. Linearity is determined by whether the forcing function <code>f</code> is a function of two variables (x,t) or three (u,x,t) (with x=[:,1] and y=[:,2]).</p>
+<p>with bounday conditions <code>gD</code> on the dirichlet boundary and gN on the neumann boundary. Linearity is determined by whether the forcing function <code>f</code> is a function of two variables (x,t) or three (u,x,t) (with x=[:,1] and y=[:,2]).</p>
 <p>If they keyword <code>σ</code> is given, then this wraps the data that define a 2D stochastic heat equation</p>
 <pre class="codehilite"><code class="language-math">u_t = Δu + f + σdW_t</code></pre>
 
@@ -333,7 +376,7 @@
 <h3 id="constructors_1">Constructors</h3>
 <ul>
 <li>
-<p><code>HeatProblem(sol,Du,f)</code>: Defines the Dirichlet problem with solution <code>sol</code>, solution gradient <code>Du = [u_x,u_y]</code>, and the forcing function <code>f</code>.</p>
+<p><code>HeatProblem(analytic,Du,f)</code>: Defines the dirichlet problem with solution <code>analytic</code>, solution gradient <code>Du = [u_x,u_y]</code>, and the forcing function <code>f</code>.</p>
 </li>
 <li>
 <p><code>HeatProblem(u₀,f)</code>: Defines the problem with initial value <code>u₀</code> (as a function) and <code>f</code>. If your initial data is a vector, wrap it as u₀(x) = vector.</p>
@@ -343,19 +386,19 @@
 <h3 id="keyword-arguments_1">Keyword Arguments</h3>
 <ul>
 <li>
-<p><code>gD</code> = Dirichlet boundary function</p>
+<p><code>gD</code> = dirichlet boundary function</p>
 </li>
 <li>
-<p><code>gN</code> = Neumann boundary function</p>
+<p><code>gN</code> = neumann boundary function</p>
 </li>
 <li>
 <p><code>σ</code> = The function which multiplies the noise dW. By default σ is 0.</p>
 </li>
 <li>
-<p><code>noiseType</code> = A string which specifies the type of noise to be generated. By default noiseType is "White" for Gaussian Spacetime White Noise.</p>
+<p><code>noisetype</code> = A string which specifies the type of noise to be generated. By default noisetype is :White for Gaussian Spacetime White Noise.</p>
 </li>
 <li>
-<p><code>numVars</code> = Number of variables in the system. Automatically calculated from u₀ in most cases.</p>
+<p><code>numvars</code> = Number of variables in the system. Automatically calculated from u₀ in most cases.</p>
 </li>
 <li>
 <p><code>D</code> = Array which defines the diffusion coefficients. Defaults to 1's.</p>
@@ -424,10 +467,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../stokesProblem/" class="btn btn-neutral float-right" title="Defining a Stokes Problem">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../StokesProblem/" class="btn btn-neutral float-right" title="Defining a Stokes Problem">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
-        <a href="../sdeProblem/" class="btn btn-neutral" title="Defining an SDE Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../SDEProblem/" class="btn btn-neutral" title="Defining an SDE Problem"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   
@@ -455,10 +498,10 @@
           <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
       
       
-        <span><a href="../sdeProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+        <span><a href="../SDEProblem/" style="color: #fcfcfc;">&laquo; Previous</a></span>
       
       
-        <span style="margin-left: 15px"><a href="../stokesProblem/" style="color: #fcfcfc">Next &raquo;</a></span>
+        <span style="margin-left: 15px"><a href="../StokesProblem/" style="color: #fcfcfc">Next &raquo;</a></span>
       
     </span>
 </div>
