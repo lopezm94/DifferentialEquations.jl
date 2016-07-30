@@ -327,14 +327,14 @@ tspan = [0,1] # The timespan. This is the default if not given.</code></pre>
 sol =solve(prob::SDEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:EM)
 plot(sol,plottrue=true)
 #Use Plots.jl's gui() command to display the plot.
-gui()</code></pre>
+Plots.gui()</code></pre>
 
 
 <p>We can choose a better solver as well:</p>
 <pre class="codehilite"><code class="language-julia">#We can choose a better method as follows:
 sol =solve(prob::SDEProblem,tspan,Δt=Δt,save_timeseries=true,alg=:SRI)
 plot(sol,plottrue=true)
-gui()</code></pre>
+Plots.gui()</code></pre>
               
             </div>
           </div>
