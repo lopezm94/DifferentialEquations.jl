@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -286,7 +286,7 @@
     
       
         
-          <li>Tutorial &raquo;</li>
+          <li>Tutorials &raquo;</li>
         
       
     
@@ -307,7 +307,7 @@
                 <p><a id='Poisson-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="poisson-equation-finite-element-method-example">Poisson Equation Finite Element Method Example</h1>
 <p>This tutorial will introduce you to the functionality for solving a PDE. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
-<p>In this example we will solve the Poisson Equation <code>Δu=f</code>. For our example, we will take the linear equation where <code>f(x,y) = sin(2π.*x).*cos(2π.*y)</code>. For this equation we know that solution is <code>u(x,y,t)= sin(2π.*x).*cos(2π.*y)/(8π*π)</code> with gradient <code>Du(x,y) = [cos(2*pi.*x).*cos(2*pi.*y)./(4*pi) -sin(2π.*x).*sin(2π.*y)./(4π)]</code>. Thus, we define a PoissonProblem as follows:</p>
+<p>In this example we will solve the Poisson Equation $Δu=f$. For our example, we will take the linear equation where $f(x,y) = sin(2π.<em>x).</em>cos(2π.<em>y)$. For this equation we know that solution is $u(x,y,t)= sin(2π.</em>x).<em>cos(2π.</em>y)/(8π<em>π)$ with gradient $Du(x,y) = [cos(2</em>pi.<em>x).</em>cos(2<em>pi.</em>y)./(4<em>pi) -sin(2π.</em>x).<em>sin(2π.</em>y)./(4π)]$. Thus, we define a PoissonProblem as follows:</p>
 <pre class="codehilite"><code class="language-julia">f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
 gD(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])/(8π*π)
 prob = PoissonProblem(f,gD)</code></pre>

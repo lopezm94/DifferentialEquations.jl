@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -121,8 +121,6 @@
                 <li class="toctree-l3"><a href="#ordinary-differential-equation-solvers">Ordinary Differential Equation Solvers</a></li>
                 
                     <li><a class="toctree-l4" href="#pros-and-cons-of-different-methods">Pros and Cons of Different Methods</a></li>
-                
-                    <li><a class="toctree-l4" href="#ode-solver-extras">ODE Solver Extras</a></li>
                 
             
             </ul>
@@ -310,10 +308,10 @@
               
                 <p><a id='Ordinary-Differential-Equation-Solvers-1'></a></p>
 <h1 id="ordinary-differential-equation-solvers">Ordinary Differential Equation Solvers</h1>
-<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray{T,N}}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray{T,N}}'>#</a>
+<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}'>#</a>
 <strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
-<p>solve(prob::ODEProblem,Δt,T)</p>
-<p>Solves the ODE defined by prob with initial Δt on the time interval [0,T].</p>
+<p><code>solve(prob::ODEProblem,tspan)</code></p>
+<p>Solves the ODE defined by prob on the interval tspan. If not given, tspan defaults to [0,1].</p>
 <p><strong>Keyword Arguments</strong></p>
 <ul>
 <li><code>Δt</code>: Sets the initial stepsize. Defaults to an automatic choice.</li>
@@ -331,58 +329,66 @@
 <li><code>autodiff</code> - Turns on/off the use of autodifferentiation (via ForwardDiff) in the implicit solvers which use <code>NLsolve</code>. Default is true.</li>
 <li><code>internalnorm</code> - The norm for which error estimates are calculated. Default is 2.</li>
 <li><code>progressbar</code> - Turns on/off the Juno progressbar. Defualt is false.</li>
+<li><code>progress_steps</code> - Numbers of steps between updates of the progress bar. Default is 1000.</li>
 <li>
-<p><code>progress_steps</code> - Numbers of steps between updates of the progress bar. Default is 1000.</p>
-</li>
+<p><code>alg</code>: String which defines the solver algorithm. Defult is <code>:ExplicitRK</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>. The possibilities for the solvers are:</p>
+<ul>
 <li>
-<p><code>alg</code>: String which defines the solver algorithm. Defult is <code>:ExplicitRK</code>. Note that any keyword argument available in the external solvers are accessible via keyword arguemnts. For example, for the ODEInterface.jl algorithms, one can specify <code>SSBETA=0.03</code> as a keyword argument and it will do as it states in the ODEInterface.jl documentation. Common options such as <code>MAXSS</code> (max stepsize) are aliased to one can use the DifferentialEquations.jl syntax <code>Δtmax</code> or <code>MAXSS</code>.</p>
+<p>DifferentialEquations.jl</p>
+<ul>
+<li><code>:Euler</code>- The canonical forward Euler method.</li>
+<li><code>:Midpoint</code> - The second order midpoint method.</li>
+<li><code>:RK4</code> - The canonical Runge-Kutta Order 4 method.</li>
+<li>
+<p><code>:ExplicitRK</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive. Tableaus are specified via the keyword argument <code>tab=tableau</code>. The default tableau is for Dormand-Prine 4/5. Other supplied tableaus include:</p>
+<ul>
+<li><code>constructRalston()</code> - Returns a tableau for Ralston's method</li>
+<li><code>constructRKF()</code> - Returns a tableau for Runge-Kutta-Fuhlberg 4/5</li>
+<li><code>constructBogakiShampine()</code> - Returns a tableau for Bogakai-Shampine's 2/3 method.</li>
+<li><code>constructCashKarp()</code> - Returns a tableau for the Cash-Karp method 4/5.</li>
+<li><code>constructDormandPrince()</code> - Returns a tableau for Dormand-Prince 4/5.</li>
+<li><code>constructRKF8()</code> - Returns a tableau for Runge-Kutta-Fuhlberg Order 7/8 method.</li>
+<li><code>constructDormandPrice8()</code> - Returns a tableau for the Dormand-Prince Order 7/8 method.
+          * <code>:ImplicitEuler</code> - A 1st order implicit solver. Unconditionally stable.
+          * <code>:Trapezoid</code> - A second order unconditionally stable implicit solver. Good for highly stiff.
+          * <code>:Rosenbrock32</code> - A fast solver which is good for stiff equations.<ul>
+<li>ODEInterface.jl</li>
+</ul>
 </li>
 </ul>
-<p>The possibilities for the solvers are:   * DifferentialEquations.jl       - <code>:Euler</code>- The canonical forward Euler method.       - <code>:Midpoint</code> - The second order midpoint method.       - <code>:RK4</code> - The canonical Runge-Kutta Order 4 method.       - <code>:ExplicitRK</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive. Tableaus     are specified via the keyword argument <code>tab=tableau</code>. The default tableau is     for Dormand-Prine 4/5. Other supplied tableaus include:           * <code>constructRalston()</code> - Returns a tableau for Ralston's method           * <code>constructRKF()</code> - Returns a tableau for Runge-Kutta-Fuhlberg 4/5           * <code>constructBogakiShampine()</code> - Returns a tableau for Bogakai-Shampine's 2/3 method.           * <code>constructCashKarp()</code> - Returns a tableau for the Cash-Karp method 4/5.           * <code>constructDormandPrince()</code> - Returns a tableau for Dormand-Prince 4/5.           * <code>constructRKF8()</code> - Returns a tableau for Runge-Kutta-Fuhlberg Order 7/8 method.           * <code>constructDormandPrice8()</code> - Returns a tableau for the Dormand-Prince Order 7/8 method.       - <code>:ImplicitEuler</code> - A 1st order implicit solver. Unconditionally stable.       - <code>:Trapezoid</code> - A second order unconditionally stable implicit solver. Good for highly stiff.       - <code>:Rosenbrock32</code> - A fast solver which is good for stiff equations.   * ODEInterface.jl       - <code>:dopri5</code> - Hairer's classic implementation of the Dormand-Prince 4/5 method.       - <code>:dop853</code> - Explicit Runge-Kutta 8(5,3) by Dormand-Prince       - <code>:odex</code> - GBS extrapolation-algorithm based on the midpoint rule       - <code>:seulex</code> - extrapolation-algorithm bsed on the linear implicit Euler method       - <code>:radau</code> - implicit Runge-Kutta (Rdau IIA) of variable order between 5 and 13       - <code>:radau5</code> - implicit Runge-Kutta method (Radau IIA) of order 5   * ODE.jl       - <code>:ode23</code> - Bogakai-Shampine's 2/3 method       - <code>:ode45</code> - Dormand-Prince's 4/5 method       - <code>:ode78</code> - Runge-Kutta-Fuhlberg 7/8 method       - <code>:ode23s</code> - Rosenbrock's 2/3 method       - <code>:ode1</code> - Forward Euler       - <code>:ode2_midpoint</code> - Midpoint Method       - <code>:ode2_heun</code> - Heun's Method       - <code>:ode4</code> - RK4       - <code>:ode45_fe</code> - Runge-Kutta-Fuhlberg 4/5 method</p>
+</li>
+<li>
+<p><code>:dopri5</code> - Hairer's classic implementation of the Dormand-Prince 4/5 method.</p>
+</li>
+<li><code>:dop853</code> - Explicit Runge-Kutta 8(5,3) by Dormand-Prince</li>
+<li><code>:odex</code> - GBS extrapolation-algorithm based on the midpoint rule</li>
+<li><code>:seulex</code> - extrapolation-algorithm bsed on the linear implicit Euler method</li>
+<li><code>:radau</code> - implicit Runge-Kutta (Rdau IIA) of variable order between 5 and 13</li>
+<li>
+<p><code>:radau5</code> - implicit Runge-Kutta method (Radau IIA) of order 5</p>
+<ul>
+<li>ODE.jl</li>
+</ul>
+</li>
+<li>
+<p><code>:ode23</code> - Bogakai-Shampine's 2/3 method</p>
+</li>
+<li><code>:ode45</code> - Dormand-Prince's 4/5 method</li>
+<li><code>:ode78</code> - Runge-Kutta-Fuhlberg 7/8 method</li>
+<li><code>:ode23s</code> - Rosenbrock's 2/3 method</li>
+<li><code>:ode1</code> - Forward Euler</li>
+<li><code>:ode2_midpoint</code> - Midpoint Method</li>
+<li><code>:ode2_heun</code> - Heun's Method</li>
+<li><code>:ode4</code> - RK4</li>
+<li><code>:ode45_fe</code> - Runge-Kutta-Fuhlberg 4/5 method</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_solve.jl#L1-73' class='documenter-source'>source</a><br></p>
 <p><a id='Pros-and-Cons-of-Different-Methods-1'></a></p>
 <h2 id="pros-and-cons-of-different-methods">Pros and Cons of Different Methods</h2>
-<p><a id='ODE-Solver-Extras-1'></a></p>
-<h2 id="ode-solver-extras">ODE Solver Extras</h2>
-<p><a id='DifferentialEquations.ExplicitRK' href='#DifferentialEquations.ExplicitRK'>#</a>
-<strong><code>DifferentialEquations.ExplicitRK</code></strong> &mdash; <em>Type</em>.</p>
-<p>ExplicitRK</p>
-<p>Holds a tableau which defines an explicit Runge-Kutta method.</p>
-<p><a id='DifferentialEquations.ODE_DEFAULT_TABLEAU' href='#DifferentialEquations.ODE_DEFAULT_TABLEAU'>#</a>
-<strong><code>DifferentialEquations.ODE_DEFAULT_TABLEAU</code></strong> &mdash; <em>Constant</em>.</p>
-<p>ODE_DEFAULT_TABLEAU</p>
-<p>Sets the default tableau for the ODE solver. Currently Dormand-Prince 4/5.</p>
-<p><a id='DifferentialEquations.constructCashKarp' href='#DifferentialEquations.constructCashKarp'>#</a>
-<strong><code>DifferentialEquations.constructCashKarp</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructCashKarp()</p>
-<p>Constructs the tableau object for the Cash-Karp Order 4/5 method.</p>
-<p><a id='DifferentialEquations.constructRalston' href='#DifferentialEquations.constructRalston'>#</a>
-<strong><code>DifferentialEquations.constructRalston</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructRalston()</p>
-<p>Constructs the tableau object for Ralston's Order 2 method.</p>
-<p><a id='DifferentialEquations.constructDormandPrince' href='#DifferentialEquations.constructDormandPrince'>#</a>
-<strong><code>DifferentialEquations.constructDormandPrince</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructDormandPrince()</p>
-<p>Constructs the tableau object for the Dormand-Prince Order 4/5 method.</p>
-<p><a id='DifferentialEquations.constructDormandPrince8' href='#DifferentialEquations.constructDormandPrince8'>#</a>
-<strong><code>DifferentialEquations.constructDormandPrince8</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructDormandPrice8()</p>
-<p>Constructs the tableau object for the Dormand-Prince Order 7/8 method.</p>
-<p><a id='DifferentialEquations.constructBogakiShampine' href='#DifferentialEquations.constructBogakiShampine'>#</a>
-<strong><code>DifferentialEquations.constructBogakiShampine</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructBogakiShampine()</p>
-<p>Constructs the tableau object for the Bogakai-Shampine Order 2/3 method.</p>
-<p><a id='DifferentialEquations.constructHuen' href='#DifferentialEquations.constructHuen'>#</a>
-<strong><code>DifferentialEquations.constructHuen</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructHuen()</p>
-<p>Constructs the tableau object for Huen's Order 2 method.</p>
-<p><a id='DifferentialEquations.constructRKF' href='#DifferentialEquations.constructRKF'>#</a>
-<strong><code>DifferentialEquations.constructRKF</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructRKF()</p>
-<p>Constructs the tableau object for the Runge-Kutta-Fuhlberg Order 4/5 method.</p>
-<p><a id='DifferentialEquations.constructRKF8' href='#DifferentialEquations.constructRKF8'>#</a>
-<strong><code>DifferentialEquations.constructRKF8</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructRKF8()</p>
-<p>Constructs the tableau object for the Runge-Kutta-Fuhlberg Order 7/8 method.</p>
               
             </div>
           </div>

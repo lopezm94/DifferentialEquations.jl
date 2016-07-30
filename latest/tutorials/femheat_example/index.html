@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -286,7 +286,7 @@
     
       
         
-          <li>Tutorial &raquo;</li>
+          <li>Tutorials &raquo;</li>
         
       
     
@@ -307,13 +307,13 @@
                 <p><a id='Heat-Equation-Finite-Element-Method-Example-1'></a></p>
 <h1 id="heat-equation-finite-element-method-example">Heat Equation Finite Element Method Example</h1>
 <p>This tutorial will introduce you to the functionality for solving a PDE. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
-<p>In this example we will solve the heat equation <code>u_t=Δu+f</code>. To do this, we define a HeatProblem which contains the function <code>f</code> and the boundary conditions. We specify one as follows:</p>
+<p>In this example we will solve the heat equation $u_t=Δu+f$. To do this, we define a HeatProblem which contains the function $f$ and the boundary conditions. We specify one as follows:</p>
 <pre class="codehilite"><code class="language-julia">f(u,x,t)  = ones(size(x,1)) - .5u
 u₀(x) = zeros(size(x,1))
 prob = HeatProblem(u₀,f)</code></pre>
 
 
-<p>Here the equation we chose was nonlinear since <code>f</code> depends on the variable <code>u</code>. Thus we specify f=f(u,x,t). If <code>f</code> did not depend on u, then we would specify f=f(x,t). We do need to specify <code>gD</code> (the dirichlet boundary condition) and <code>gN</code> (the neumann boundary condition) since both are zero. <code>u0</code> specifies the initial condition. These together give a HeatProblem object which holds everything which specifies a Heat Equation Problem.</p>
+<p>Here the equation we chose was nonlinear since $f$ depends on the variable $u$. Thus we specify f=f(u,x,t). If $f$ did not depend on u, then we would specify f=f(x,t). We do need to specify $gD$ (the dirichlet boundary condition) and $gN$ (the neumann boundary condition) since both are zero. $u0$ specifies the initial condition. These together give a HeatProblem object which holds everything which specifies a Heat Equation Problem.</p>
 <p>We then generate a mesh. We will solve the equation on the parabolic cylinder [0,1]^2 x [0,1]. You can think of this as the cube, or at every time point from 0 to 1, the domain is the unit square. To generate this mesh, we use the command</p>
 <pre class="codehilite"><code class="language-julia">T = 1
 Δx = 1//2^(3)

@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -316,9 +316,8 @@
 <strong><code>DifferentialEquations.StokesProblem</code></strong> &mdash; <em>Type</em>.</p>
 <p>StokesProblem</p>
 <p>Defines the solution to a stationary Stokes problem:</p>
-<pre class="codehilite"><code class="language-math"></code></pre>
-
-
+<p>$$</p>
+<p>$$</p>
 <p><strong>Fields</strong></p>
 <ul>
 <li><code>f₁::Function</code></li>
@@ -334,14 +333,62 @@
 <p><strong>Constructors</strong></p>
 <p><code>StokesProblem(f₁,f₂,g,uanalytic,vanalytic,panalytic)</code></p>
 <p><code>StokesProblem(f₁,f₂,g,ugD,vgD)</code></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/problems.jl#L405-431' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">StokesProblem</span><span class="p">(</span>
+    <span class="n">f₁</span><span class="p">,
+</span>    <span class="n">f₂</span><span class="p">,
+</span>    <span class="n">g</span><span class="p">,
+</span>    <span class="n">ugD</span><span class="p">,
+</span>    <span class="n">vgD</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/problems.jl#L443">src/general/problems.jl:443</a>
+</li>
+<li>
+    <pre><span class="nf">StokesProblem</span><span class="p">(</span>
+    <span class="n">f₁</span><span class="p">,
+</span>    <span class="n">f₂</span><span class="p">,
+</span>    <span class="n">g</span><span class="p">,
+</span>    <span class="n">uanalytic</span><span class="p">,
+</span>    <span class="n">vanalytic</span><span class="p">,
+</span>    <span class="n">panalytic</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/problems.jl#L442">src/general/problems.jl:442</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
 <p><a id='DifferentialEquations.dirichletzeroStokesExample' href='#DifferentialEquations.dirichletzeroStokesExample'>#</a>
 <strong><code>DifferentialEquations.dirichletzeroStokesExample</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problme for solving the trivial stationary Stokes equation.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L384' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">dirichletzeroStokesExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L386">src/premades/premade_problems.jl:386</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.homogeneousStokesExample' href='#DifferentialEquations.homogeneousStokesExample'>#</a>
 <strong><code>DifferentialEquations.homogeneousStokesExample</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem for a homogeneous stationary Stokes equation.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L373' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">homogeneousStokesExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L375">src/premades/premade_problems.jl:375</a>
+</li>
+</ul>
               
             </div>
           </div>

@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -290,7 +290,7 @@
     
       
         
-          <li>Tutorial &raquo;</li>
+          <li>Tutorials &raquo;</li>
         
       
     
@@ -311,11 +311,11 @@
                 <p><a id='Stochastic-Finite-Element-Examples-1'></a></p>
 <h1 id="stochastic-finite-element-examples">Stochastic Finite Element Examples</h1>
 <p>This tutorial will introduce you to the functionality for solving SPDEs. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
-<p>For most PDE problem types, we can additionally specify them as a stochastic problem by giving the appropriate optional arguments to the constructor. These arguments are a function σ which is the function multiplied to the Brownian increments <code>dW</code>, and stochastic, a boolean which we put as true for when the equation is stochastic. Another keyword that is optional is noisetype which specifies the type of noise (the "color" of the noise). By default this is Gaussian (Space-time) White Noise.</p>
+<p>For most PDE problem types, we can additionally specify them as a stochastic problem by giving the appropriate optional arguments to the constructor. These arguments are a function σ which is the function multiplied to the Brownian increments $dW$, and stochastic, a boolean which we put as true for when the equation is stochastic. Another keyword that is optional is noisetype which specifies the type of noise (the "color" of the noise). By default this is Gaussian (Space-time) White Noise.</p>
 <p>The following examples show how to change the tutorial problems into stochastic problems.</p>
 <p><a id='Finite-Element-Stochastic-Poisson-Equation-1'></a></p>
 <h2 id="finite-element-stochastic-poisson-equation">Finite Element Stochastic Poisson Equation</h2>
-<p>We can solve the same PDE as in the Poisson Tutorial except as the stochastic PDE,  <code>-Δu=f+gdW</code>, with additive space-time white noise by specifying the problem as:</p>
+<p>We can solve the same PDE as in the Poisson Tutorial except as the stochastic PDE,  $-Δu=f+gdW$, with additive space-time white noise by specifying the problem as:</p>
 <pre class="codehilite"><code class="language-julia">f(x) = sin(2π.*x[:,1]).*cos(2π.*x[:,2])
 σ(x) = 5 #Additive noise
 prob = PoissonProblem(f,σ=σ)</code></pre>

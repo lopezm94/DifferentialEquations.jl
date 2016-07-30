@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -126,8 +126,6 @@
             <ul>
             
                 <li class="toctree-l3"><a href="#stochastic-differential-equation-solvers">Stochastic Differential Equation Solvers</a></li>
-                
-                    <li><a class="toctree-l4" href="#sde-solver-extras">SDE Solver Extras</a></li>
                 
             
             </ul>
@@ -308,10 +306,10 @@
               
                 <p><a id='Stochastic-Differential-Equation-Solvers-1'></a></p>
 <h1 id="stochastic-differential-equation-solvers">Stochastic Differential Equation Solvers</h1>
-<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray{T,N}}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray{T,N}}'>#</a>
+<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}'>#</a>
 <strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
-<p>solve(prob::SDEProblem,tspan=[0,1];Δt=0)</p>
-<p>Solves the SDE as defined by prob with initial Δt on the time interval tspan. If not given, tspan defaults to [0,1]. If</p>
+<p>`solve(prob::SDEProblem,tspan)``</p>
+<p>Solves the SDE as defined by prob on the time interval tspan. If not given, tspan defaults to [0,1].</p>
 <p><strong>Keyword Arguments</strong></p>
 <ul>
 <li><code>Δt</code>: Sets the initial stepsize. Defaults to an automatic choice.</li>
@@ -332,45 +330,21 @@
 <li><code>discard_length</code> - Size at which to discard future information in adaptive. Default is 1e-15.</li>
 <li><code>tableau</code>: The tableau for an <code>:SRA</code> or <code>:SRI</code> algorithm. Defaults to SRIW1 or SRA1.</li>
 <li><code>adaptivealg</code>: The adaptive timestepping algorithm. Default is <code>:RSwm3</code>.</li>
-<li><code>alg</code>: String which defines the solver algorithm. Defult is "SRIW1Optimized". Possibilities are:     - <code>:EM</code>- The Euler-Maruyama method.     - <code>:RKMil</code> - An explicit Runge-Kutta discretization of the strong Order 1.0 Milstein method.     - <code>:SRA</code> - The strong Order 2.0 methods for additive SDEs due to Rossler. Not yet implemented.         Default tableau is for SRA1.     - <code>:SRI</code> - The strong Order 1.5 methods for diagonal/scalar SDEs due to Rossler.   Default tableau is for SRIW1.     - <code>:SRIW1Optimized</code> - An optimized version of SRIW1. Strong Order 1.5.     - <code>:SRA1Optimized</code> - An optimized version of SRIA1. Strong Order 2.0.     - <code>:SRAVectorized</code> - A vectorized implementation of SRA algorithms. Requires 1-dimensional problem.     - <code>:SRIVectorized</code> - A vectorized implementation of SRI algorithms. Requires 1-dimensional problem.</li>
-</ul>
-<p><a id='SDE-Solver-Extras-1'></a></p>
-<h2 id="sde-solver-extras">SDE Solver Extras</h2>
-<p><a id='DifferentialEquations.monteCarloSim' href='#DifferentialEquations.monteCarloSim'>#</a>
-<strong><code>DifferentialEquations.monteCarloSim</code></strong> &mdash; <em>Function</em>.</p>
-<p>monteCarloSim(Δt::Number,prob::SDEProblem)</p>
-<p>Performs a parallel Monte-Carlo simulation to solve the SDE problem with Δt numMonte times. Returns a vector of solution objects.</p>
-<p><strong>Keyword Arguments</strong></p>
+<li>
+<p><code>alg</code>: String which defines the solver algorithm. Defult is "SRIW1Optimized". Possibilities are:</p>
 <ul>
-<li>T - Final time. Default is 1.</li>
-<li>numMonte - Number of Monte-Carlo simulations to run. Default is 10000</li>
-<li>save_timeseries - Denotes whether save_timeseries should be turned on in each run. Default is true.</li>
-<li>alg - Algorithm for solving the SDEs. Default is "EM"</li>
+<li><code>:EM</code>- The Euler-Maruyama method.</li>
+<li><code>:RKMil</code> - An explicit Runge-Kutta discretization of the strong Order 1.0 Milstein method.</li>
+<li><code>:SRA</code> - The strong Order 2.0 methods for additive SDEs due to Rossler. Not yet implemented.   Default tableau is for SRA1.</li>
+<li><code>:SRI</code> - The strong Order 1.5 methods for diagonal/scalar SDEs due to Rossler. Default tableau is for SRIW1.</li>
+<li><code>:SRIW1Optimized</code> - An optimized version of SRIW1. Strong Order 1.5.</li>
+<li><code>:SRA1Optimized</code> - An optimized version of SRIA1. Strong Order 2.0.</li>
+<li><code>:SRAVectorized</code> - A vectorized implementation of SRA algorithms. Requires 1-dimensional problem.</li>
+<li><code>:SRIVectorized</code> - A vectorized implementation of SRI algorithms. Requires 1-dimensional problem.</li>
 </ul>
-<p><a id='DifferentialEquations.RosslerSRI' href='#DifferentialEquations.RosslerSRI'>#</a>
-<strong><code>DifferentialEquations.RosslerSRI</code></strong> &mdash; <em>Type</em>.</p>
-<p>RosslerSRI</p>
-<p>Holds the Butcher tableaus for a Rosser SRI method.</p>
-<p><a id='DifferentialEquations.RosslerSRA' href='#DifferentialEquations.RosslerSRA'>#</a>
-<strong><code>DifferentialEquations.RosslerSRA</code></strong> &mdash; <em>Type</em>.</p>
-<p>RosslerSRA</p>
-<p>Holds the Butcher tableaus for a Rosser SRA method.</p>
-<p><a id='DifferentialEquations.constructSRA1' href='#DifferentialEquations.constructSRA1'>#</a>
-<strong><code>DifferentialEquations.constructSRA1</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructSRA1()</p>
-<p>Constructs the taleau type for the SRA1 method.</p>
-<p><a id='DifferentialEquations.constructSRIW1' href='#DifferentialEquations.constructSRIW1'>#</a>
-<strong><code>DifferentialEquations.constructSRIW1</code></strong> &mdash; <em>Function</em>.</p>
-<p>constructSRIW1()</p>
-<p>Constructs the tableau type for the SRIW1 method.</p>
-<p><a id='DifferentialEquations.checkSRAOrder' href='#DifferentialEquations.checkSRAOrder'>#</a>
-<strong><code>DifferentialEquations.checkSRAOrder</code></strong> &mdash; <em>Function</em>.</p>
-<p>checkSRAOrder(RosslerSRI)</p>
-<p>Determines whether the order conditions are met via the tableaus of the SRA method.</p>
-<p><a id='DifferentialEquations.checkSRIOrder' href='#DifferentialEquations.checkSRIOrder'>#</a>
-<strong><code>DifferentialEquations.checkSRIOrder</code></strong> &mdash; <em>Function</em>.</p>
-<p>checkSRIOrder(RosslerSRI)</p>
-<p>Determines whether the order conditions are met via the tableaus of the SRI method.</p>
+</li>
+</ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_solve.jl#L1-38' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>

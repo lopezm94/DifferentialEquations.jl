@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -310,14 +310,47 @@
 <strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
 <p><strong>Finite Element Heat Equation Solver</strong></p>
 <p><code>solve(fem_mesh::FEMmesh,pdeProb::HeatProblem)</code></p>
-<p>Takes in a definition for the heat equation <code>u_t = Δu + f</code> on <code>fem_mesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic heat equation <code>u_t = Δu + f + σdW_t</code>.</p>
+<p>Takes in a definition for the heat equation $u_t = Δu + f$ on <code>fem_mesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic heat equation $u_t = Δu + f + σdW_t$.</p>
 <p><strong>Keyword Arguments</strong></p>
 <ul>
-<li><code>alg</code> = Solution algorithm. Default is :Euler. The choices are:     - Linear         * <code>:Euler</code> (Explicit)         * <code>:ImplicitEuler</code> (Implicit)         * <code>:CrankNicholson</code> (Implicit)     - Nonlinear         * <code>:Euler</code> (Explicit)         * <code>:ImplicitEuler</code> (Nonlinear Solve)         * <code>:CrankNicholson</code> (Nonlinear Solve)         * <code>:SemiImplicitEuler</code> (Implicit)         * <code>:SemiImplicitCrankNicholson</code> (Implicit)</li>
+<li>
+<p><code>alg</code> = Solution algorithm. Default is :Euler. The choices are:</p>
+<ul>
+<li>
+<p>Linear</p>
+<ul>
+<li><code>:Euler</code> (Explicit)</li>
+<li><code>:ImplicitEuler</code> (Implicit)</li>
+<li>
+<p><code>:CrankNicholson</code> (Implicit)</p>
+<ul>
+<li>Nonlinear</li>
+</ul>
+</li>
+<li>
+<p><code>:Euler</code> (Explicit)</p>
+</li>
+<li><code>:ImplicitEuler</code> (Nonlinear Solve)</li>
+<li><code>:CrankNicholson</code> (Nonlinear Solve)</li>
+<li><code>:SemiImplicitEuler</code> (Implicit)</li>
+<li><code>:SemiImplicitCrankNicholson</code> (Implicit)</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 <p>Explicit algorithms only require solving matrix multiplications <code>Au</code>. Implicit algorithms require solving the linear equation <code>Ax=b</code> where <code>x</code> is the unknown. Nonlinear Solve algorithms require solving the nonlinear equation f(x)=0 using methods like Newton's method and is provided by NLSolve.jl. Explicit algorithms have the least stability and should be used either small Δt and non-stiff equations. The implicit algorithms have better stability, but for nonlinear equations require costly nonlinear solves in order to be solved exactly. The semi-implicit algorithms discretize with part of the equation implicit and another part explicit in order to allow for the algorithm to not require a nonlinear solve, but at the cost of some stability (though still vastly better at stability than explicit algorithms).</p>
 <ul>
-<li><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:     - <code>:Direct</code> = Solves using <code>` (no factorization). Not recommended.     -</code>:Cholesky<code>= Cholsky decomposition. Only stable of</code>I ± ΔtM⁻¹A<code>is positive definite.     This means that this works best when Δt is small. When applicable, this is the fastest.     -</code>:LU<code>= LU-Decomposition. A good mix between fast and stable.     -</code>:QR<code>= QR-Decomposition. Less numerical roundoff error than</code>LU<code>, but slightly slower.     -</code>:SVD<code>= SVD-Decomposition. By far the slowest, but the most robust to roundoff error.     -</code>:CG<code>= Conjugate-Gradient. Best when the space is very large and</code>I ± ΔtM⁻¹A<code>is positive definite.     -</code>:GMRES<code>= GMRES. Best when the space is very large and</code>I ± ΔtM⁻¹A` is not positive definite.</li>
+<li>
+<p><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:</p>
+<ul>
+<li><code>:Direct</code> = Solves using `` (no factorization). Not recommended.</li>
+<li><code>:Cholesky</code> = Cholsky decomposition. Only stable of $I ± ΔtM⁻¹A$ is positive definite. This means that this works best when Δt is small. When applicable, this is the fastest.</li>
+<li><code>:LU</code> = LU-Decomposition. A good mix between fast and stable.</li>
+<li><code>:QR</code> = QR-Decomposition. Less numerical roundoff error than <code>LU</code>, but slightly slower.</li>
+<li><code>:SVD</code> = SVD-Decomposition. By far the slowest, but the most robust to roundoff error.</li>
+<li><code>:CG</code> = Conjugate-Gradient. Best when the space is very large and $I ± ΔtM⁻¹A$ is positive definite.</li>
+<li><code>:GMRES</code> = GMRES. Best when the space is very large and $I ± ΔtM⁻¹A$ is not positive definite.</li>
 <li><code>save_timeseries</code> = Makes the algorithm save the output at every <code>timeseries_steps</code> timesteps. By default save_timeseries is false.</li>
 <li><code>timeseries_steps</code> = If <code>save_timeseries=true</code>, then this is the number of steps between the saves.</li>
 <li><code>autodiff</code> = Whether or not autodifferentiation (as provided by AutoDiff.jl) is used for the nonlinear solving. By default autodiff is false.</li>
@@ -327,6 +360,9 @@
 <li><code>progress_steps</code> = The number of steps between updates of the progress bar. Defaults to 1000.</li>
 <li><code>progressbar</code> = Turns on/off use of the Juno progress bar. Defaults to true. Requires Juno.</li>
 </ul>
+</li>
+</ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_solve.jl#L115-174' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>

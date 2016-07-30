@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -310,10 +310,10 @@
               
                 <p><a id='Defining-a-SDE-Problem-1'></a></p>
 <h1 id="defining-a-sde-problem">Defining a SDE Problem</h1>
-<p>To define an SDE Problem, you simply need to give the forcing function <code>f</code>, the noise function <code>σ</code>, and the initial condition <code>u₀</code> which define an SDE</p>
-<pre class="codehilite"><code class="language-math">du = f(u,t)dt + Σσᵢ(u,t)dWⁱ</code></pre>
-
-
+<p>To define an SDE Problem, you simply need to give the forcing function $f$, the noise function <code>σ</code>, and the initial condition $u₀$ which define an SDE</p>
+<p>$$
+du = f(u,t)dt + Σσᵢ(u,t)dWⁱ
+$$</p>
 <p><code>f</code> and <code>σ</code> should be specified as <code>f(u,t)</code> and  <code>σ(u,t)</code> respectively, and <code>u₀</code> should be an AbstractArray whose geometry matches the desired geometry of <code>u</code>. Note that we are not limited to numbers or vectors for <code>u₀</code>, one is allowed to provide <code>u₀</code> as arbitrary matrices / higher dimension tensors as well. A vector of <code>σ</code>s can also be defined to determine an SDE of higher Ito dimension.</p>
 <p><a id='Problem-Type-1'></a></p>
 <h2 id="problem-type">Problem Type</h2>
@@ -321,9 +321,9 @@
 <strong><code>DifferentialEquations.SDEProblem</code></strong> &mdash; <em>Type</em>.</p>
 <p>SDEProblem</p>
 <p>Wraps the data which defines an SDE problem</p>
-<pre class="codehilite"><code class="language-math">u = f(u,t)dt + Σσᵢ(u,t)dWⁱ</code></pre>
-
-
+<p>$$
+u = f(u,t)dt + Σσᵢ(u,t)dWⁱ
+$$</p>
 <p>with initial condition u₀.</p>
 <p><strong>Fields</strong></p>
 <ul>
@@ -337,26 +337,100 @@
 </ul>
 <p><strong>Constructors</strong></p>
 <p>SDEProblem(f,σ,u₀;analytic=nothing) : Defines the SDE with the specified functions and defines the solution if analytic is given.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/problems.jl#L301-327' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">SDEProblem</span><span class="p">(</span>
+    <span class="n">f</span><span class="p">,
+</span>    <span class="n">σ</span><span class="p">,
+</span>    <span class="n">u₀</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/problems.jl#L337">src/general/problems.jl:337</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
 <p><a id='DifferentialEquations.twoDimlinearSDEExample' href='#DifferentialEquations.twoDimlinearSDEExample'>#</a>
 <strong><code>DifferentialEquations.twoDimlinearSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem of 8 linear SDEs (as a 4x2 matrix) with solution <code>u(t,W)=u₀*exp((α-(β^2)/2)*t+β*W)</code></p>
+<p>Example problem of 8 linear SDEs (as a 4x2 matrix) with solution $u(t,W)=u₀<em>exp((α-(β^2)/2)</em>t+β*W)$</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L35' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">twoDimlinearSDEExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L37">src/premades/premade_problems.jl:37</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.cubicSDEExample' href='#DifferentialEquations.cubicSDEExample'>#</a>
 <strong><code>DifferentialEquations.cubicSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution <code>u(t,W)=((1+u₀)*exp(W)+u₀-1)./((1+u₀)*exp(W)+1-u₀)</code></p>
+<p>Example problem with solution $u(t,W)=((1+u₀)<em>exp(W)+u₀-1)./((1+u₀)</em>exp(W)+1-u₀)$</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L43' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">cubicSDEExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L45">src/premades/premade_problems.jl:45</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.linearSDEExample' href='#DifferentialEquations.linearSDEExample'>#</a>
 <strong><code>DifferentialEquations.linearSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution <code>u(t,W)=u₀*exp((α-(β^2)/2)*t+β*W)</code></p>
+<p>Example problem with solution $u(t,W)=u₀<em>exp((α-(β^2)/2)</em>t+β*W)$</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L27' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">linearSDEExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L29">src/premades/premade_problems.jl:29</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.multiDimAdditiveSDEExample' href='#DifferentialEquations.multiDimAdditiveSDEExample'>#</a>
 <strong><code>DifferentialEquations.multiDimAdditiveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
 <p>Multiple Ito dimension extension of additiveSDEExample</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L67' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">multiDimAdditiveSDEExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L69">src/premades/premade_problems.jl:69</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.waveSDEExample' href='#DifferentialEquations.waveSDEExample'>#</a>
 <strong><code>DifferentialEquations.waveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example problem with solution <code>u(t,W)=atan(0.1*W + tan(u₀))</code></p>
+<p>Example problem with solution $u(t,W)=atan(0.1*W + tan(u₀))$</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L51' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">waveSDEExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L53">src/premades/premade_problems.jl:53</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.additiveSDEExample' href='#DifferentialEquations.additiveSDEExample'>#</a>
 <strong><code>DifferentialEquations.additiveSDEExample</code></strong> &mdash; <em>Function</em>.</p>
-<p>Example additive noise problem with solution <code>u₀./sqrt(1+t) + β*(t+α*W)./sqrt(1+t)</code></p>
+<p>Example additive noise problem with solution $u₀./sqrt(1+t) + β<em>(t+α</em>W)./sqrt(1+t)$</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L59' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">additiveSDEExample</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_problems.jl#L61">src/premades/premade_problems.jl:61</a>
+</li>
+</ul>
               
             </div>
           </div>

@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -320,10 +320,10 @@
 <h2 id="mesh-specification">Mesh Specification</h2>
 <p>Finite element meshes are specified in the (node,elem) structure due to Long Chen. For the standard elements used in this package, we describe a geometric figure by a triangulation. The nodes are the vertices of the triangle and the elements are the triangles themselves. These are encoded as follows:</p>
 <ul>
-<li>Row <code>i</code> of node is an <code>(x,y)</code> (or <code>(x,y,z)</code>) pair which specifies the coordinates of the <code>i</code>th node.</li>
-<li>Row <code>j</code> of elem are the indices of the nodes which make the triangle. Thus in 2D each row has three numbers.</li>
+<li>Row $i$ of node is an $(x,y)$ (or $(x,y,z)$) pair which specifies the coordinates</li>
 </ul>
-<p>For example, to know the <code>(x,y)</code> locations of the vertices of triangle <code>j</code>, we would see that <code>node[elem[j,i],:]</code> are the <code>(x,y)</code> locations of the <code>i</code>th vertex for <code>i=1,2,3</code>.</p>
+<p>of the $i$th node. * Row $j$ of elem are the indices of the nodes which make the triangle. Thus in 2D each row has three numbers.</p>
+<p>For example, to know the $(x,y)$ locations of the vertices of triangle $j$, we would see that $node[elem[j,i],:]$ are the $(x,y)$ locations of the $i$th vertex for $i=1,2,3$.</p>
 <p>For more information, please see <a href="http://www.math.uci.edu/~chenlong/226/Ch3FEMCode.pdf">Programming of Finite Element Methods by Long Chen</a>.</p>
 <p><a id='Mesh-Type-1'></a></p>
 <h2 id="mesh-type">Mesh Type</h2>
@@ -340,22 +340,37 @@
 <li><code>bdedge</code>: Indices of the edges in totaledge which are on the boundary.</li>
 <li><code>is_bdnode</code>: Boolean which is true for nodes on the boundary.</li>
 <li><code>is_bdelem</code>: Boolean which is true for elements on the boundary.</li>
-<li><code>bdflag</code>: Flag which describes the type of boundary condition. 1=&gt; dirichlet, 2=&gt;neumann, 3=&gt;robin.</li>
-<li><code>totaledge</code>: Vector of the edges.</li>
-<li><code>area</code>: Vector which is the area for each element.</li>
-<li><code>dirichlet</code>: Indices for the nodes on the boundary which have a dirichlet boundary condition.</li>
-<li><code>neumann</code>: Indices for the nodes on the boundary which have a neumann boundary condition.</li>
-<li><code>robin</code>: Indices for the nodes on the boundary which have a robin boundary condition.</li>
-<li><code>N::Int</code>: The number of nodes.</li>
-<li><code>NT</code>::Int: The number of triangles (elements).</li>
-<li><code>Δx</code>: The spatial discretization size. If non-uniform, this is the average.</li>
-<li><code>Δt</code>: The time discretization size. If adaptive, this is the initial.</li>
-<li><code>T</code>::Number: The end time.</li>
-<li><code>numiters</code>::Int: The number of iterations to go from 0 to T using Δt.</li>
-<li><code>μ</code>: The CFL μ stability parameter.</li>
-<li><code>ν</code>: The CFL ν stability parameter.</li>
-<li><code>evolutionEq</code>: True for a mesh which has non-trivial time components.</li>
+<li><code>bdflag</code>: Flag which describes the type of boundary condition. 1=&gt; dirichlet,</li>
 </ul>
+<p>2=&gt;neumann, 3=&gt;robin. * <code>totaledge</code>: Vector of the edges. * <code>area</code>: Vector which is the area for each element. * <code>dirichlet</code>: Indices for the nodes on the boundary which have a dirichlet boundary condition. * <code>neumann</code>: Indices for the nodes on the boundary which have a neumann boundary condition. * <code>robin</code>: Indices for the nodes on the boundary which have a robin boundary condition. * <code>N::Int</code>: The number of nodes. * <code>NT</code>::Int: The number of triangles (elements). * <code>Δx</code>: The spatial discretization size. If non-uniform, this is the average. * <code>Δt</code>: The time discretization size. If adaptive, this is the initial. * <code>T</code>::Number: The end time. * <code>numiters</code>::Int: The number of iterations to go from 0 to T using Δt. * <code>μ</code>: The CFL μ stability parameter. * <code>ν</code>: The CFL ν stability parameter. * <code>evolutionEq</code>: True for a mesh which has non-trivial time components.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L1-33' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">FEMmesh</span><span class="p">(</span>
+    <span class="n">node</span><span class="p">,
+</span>    <span class="n">elem</span><span class="p">,
+</span>    <span class="n">Δx</span><span class="p">,
+</span>    <span class="n">bdtype</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L86">src/fem/meshes.jl:86</a>
+</li>
+<li>
+    <pre><span class="nf">FEMmesh</span><span class="p">(</span>
+    <span class="n">node</span><span class="p">,
+</span>    <span class="n">elem</span><span class="p">,
+</span>    <span class="n">Δx</span><span class="p">,
+</span>    <span class="n">Δt</span><span class="p">,
+</span>    <span class="n">T</span><span class="p">,
+</span>    <span class="n">bdtype</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L58">src/fem/meshes.jl:58</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
 <p><a id='DifferentialEquations.SimpleMesh' href='#DifferentialEquations.SimpleMesh'>#</a>
 <strong><code>DifferentialEquations.SimpleMesh</code></strong> &mdash; <em>Type</em>.</p>
 <p>SimpleMesh</p>
@@ -365,9 +380,21 @@
 <li><code>node</code>: The nodes in the (node,elem) structure.</li>
 <li><code>elem</code>: The elements in the (node,elem) structure.</li>
 </ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L89-100' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">SimpleMesh</span><span class="p">(</span><span class="n">node</span><span class="p">, </span><span class="n">elem</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L105">src/fem/meshes.jl:105</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
 <p><a id='DifferentialEquations.Mesh' href='#DifferentialEquations.Mesh'>#</a>
 <strong><code>DifferentialEquations.Mesh</code></strong> &mdash; <em>Type</em>.</p>
 <p>Mesh: An abstract type which holds a (node,elem) pair and other information for a mesh</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/DifferentialEquations.jl#L13' class='documenter-source'>source</a><br></p>
 <p><a id='Mesh-Generation-Functions-1'></a></p>
 <h2 id="mesh-generation-functions">Mesh Generation Functions</h2>
 <p><a id='DifferentialEquations.findboundary' href='#DifferentialEquations.findboundary'>#</a>
@@ -380,15 +407,70 @@
 <p>bdedge = Vector of indices for boundary edges.</p>
 <p>is_bdnode = Vector of booleans size N which donotes which are on the boundary</p>
 <p>is_bdelem = Vector of booleans size NT which denotes which are on the boundary</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L1-19' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">findboundary</span><span class="p">(</span><span class="n">elem</span><span class="p">::</span><span class="n">AbstractArray</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L21">src/fem/fem_boundary.jl:21</a>
+</li>
+<li>
+    <pre class="documenter-inline"><span class="nf">findboundary</span><span class="p">(</span><span class="n">fem_mesh</span><span class="p">::</span><span class="n">DifferentialEquations.Mesh</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L48">src/fem/fem_boundary.jl:48</a>
+</li>
+<li>
+    <pre><span class="nf">findboundary</span><span class="p">(</span>
+    <span class="n">fem_mesh</span><span class="p">::</span><span class="n">DifferentialEquations.Mesh</span><span class="p">,
+</span>    <span class="n">bdflag</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L48">src/fem/fem_boundary.jl:48</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.setboundary' href='#DifferentialEquations.setboundary'>#</a>
 <strong><code>DifferentialEquations.setboundary</code></strong> &mdash; <em>Function</em>.</p>
 <p>setboundary(node::AbstractArray,elem::AbstractArray,bdtype)</p>
 <p>setboundary(fem_mesh::FEMmesh,bdtype)</p>
 <p>Takes in the fem_mesh and creates an array bdflag which denotes the boundary types. 1 stands for dirichlet, 2 for neumann, 3 for robin.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L50-57' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">setboundary</span><span class="p">(</span>
+    <span class="n">node</span><span class="p">::</span><span class="n">AbstractArray</span><span class="p">,
+</span>    <span class="n">elem</span><span class="p">::</span><span class="n">AbstractArray</span><span class="p">,
+</span>    <span class="n">bdtype</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L60">src/fem/fem_boundary.jl:60</a>
+</li>
+<li>
+    <pre><span class="nf">setboundary</span><span class="p">(</span>
+    <span class="n">fem_mesh</span><span class="p">::</span><span class="n">DifferentialEquations.Mesh</span><span class="p">,
+</span>    <span class="n">bdtype</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_boundary.jl#L110">src/fem/fem_boundary.jl:110</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.fem_squaremesh' href='#DifferentialEquations.fem_squaremesh'>#</a>
 <strong><code>DifferentialEquations.fem_squaremesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>fem_squaremesh(square,h)</p>
 <p>Returns the grid in the iFEM form of the two arrays (node,elem)</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L124-128' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">fem_squaremesh</span><span class="p">(</span><span class="n">square</span><span class="p">, </span><span class="n">h</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L130">src/fem/meshes.jl:130</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.notime_squaremesh' href='#DifferentialEquations.notime_squaremesh'>#</a>
 <strong><code>DifferentialEquations.notime_squaremesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>notime_squaremesh(square,Δx,bdtype)</p>
@@ -398,6 +480,20 @@
 Δx=.25
 notime_squaremesh(square,Δx,&quot;dirichlet&quot;)</code></pre>
 
+
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L145-158' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">notime_squaremesh</span><span class="p">(</span>
+    <span class="n">square</span><span class="p">,
+</span>    <span class="n">Δx</span><span class="p">,
+</span>    <span class="n">bdtype</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L160">src/fem/meshes.jl:160</a>
+</li>
+</ul>
 
 <p><a id='DifferentialEquations.parabolic_squaremesh' href='#DifferentialEquations.parabolic_squaremesh'>#</a>
 <strong><code>DifferentialEquations.parabolic_squaremesh</code></strong> &mdash; <em>Function</em>.</p>
@@ -409,32 +505,128 @@ notime_squaremesh(square,Δx,&quot;dirichlet&quot;)</code></pre>
 parabolic_squaremesh(square,Δx,Δt,T,:dirichlet)</code></pre>
 
 
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L164-177' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">parabolic_squaremesh</span><span class="p">(</span>
+    <span class="n">square</span><span class="p">,
+</span>    <span class="n">Δx</span><span class="p">,
+</span>    <span class="n">Δt</span><span class="p">,
+</span>    <span class="n">T</span><span class="p">,
+</span>    <span class="n">bdtype</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/meshes.jl#L179">src/fem/meshes.jl:179</a>
+</li>
+</ul>
+
 <p><a id='Example-Meshes-1'></a></p>
 <h2 id="example-meshes">Example Meshes</h2>
 <p><a id='DifferentialEquations.meshExample_bunny' href='#DifferentialEquations.meshExample_bunny'>#</a>
 <strong><code>DifferentialEquations.meshExample_bunny</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_bunny() : Returns a 3D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L5' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_bunny</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L6">src/premades/premade_meshes.jl:6</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_flowpastcylindermesh' href='#DifferentialEquations.meshExample_flowpastcylindermesh'>#</a>
 <strong><code>DifferentialEquations.meshExample_flowpastcylindermesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_flowpastcylindermesh() : Returns a 2D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L8' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_flowpastcylindermesh</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L9">src/premades/premade_meshes.jl:9</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_lakemesh' href='#DifferentialEquations.meshExample_lakemesh'>#</a>
 <strong><code>DifferentialEquations.meshExample_lakemesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_lakemesh() : Returns a 2D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L11' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_lakemesh</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L12">src/premades/premade_meshes.jl:12</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_Lshapemesh' href='#DifferentialEquations.meshExample_Lshapemesh'>#</a>
 <strong><code>DifferentialEquations.meshExample_Lshapemesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_Lshapemesh() : Returns a 2D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L14' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_Lshapemesh</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L15">src/premades/premade_meshes.jl:15</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_Lshapeunstructure' href='#DifferentialEquations.meshExample_Lshapeunstructure'>#</a>
 <strong><code>DifferentialEquations.meshExample_Lshapeunstructure</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_Lshapeunstructure() : Returns a 2D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L17' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_Lshapeunstructure</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L18">src/premades/premade_meshes.jl:18</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_oilpump' href='#DifferentialEquations.meshExample_oilpump'>#</a>
 <strong><code>DifferentialEquations.meshExample_oilpump</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_oilpump() : Returns a 3D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L20' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_oilpump</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L21">src/premades/premade_meshes.jl:21</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_wavymesh' href='#DifferentialEquations.meshExample_wavymesh'>#</a>
 <strong><code>DifferentialEquations.meshExample_wavymesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_wavymesh() : Returns a 2D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L23' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_wavymesh</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L24">src/premades/premade_meshes.jl:24</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.meshExample_wavyperturbmesh' href='#DifferentialEquations.meshExample_wavyperturbmesh'>#</a>
 <strong><code>DifferentialEquations.meshExample_wavyperturbmesh</code></strong> &mdash; <em>Function</em>.</p>
 <p>meshExample_wavyperturbmesh() : Returns a 3D SimpleMesh.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L26' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">meshExample_wavyperturbmesh</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/premades/premade_meshes.jl#L27">src/premades/premade_meshes.jl:27</a>
+</li>
+</ul>
+
 <p><a id='Plot-Functions-1'></a></p>
 <h2 id="plot-functions">Plot Functions</h2>
 <p>The plot functionality is provided by a Plots.jl recipe. What is plotted is a "trisurf" of the mesh. To plot a mesh, simply use:</p>

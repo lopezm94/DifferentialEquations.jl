@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -309,17 +309,25 @@
 <p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}'>#</a>
 <strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
 <p><strong>Finite Element Poisson Equation Solver</strong></p>
-<p>solve(fem_mesh::FEMmesh,pdeProb::PoissonProblem)</p>
-<p>Takes in a definition for the heat equation <code>-Δu = f</code> on <code>fem_mesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic Poisson equation <code>-Δu = f + σdW</code>.</p>
+<p><code>solve(fem_mesh::FEMmesh,pdeProb::PoissonProblem)</code></p>
+<p>Takes in a definition for the heat equation $-Δu = f$ on <code>fem_mesh</code> with functions as defined in <code>pdeProb</code>. If <code>σ</code> is specified in <code>pdeProb</code>, then this solves the stochastic Poisson equation $-Δu = f + σdW$.</p>
 <p><strong>Keyword Arguments</strong></p>
 <ul>
-<li><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:     - <code>:Direct</code> = Solves <code>Ax=b</code> using <code>`     -</code>:CG<code>= Conjugate-Gradient. Best when the space is very large and</code>I ± ΔtM⁻¹A<code>is positive definite.     -</code>:GMRES<code>= GMRES. Best when the space is very large and</code>I ± ΔtM⁻¹A` is not positive definite.</li>
+<li>
+<p><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:</p>
+<ul>
+<li><code>:Direct</code> = Solves <code>Ax=b</code> using ``</li>
+<li><code>:CG</code> = Conjugate-Gradient. Best when the space is very large and $I ± ΔtM⁻¹A$ is positive definite.</li>
+<li><code>:GMRES</code> = GMRES. Best when the space is very large and $I ± ΔtM⁻¹A$ is not positive definite.</li>
 <li><code>timeseries_steps</code> = If <code>save_timeseries=true</code>, then this is the number of steps between the saves.</li>
 <li><code>autodiff</code> = Whether or not autodifferentiation (as provided by AutoDiff.jl) is used for the nonlinear solving. By default autodiff is false.</li>
 <li><code>method</code> = Method the nonlinear solver uses. Defaults to <code>:trust_region</code>.</li>
 <li><code>show_trace</code> = Whether to show the output of the nonlinear solver. Defaults to false.</li>
 <li><code>iterations</code> = Maximum numer of iterations in the nonlinear solver. Defaults to 1000.</li>
 </ul>
+</li>
+</ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fem/fem_solve.jl#L1-25' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>

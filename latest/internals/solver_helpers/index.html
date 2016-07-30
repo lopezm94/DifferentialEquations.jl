@@ -66,7 +66,7 @@
           
             <li>
     <ul class="subnav">
-    <li><span>Tutorial</span></li>
+    <li><span>Tutorials</span></li>
 
         
             
@@ -255,7 +255,9 @@
             
                 <li class="toctree-l3"><a href="#solver-helpers">Solver Helpers</a></li>
                 
-                    <li><a class="toctree-l4" href="#ode">ODE</a></li>
+                    <li><a class="toctree-l4" href="#ode-solver-extras">ODE Solver Extras</a></li>
+                
+                    <li><a class="toctree-l4" href="#sde-solver-extras">SDE Solver Extras</a></li>
                 
                     <li><a class="toctree-l4" href="#stationary-stokes">Stationary Stokes</a></li>
                 
@@ -311,54 +313,490 @@
                 <p><a id='Solver-Helpers-1'></a></p>
 <h1 id="solver-helpers">Solver Helpers</h1>
 <p>This package includes the documentation for the helper functions for the various solvers.</p>
-<p><a id='ODE-1'></a></p>
-<h2 id="ode">ODE</h2>
+<p><a id='ODE-Solver-Extras-1'></a></p>
+<h2 id="ode-solver-extras">ODE Solver Extras</h2>
 <p><a id='Base.length-Tuple{DifferentialEquations.ExplicitRK}' href='#Base.length-Tuple{DifferentialEquations.ExplicitRK}'>#</a>
 <strong><code>Base.length</code></strong> &mdash; <em>Method</em>.</p>
 <p>Base.length(tab::ExplicitRK)</p>
 <p>Defines the length of a Runge-Kutta method to be the number of stages.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L16-20' class='documenter-source'>source</a><br></p>
+<p><a id='DifferentialEquations.ExplicitRK' href='#DifferentialEquations.ExplicitRK'>#</a>
+<strong><code>DifferentialEquations.ExplicitRK</code></strong> &mdash; <em>Type</em>.</p>
+<p>ExplicitRK</p>
+<p>Holds a tableau which defines an explicit Runge-Kutta method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L1-5' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">ExplicitRK</span><span class="p">(</span>
+    <span class="n">A</span><span class="p">,
+</span>    <span class="n">c</span><span class="p">,
+</span>    <span class="n">α</span><span class="p">,
+</span>    <span class="n">order</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L13">src/ode/ode_tableaus.jl:13</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
+<p><a id='DifferentialEquations.ODE_DEFAULT_TABLEAU' href='#DifferentialEquations.ODE_DEFAULT_TABLEAU'>#</a>
+<strong><code>DifferentialEquations.ODE_DEFAULT_TABLEAU</code></strong> &mdash; <em>Constant</em>.</p>
+<p>ODE_DEFAULT_TABLEAU</p>
+<p>Sets the default tableau for the ODE solver. Currently Dormand-Prince 4/5.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_constants.jl#L1-5' class='documenter-source'>source</a><br></p>
+<p><a id='DifferentialEquations.constructCashKarp' href='#DifferentialEquations.constructCashKarp'>#</a>
+<strong><code>DifferentialEquations.constructCashKarp</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructCashKarp()</p>
+<p>Constructs the tableau object for the Cash-Karp Order 4/5 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L83-87' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructCashKarp</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L89">src/ode/ode_tableaus.jl:89</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructRalston' href='#DifferentialEquations.constructRalston'>#</a>
+<strong><code>DifferentialEquations.constructRalston</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructRalston()</p>
+<p>Constructs the tableau object for Ralston's Order 2 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L36-40' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructRalston</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L42">src/ode/ode_tableaus.jl:42</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructDormandPrince' href='#DifferentialEquations.constructDormandPrince'>#</a>
+<strong><code>DifferentialEquations.constructDormandPrince</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructDormandPrince()</p>
+<p>Constructs the tableau object for the Dormand-Prince Order 4/5 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L101-105' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructDormandPrince</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L107">src/ode/ode_tableaus.jl:107</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructDormandPrince8' href='#DifferentialEquations.constructDormandPrince8'>#</a>
+<strong><code>DifferentialEquations.constructDormandPrince8</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructDormandPrice8()</p>
+<p>Constructs the tableau object for the Dormand-Prince Order 7/8 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L145-149' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructDormandPrince8</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L151">src/ode/ode_tableaus.jl:151</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructBogakiShampine' href='#DifferentialEquations.constructBogakiShampine'>#</a>
+<strong><code>DifferentialEquations.constructBogakiShampine</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructBogakiShampine()</p>
+<p>Constructs the tableau object for the Bogakai-Shampine Order 2/3 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L67-71' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructBogakiShampine</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L73">src/ode/ode_tableaus.jl:73</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructHuen' href='#DifferentialEquations.constructHuen'>#</a>
+<strong><code>DifferentialEquations.constructHuen</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructHuen()</p>
+<p>Constructs the tableau object for Huen's Order 2 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L23-27' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructHuen</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L29">src/ode/ode_tableaus.jl:29</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructRKF' href='#DifferentialEquations.constructRKF'>#</a>
+<strong><code>DifferentialEquations.constructRKF</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructRKF()</p>
+<p>Constructs the tableau object for the Runge-Kutta-Fuhlberg Order 4/5 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L49-53' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructRKF</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L55">src/ode/ode_tableaus.jl:55</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructRKF8' href='#DifferentialEquations.constructRKF8'>#</a>
+<strong><code>DifferentialEquations.constructRKF8</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructRKF8()</p>
+<p>Constructs the tableau object for the Runge-Kutta-Fuhlberg Order 7/8 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L120-124' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructRKF8</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/ode/ode_tableaus.jl#L126">src/ode/ode_tableaus.jl:126</a>
+</li>
+</ul>
+
+<p><a id='SDE-Solver-Extras-1'></a></p>
+<h2 id="sde-solver-extras">SDE Solver Extras</h2>
+<p><a id='DifferentialEquations.monteCarloSim' href='#DifferentialEquations.monteCarloSim'>#</a>
+<strong><code>DifferentialEquations.monteCarloSim</code></strong> &mdash; <em>Function</em>.</p>
+<p>monteCarloSim(Δt::Number,prob::SDEProblem)</p>
+<p>Performs a parallel Monte-Carlo simulation to solve the SDE problem with Δt numMonte times. Returns a vector of solution objects.</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li>T - Final time. Default is 1.</li>
+<li>numMonte - Number of Monte-Carlo simulations to run. Default is 10000</li>
+<li>save_timeseries - Denotes whether save_timeseries should be turned on in each run. Default is true.</li>
+<li>alg - Algorithm for solving the SDEs. Default is "EM"</li>
+</ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/stochastic_utils.jl#L12-23' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">monteCarloSim</span><span class="p">(</span><span class="n">prob</span><span class="p">::</span><span class="n">DifferentialEquations.SDEProblem</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/general/stochastic_utils.jl#L25">src/general/stochastic_utils.jl:25</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.RosslerSRI' href='#DifferentialEquations.RosslerSRI'>#</a>
+<strong><code>DifferentialEquations.RosslerSRI</code></strong> &mdash; <em>Type</em>.</p>
+<p>RosslerSRI</p>
+<p>Holds the Butcher tableaus for a Rosser SRI method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L1-5' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">RosslerSRI</span><span class="p">(</span>
+    <span class="n">c₀</span><span class="p">,
+</span>    <span class="n">c₁</span><span class="p">,
+</span>    <span class="n">A₀</span><span class="p">,
+</span>    <span class="n">A₁</span><span class="p">,
+</span>    <span class="n">B₀</span><span class="p">,
+</span>    <span class="n">B₁</span><span class="p">,
+</span>    <span class="n">α</span><span class="p">,
+</span>    <span class="n">β₁</span><span class="p">,
+</span>    <span class="n">β₂</span><span class="p">,
+</span>    <span class="n">β₃</span><span class="p">,
+</span>    <span class="n">β₄</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L7">src/sde/sde_tableaus.jl:7</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
+<p><a id='DifferentialEquations.RosslerSRA' href='#DifferentialEquations.RosslerSRA'>#</a>
+<strong><code>DifferentialEquations.RosslerSRA</code></strong> &mdash; <em>Type</em>.</p>
+<p>RosslerSRA</p>
+<p>Holds the Butcher tableaus for a Rosser SRA method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L20-24' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">RosslerSRA</span><span class="p">(</span>
+    <span class="n">c₀</span><span class="p">,
+</span>    <span class="n">c₁</span><span class="p">,
+</span>    <span class="n">A₀</span><span class="p">,
+</span>    <span class="n">B₀</span><span class="p">,
+</span>    <span class="n">α</span><span class="p">,
+</span>    <span class="n">β₁</span><span class="p">,
+</span>    <span class="n">β₂</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L26">src/sde/sde_tableaus.jl:26</a>
+</li>
+</ul>
+
+<p><em>Hiding 1 method defined outside of this package.</em></p>
+<p><a id='DifferentialEquations.constructSRA1' href='#DifferentialEquations.constructSRA1'>#</a>
+<strong><code>DifferentialEquations.constructSRA1</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructSRA1()</p>
+<p>Constructs the taleau type for the SRA1 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L69-73' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructSRA1</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L75">src/sde/sde_tableaus.jl:75</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.constructSRIW1' href='#DifferentialEquations.constructSRIW1'>#</a>
+<strong><code>DifferentialEquations.constructSRIW1</code></strong> &mdash; <em>Function</em>.</p>
+<p>constructSRIW1()</p>
+<p>Constructs the tableau type for the SRIW1 method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L35-39' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">constructSRIW1</span><span class="p">(</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L41">src/sde/sde_tableaus.jl:41</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.checkSRAOrder' href='#DifferentialEquations.checkSRAOrder'>#</a>
+<strong><code>DifferentialEquations.checkSRAOrder</code></strong> &mdash; <em>Function</em>.</p>
+<p>checkSRAOrder(RosslerSRI)</p>
+<p>Determines whether the order conditions are met via the tableaus of the SRA method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L124-128' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">checkSRAOrder</span><span class="p">(</span><span class="n">SRA</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L130">src/sde/sde_tableaus.jl:130</a>
+</li>
+</ul>
+
+<p><a id='DifferentialEquations.checkSRIOrder' href='#DifferentialEquations.checkSRIOrder'>#</a>
+<strong><code>DifferentialEquations.checkSRIOrder</code></strong> &mdash; <em>Function</em>.</p>
+<p>checkSRIOrder(RosslerSRI)</p>
+<p>Determines whether the order conditions are met via the tableaus of the SRI method.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L87-91' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre class="documenter-inline"><span class="nf">checkSRIOrder</span><span class="p">(</span><span class="n">RosslerSRI</span><span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/sde/sde_tableaus.jl#L93">src/sde/sde_tableaus.jl:93</a>
+</li>
+</ul>
+
 <p><a id='Stationary-Stokes-1'></a></p>
 <h2 id="stationary-stokes">Stationary Stokes</h2>
 <p><a id='DifferentialEquations.GSδq!' href='#DifferentialEquations.GSδq!'>#</a>
 <strong><code>DifferentialEquations.GSδq!</code></strong> &mdash; <em>Function</em>.</p>
 <p>GSδq!(δq,rp,Δxs)</p>
 <p>Performs a Gauss-Seidel iteration for δq.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L71-75' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">GSδq!</span><span class="p">(</span>
+    <span class="n">δq</span><span class="p">,
+</span>    <span class="n">rp</span><span class="p">,
+</span>    <span class="n">Δxs</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L77">src/fdm/stokes_solve.jl:77</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.GSu!' href='#DifferentialEquations.GSu!'>#</a>
 <strong><code>DifferentialEquations.GSu!</code></strong> &mdash; <em>Function</em>.</p>
 <p>GSu!(u,f₁,Δxs,p,ugD,grids,ux,uy)</p>
 <p>Performs a Gauss-Seidel iteration on u.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L1-5' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">GSu!</span><span class="p">(</span>
+    <span class="n">u</span><span class="p">,
+</span>    <span class="n">f₁</span><span class="p">,
+</span>    <span class="n">Δxs</span><span class="p">,
+</span>    <span class="n">p</span><span class="p">,
+</span>    <span class="n">ugD</span><span class="p">,
+</span>    <span class="n">grids</span><span class="p">,
+</span>    <span class="n">ux</span><span class="p">,
+</span>    <span class="n">uy</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L7">src/fdm/stokes_solve.jl:7</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.calc_rp!' href='#DifferentialEquations.calc_rp!'>#</a>
 <strong><code>DifferentialEquations.calc_rp!</code></strong> &mdash; <em>Function</em>.</p>
 <p>calc_rp!(rp,u,v,Δxs,g,px,py)</p>
 <p>Calculates the rp from the u and v's.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L49-53' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">calc_rp!</span><span class="p">(</span>
+    <span class="n">rp</span><span class="p">,
+</span>    <span class="n">u</span><span class="p">,
+</span>    <span class="n">v</span><span class="p">,
+</span>    <span class="n">Δxs</span><span class="p">,
+</span>    <span class="n">g</span><span class="p">,
+</span>    <span class="n">px</span><span class="p">,
+</span>    <span class="n">py</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L55">src/fdm/stokes_solve.jl:55</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.update_p!' href='#DifferentialEquations.update_p!'>#</a>
 <strong><code>DifferentialEquations.update_p!</code></strong> &mdash; <em>Function</em>.</p>
 <p>update_p!(p,δq,Δxs)</p>
 <p>Updates p given δq</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L125-129' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">update_p!</span><span class="p">(</span>
+    <span class="n">p</span><span class="p">,
+</span>    <span class="n">δq</span><span class="p">,
+</span>    <span class="n">Δxs</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L131">src/fdm/stokes_solve.jl:131</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.update_v!' href='#DifferentialEquations.update_v!'>#</a>
 <strong><code>DifferentialEquations.update_v!</code></strong> &mdash; <em>Function</em>.</p>
 <p>update_v!(v,δq,Δxs)</p>
 <p>Updates v given δq</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L114-118' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">update_v!</span><span class="p">(</span>
+    <span class="n">v</span><span class="p">,
+</span>    <span class="n">δq</span><span class="p">,
+</span>    <span class="n">Δxs</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L120">src/fdm/stokes_solve.jl:120</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.uzawa_p!' href='#DifferentialEquations.uzawa_p!'>#</a>
 <strong><code>DifferentialEquations.uzawa_p!</code></strong> &mdash; <em>Function</em>.</p>
 <p>uzawa_p!(p,u,v,Δxs,g,px,py)</p>
 <p>Solves for p from u and v using an Uzawa update.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L60-64' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">uzawa_p!</span><span class="p">(</span>
+    <span class="n">p</span><span class="p">,
+</span>    <span class="n">u</span><span class="p">,
+</span>    <span class="n">v</span><span class="p">,
+</span>    <span class="n">Δxs</span><span class="p">,
+</span>    <span class="n">g</span><span class="p">,
+</span>    <span class="n">px</span><span class="p">,
+</span>    <span class="n">py</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L66">src/fdm/stokes_solve.jl:66</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.stokes_restriction' href='#DifferentialEquations.stokes_restriction'>#</a>
 <strong><code>DifferentialEquations.stokes_restriction</code></strong> &mdash; <em>Function</em>.</p>
 <p>stokes_restriction(u,v,p,Δxs,grids,mins,maxs,ugD,vgD)</p>
 <p>Restricts the Stokes problem to the coarsegrid.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L157-161' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">stokes_restriction</span><span class="p">(</span>
+    <span class="n">u</span><span class="p">,
+</span>    <span class="n">v</span><span class="p">,
+</span>    <span class="n">p</span><span class="p">,
+</span>    <span class="n">Δxs</span><span class="p">,
+</span>    <span class="n">grids</span><span class="p">,
+</span>    <span class="n">mins</span><span class="p">,
+</span>    <span class="n">maxs</span><span class="p">,
+</span>    <span class="n">ugD</span><span class="p">,
+</span>    <span class="n">vgD</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L163">src/fdm/stokes_solve.jl:163</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.stokes_prolongation' href='#DifferentialEquations.stokes_prolongation'>#</a>
 <strong><code>DifferentialEquations.stokes_prolongation</code></strong> &mdash; <em>Function</em>.</p>
 <p>stokes_prolongation(u,v,p,Δxs,grids,mins,maxs,ugD,vgD)</p>
 <p>Prolongates the Stokes problem to the fine grid</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L199-203' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">stokes_prolongation</span><span class="p">(</span>
+    <span class="n">u</span><span class="p">,
+</span>    <span class="n">v</span><span class="p">,
+</span>    <span class="n">p</span><span class="p">,
+</span>    <span class="n">Δxs</span><span class="p">,
+</span>    <span class="n">grids</span><span class="p">,
+</span>    <span class="n">mins</span><span class="p">,
+</span>    <span class="n">maxs</span><span class="p">,
+</span>    <span class="n">ugD</span><span class="p">,
+</span>    <span class="n">vgD</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L205">src/fdm/stokes_solve.jl:205</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.update_u!' href='#DifferentialEquations.update_u!'>#</a>
 <strong><code>DifferentialEquations.update_u!</code></strong> &mdash; <em>Function</em>.</p>
 <p>update_u!(u,δq,Δxs)</p>
 <p>Updates u given δq</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L103-107' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">update_u!</span><span class="p">(</span>
+    <span class="n">u</span><span class="p">,
+</span>    <span class="n">δq</span><span class="p">,
+</span>    <span class="n">Δxs</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L109">src/fdm/stokes_solve.jl:109</a>
+</li>
+</ul>
+
 <p><a id='DifferentialEquations.GSv!' href='#DifferentialEquations.GSv!'>#</a>
 <strong><code>DifferentialEquations.GSv!</code></strong> &mdash; <em>Function</em>.</p>
 <p>GSv!(v,f₂,Δxs,p,vgD,grids,vx,vy)</p>
 <p>Performs a Gauss-Seidel iteration on v.</p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L25-29' class='documenter-source'>source</a><br></p>
+<p><strong>Methods</strong></p>
+<ul class="documenter-methodtable">
+<li>
+    <pre><span class="nf">GSv!</span><span class="p">(</span>
+    <span class="n">v</span><span class="p">,
+</span>    <span class="n">f₂</span><span class="p">,
+</span>    <span class="n">Δxs</span><span class="p">,
+</span>    <span class="n">p</span><span class="p">,
+</span>    <span class="n">vgD</span><span class="p">,
+</span>    <span class="n">grids</span><span class="p">,
+</span>    <span class="n">vx</span><span class="p">,
+</span>    <span class="n">vy</span>
+<span class="p">)</span></pre>
+    defined at
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/06b3700400fe6f5b5ffe34beaf210fb0d23613c6/src/fdm/stokes_solve.jl#L31">src/fdm/stokes_solve.jl:31</a>
+</li>
+</ul>
               
             </div>
           </div>
