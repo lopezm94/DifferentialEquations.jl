@@ -76,6 +76,8 @@
             
                 <li class="toctree-l3"><a href="#roadmap">Roadmap</a></li>
                 
+                    <li><a class="toctree-l4" href="#ijulia-notebook-tutorials">IJulia Notebook Tutorials</a></li>
+                
                     <li><a class="toctree-l4" href="#tutorials">Tutorials</a></li>
                 
                     <li><a class="toctree-l4" href="#solver-options">Solver Options</a></li>
@@ -509,6 +511,15 @@
 </ul>
 </li>
 </ul>
+<p><a id='IJulia-Notebook-Tutorials-1'></a></p>
+<h2 id="ijulia-notebook-tutorials">IJulia Notebook Tutorials</h2>
+<p>If you have <a href="https://github.com/JuliaLang/IJulia.jl">IJulia</a> installed, you can access extra tutorials in the supplied IJulia notebooks via:</p>
+<pre class="codehilite"><code class="language-julia">using IJulia
+cd(Pkg.dir(&quot;DifferentialEquations&quot;)*&quot;/examples&quot;)
+notebook()</code></pre>
+
+
+<p>Otherwise, these notebooks can be viewed <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">via the Github repository</a> (note that Github renders them slightly incorrectly, so it will look better in IJulia!).</p>
 <p><a id='Tutorials-1'></a></p>
 <h2 id="tutorials">Tutorials</h2>
 <p>The following tutorials will introduce you to the functionality of DifferentialEquations.jl More examples can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
@@ -651,8 +662,8 @@
 <li><a href="man/StokesProblem/#DifferentialEquations.StokesProblem"><code>DifferentialEquations.StokesProblem</code></a></li>
 <li><a href="man/solution/#DifferentialEquations.StokesSolution"><code>DifferentialEquations.StokesSolution</code></a></li>
 <li><a href="internals/extras/#DifferentialEquations.Tableau"><code>DifferentialEquations.Tableau</code></a></li>
-<li><a href="internals/solver_helpers/#Base.length-Tuple{DifferentialEquations.ExplicitRK}"><code>Base.length</code></a></li>
 <li><a href="man/convergence/#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}"><code>Base.length</code></a></li>
+<li><a href="internals/solver_helpers/#Base.length-Tuple{DifferentialEquations.ExplicitRK}"><code>Base.length</code></a></li>
 <li><a href="internals/extras/#Base.length"><code>Base.length</code></a></li>
 <li><a href="internals/extras/#Base.size"><code>Base.size</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.CFLμ"><code>DifferentialEquations.CFLμ</code></a></li>
@@ -722,12 +733,12 @@
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts"><code>DifferentialEquations.quadpts</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts1"><code>DifferentialEquations.quadpts1</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.setboundary"><code>DifferentialEquations.setboundary</code></a></li>
-<li><a href="internals/extras/#DifferentialEquations.solve"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/femheat_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/ode_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/fempoisson_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/femheat_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="internals/extras/#DifferentialEquations.solve"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_prolongation"><code>DifferentialEquations.stokes_prolongation</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_restriction"><code>DifferentialEquations.stokes_restriction</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.test_convergence"><code>DifferentialEquations.test_convergence</code></a></li>
@@ -789,5 +800,5 @@
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-07-30 21:10:07.082981
+Build Date UTC : 2016-07-30 21:37:47.036739
 -->
