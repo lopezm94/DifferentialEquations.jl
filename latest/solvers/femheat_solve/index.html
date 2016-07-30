@@ -344,7 +344,7 @@
 <li>
 <p><code>solver</code> = Linear solver algorithm. This is the algorithm which is chosen for solving the implicit equation <code>Ax=b</code>. The default is <code>LU</code>. The choices are:</p>
 <ul>
-<li><code>:Direct</code> = Solves using `` (no factorization). Not recommended.</li>
+<li><code>:Direct</code> = Solves using <code>\</code> (no factorization). Not recommended.</li>
 <li><code>:Cholesky</code> = Cholsky decomposition. Only stable of $I ± ΔtM⁻¹A$ is positive definite. This means that this works best when Δt is small. When applicable, this is the fastest.</li>
 <li><code>:LU</code> = LU-Decomposition. A good mix between fast and stable.</li>
 <li><code>:QR</code> = QR-Decomposition. Less numerical roundoff error than <code>LU</code>, but slightly slower.</li>
@@ -362,7 +362,7 @@
 </ul>
 </li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/da8344558221625aaeed16127191295ec3a464bb/src/fem/fem_solve.jl#L115-174' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3bc932133355e67f9e614323ad3d2027e7439cf6/src/fem/fem_solve.jl#L115-174' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>
