@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Chris Rackauckas">
+  
+  <title>Stochastic Differential Equation Solvers - DifferentialEquations.jl</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Stochastic Differential Equation Solvers";
+    var mkdocs_page_input_path = "solvers/sde_solve.md";
+    var mkdocs_page_url = "/solvers/sde_solve/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> DifferentialEquations.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorials</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Stochastic Differential Equation Solvers</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#stochastic-differential-equation-solvers">Stochastic Differential Equation Solvers</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/overview/">Overview of DifferentialEquations.jl Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/ODEProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/SDEProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/FEMProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/StokesProblem/">Defining a Stokes Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/mesh/">Meshes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/solution/">The Solution Type</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/convergence/">Convergence Simuations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../man/conditional_dependencies/">Conditional Dependencies</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Internal Documentation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">DifferentialEquations.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Solver Options &raquo;</li>
+        
+      
+    
+    <li>Stochastic Differential Equation Solvers</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Stochastic-Differential-Equation-Solvers-1'></a></p>
+<h1 id="stochastic-differential-equation-solvers">Stochastic Differential Equation Solvers</h1>
+<p><a id='DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}' href='#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}'>#</a>
+<strong><code>DifferentialEquations.solve</code></strong> &mdash; <em>Method</em>.</p>
+<p>`solve(prob::SDEProblem,tspan)``</p>
+<p>Solves the SDE as defined by prob on the time interval tspan. If not given, tspan defaults to [0,1].</p>
+<p><strong>Keyword Arguments</strong></p>
+<ul>
+<li><code>Δt</code>: Sets the initial stepsize. Defaults to an automatic choice.</li>
+<li><code>save_timeseries</code>: Saves the result at every timeseries_steps steps. Default is true.</li>
+<li><code>timeseries_steps</code>: Denotes how many steps between saving a value for the timeseries. Defaults to 1.</li>
+<li><code>adaptive</code> - Turns on adaptive timestepping for appropriate methods. Default is false.</li>
+<li><code>γ</code> - The risk-factor γ in the q equation for adaptive timestepping. Default is 2.</li>
+<li><code>qmax</code> - Defines the maximum value possible for the adaptive q. Default is 1.125.</li>
+<li><code>δ</code> - The weight-factor in the error estimate. Default is 1/6.</li>
+<li><code>ablstol</code> - Absolute tolerance in adaptive timestepping. Defaults to 1e-3.</li>
+<li><code>reltol</code> - Relative tolerance in adaptive timestepping. Defaults to 1e-6.</li>
+<li><code>maxiters</code> - Maximum number of iterations before stopping. Defaults to 1e9.</li>
+<li><code>Δtmax</code> - Maximum Δt for adaptive timestepping. Defaults to half the timespan.</li>
+<li><code>Δtmin</code> - Minimum Δt for adaptive timestepping. Defaults to 1e-10.</li>
+<li><code>internalnorm</code> - The norm for which error estimates are calculated. Default is 2.</li>
+<li><code>progressbar</code> - Turns on/off the Juno progressbar. Defualt is false.</li>
+<li><code>progress_steps</code> - Numbers of steps between updates of the progress bar. Default is 1000.</li>
+<li><code>discard_length</code> - Size at which to discard future information in adaptive. Default is 1e-15.</li>
+<li><code>tableau</code>: The tableau for an <code>:SRA</code> or <code>:SRI</code> algorithm. Defaults to SRIW1 or SRA1.</li>
+<li><code>adaptivealg</code>: The adaptive timestepping algorithm. Default is <code>:RSwm3</code>.</li>
+<li>
+<p><code>alg</code>: String which defines the solver algorithm. Defult is "SRIW1Optimized". Possibilities are:</p>
+<ul>
+<li><code>:EM</code>- The Euler-Maruyama method.</li>
+<li><code>:RKMil</code> - An explicit Runge-Kutta discretization of the strong Order 1.0 Milstein method.</li>
+<li><code>:SRA</code> - The strong Order 2.0 methods for additive SDEs due to Rossler. Not yet implemented.   Default tableau is for SRA1.</li>
+<li><code>:SRI</code> - The strong Order 1.5 methods for diagonal/scalar SDEs due to Rossler. Default tableau is for SRIW1.</li>
+<li><code>:SRIW1Optimized</code> - An optimized version of SRIW1. Strong Order 1.5.</li>
+<li><code>:SRA1Optimized</code> - An optimized version of SRIA1. Strong Order 2.0.</li>
+<li><code>:SRAVectorized</code> - A vectorized implementation of SRA algorithms. Requires 1-dimensional problem.</li>
+<li><code>:SRIVectorized</code> - A vectorized implementation of SRI algorithms. Requires 1-dimensional problem.</li>
+</ul>
+</li>
+</ul>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/c33c5e5b43839ac01c281a1f3b533e9fdf6a56f8/src/sde/sde_solve.jl#L1-38' class='documenter-source'>source</a><br></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../fempoisson_solve/" class="btn btn-neutral float-right" title="Poisson Equation Finite Element Method Solvers">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../ode_solve/" class="btn btn-neutral" title="Ordinary Differential Equation Solvers"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../ode_solve/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../fempoisson_solve/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
