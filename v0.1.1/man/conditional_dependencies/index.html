@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="author" content="Chris Rackauckas">
+  
+  <title>Conditional Dependencies - DifferentialEquations.jl</title>
+  
+
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../../css/highlight.css">
+  <link href="../../assets/Documenter.css" rel="stylesheet">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Conditional Dependencies";
+    var mkdocs_page_input_path = "man/conditional_dependencies.md";
+    var mkdocs_page_url = "/man/conditional_dependencies/";
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js"></script>
+  <script src="../../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+  <script src="../../js/theme.js"></script> 
+  <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+  <script src="../../assets/mathjaxhelper.js"></script>
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> DifferentialEquations.jl</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Tutorials</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/ode_example/">Ordinary Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/sde_example/">Stochastic Differential Equation Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/fempoisson_example/">Poisson Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femheat_example/">Heat Equation Finite Element Method Example</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../tutorials/femstochastic_example/">Stochastic Finite Element Examples</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Solver Options</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/ode_solve/">Ordinary Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/sde_solve/">Stochastic Differential Equation Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fempoisson_solve/">Poisson Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/femheat_solve/">Heat Equation Finite Element Method Solvers</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../solvers/fdmstokes_solve/">Stationary Stokes Equation Finite Difference Method Solvers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Manual</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../overview/">Overview of DifferentialEquations.jl Usage</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../ODEProblem/">Defining an ODE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../SDEProblem/">Defining an SDE Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../FEMProblem/">Defining a Finite Element Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../StokesProblem/">Defining a Stokes Problem</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../mesh/">Meshes</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../solution/">The Solution Type</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../plot/">Plot Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../convergence/">Convergence Simuations</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 current">
+        <a class="current" href="./">Conditional Dependencies</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#conditional-dependencies">Conditional Dependencies</a></li>
+                
+                    <li><a class="toctree-l4" href="#the-conditional-dependency-notification">The Conditional Dependency Notification</a></li>
+                
+                    <li><a class="toctree-l4" href="#what-methods-require-conditional-dependencies">What Methods Require Conditional Dependencies?</a></li>
+                
+                    <li><a class="toctree-l4" href="#installation-instructions">Installation Instructions</a></li>
+                
+            
+            </ul>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+            <li>
+    <ul class="subnav">
+    <li><span>Internal Documentation</span></li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/contributors_guide/">Contributor's Guide</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/fem_tools/">Internal Finite Element Tools</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/extras/">Extra Functions</a>
+        
+    </li>
+
+        
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../../internals/solver_helpers/">Solver Helpers</a>
+        
+    </li>
+
+        
+    </ul>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">DifferentialEquations.jl</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Manual &raquo;</li>
+        
+      
+    
+    <li>Conditional Dependencies</li>
+    <li class="wy-breadcrumbs-aside">
+      
+        
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github"> Edit on GitHub</a>
+        
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <p><a id='Conditional-Dependencies-1'></a></p>
+<h1 id="conditional-dependencies">Conditional Dependencies</h1>
+<p>DifferentialEquations.jl is conditionally dependent on some packages which may not be required for all users. The upside is that you can run DifferentialEquations.jl without installing these packages. However, the downside is that you will have to do the installation yourself (normal dependencies do a silent install). Luckily DifferentialEquations.jl warns you about missing dependencies when calling a method which requires one. This part of the manual will detail how to see if you're missing a conditional dependency and how to alleviate the issue.</p>
+<p><a id='The-Conditional-Dependency-Notification-1'></a></p>
+<h2 id="the-conditional-dependency-notification">The Conditional Dependency Notification</h2>
+<p>When a conditional dependency is required, DifferentialEquations.jl will import the package the first time the method is called. When this happens, you will receive a notification as follows:</p>
+<pre class="codehilite"><code class="language-julia">[DifferentialEquations.jl] Initializing backend: PkgName</code></pre>
+
+
+<p>where PkgName is the name of the package it is importing. DifferentialEquations.jl will then run a standard startup procedure on this package. If it fails, you will receive the message</p>
+<pre class="codehilite"><code class="language-julia">WARNING: Couldn't initialize PkgName.  (might need to install it?)</code></pre>
+
+
+<p>Most likely the issue is that you need to install the package. Go to the package's Github repository for information on installing the package, and then come back to try again. If that does not work, you may need the latest version of the package by checking out master:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.checkout(&quot;PkgName&quot;)</code></pre>
+
+
+<p>If all else fails, please ask for help on <a href="https://gitter.im/ChrisRackauckas/DifferentialEquations.jl">via the repository Gitter</a>.</p>
+<p><a id='What-Methods-Require-Conditional-Dependencies?-1'></a></p>
+<h2 id="what-methods-require-conditional-dependencies">What Methods Require Conditional Dependencies?</h2>
+<p>That's a good question! The implicit algorithms implemented in DifferentialEquations.jl require <a href="https://github.com/EconForge/NLsolve.jl">NLsolve.jl</a>, and can optionally use <a href="https://github.com/JuliaDiff/ForwardDiff.jl">ForwardDiff.jl</a> for increased performance. Also, the <code>load</code> function for the premade meshes requires <a href="https://github.com/JuliaIO/JLD.jl">JLD.jl</a>.</p>
+<p>Lastly, there is a special conditional dependency for <a href="http://junolab.org/">Juno</a>. If you are using Juno, then the progress bar functionality is works. If you're not using Juno, then it won't do anything.</p>
+<p>The other conditional dependencies are external solvers wrapped by DifferentialEquations.jl Currently these include:</p>
+<ul>
+<li>ODE.jl</li>
+<li>ODEInterface.jl</li>
+</ul>
+<p><a id='Installation-Instructions-1'></a></p>
+<h2 id="installation-instructions">Installation Instructions</h2>
+<p>For most of the conditional dependencies, the installation instructions are standard. However, for some of the newest features, special instructions may be required. The best way to stay up-to-date on this information is to checkout the following resources:</p>
+<ul>
+<li>The packages which are conditional dependencies and use a standard installation can be found in the <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/test/REQUIRE">/test/REQUIRE</a> file.</li>
+<li>Any special installation instructions are handled via <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/test/ci_setup.jl">the ci_setup.jl file</a>.</li>
+</ul>
+<p>The current special installation instructions are as follows:</p>
+<p><a id='ODE.jl.-1'></a></p>
+<h3 id="odejl">ODE.jl.</h3>
+<p>The wrapper currently only works on the development branch of ODE.jl at JuliaODE/ODE.jl. To install this version of ODE.jl, use the following commands:</p>
+<pre class="codehilite"><code class="language-julia">Pkg.clone(&quot;https://github.com/JuliaODE/ODE.jl&quot;)
+Pkg.checkout(&quot;ODE&quot;,&quot;dev&quot;)</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../internals/contributors_guide/" class="btn btn-neutral float-right" title="Contributor's Guide">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../convergence/" class="btn btn-neutral" title="Convergence Simuations"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+          <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl" class="icon icon-github" style="float: left; color: #fcfcfc"> GitHub</a>
+      
+      
+        <span><a href="../convergence/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../internals/contributors_guide/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+
+</body>
+</html>
