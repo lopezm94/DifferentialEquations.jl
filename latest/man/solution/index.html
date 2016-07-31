@@ -341,7 +341,7 @@
 <li><code>timeseries</code>::AbstractArrayOrVoid<code>: u over time. Only saved if</code>save_timeseries=true`</li>
 </ul>
 <p>is specified in the solver. * <code>t::AbstractArrayOrVoid</code>: All the t's in the solution. Only saved if <code>save_timeseries=true</code> is specified in the solver. * <code>prob::DEProblem</code>: Holds the problem object used to define the problem. * <code>save_timeseries::Bool</code>: True if solver saved the extra timepoints.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L1-21' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L1-21' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
@@ -351,7 +351,7 @@
 </span>    <span class="n">prob</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L40">src/general/solutions.jl:40</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L40">src/general/solutions.jl:40</a>
 </li>
 <li>
     <pre><span class="nf">FEMSolution</span><span class="p">(</span>
@@ -362,7 +362,7 @@
 </span>    <span class="n">prob</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L43">src/general/solutions.jl:43</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L43">src/general/solutions.jl:43</a>
 </li>
 <li>
     <pre><span class="nf">FEMSolution</span><span class="p">(</span>
@@ -376,7 +376,7 @@
 </span>    <span class="n">prob</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L34">src/general/solutions.jl:34</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L34">src/general/solutions.jl:34</a>
 </li>
 <li>
     <pre><span class="nf">FEMSolution</span><span class="p">(</span>
@@ -388,7 +388,7 @@
 </span>    <span class="n">prob</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L38">src/general/solutions.jl:38</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L38">src/general/solutions.jl:38</a>
 </li>
 </ul>
 
@@ -396,7 +396,7 @@
 <p><a id='DifferentialEquations.DESolution' href='#DifferentialEquations.DESolution'>#</a>
 <strong><code>DifferentialEquations.DESolution</code></strong> &mdash; <em>Type</em>.</p>
 <p>PdeSolution: Wrapper for the objects obtained from a solver</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/DifferentialEquations.jl#L11' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/DifferentialEquations.jl#L11' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.SDESolution' href='#DifferentialEquations.SDESolution'>#</a>
 <strong><code>DifferentialEquations.SDESolution</code></strong> &mdash; <em>Type</em>.</p>
 <p>SDESolution</p>
@@ -410,23 +410,23 @@
 <li><code>timeseries</code>::AbstractArrayOrVoid<code>: u over time. Only saved if</code>save_timeseries=true`</li>
 </ul>
 <p>is specified in the solver. * <code>t::AbstractArrayOrVoid</code>: All the t's in the solution. Only saved if <code>save_timeseries=true</code> is specified in the solver. * <code>Ws</code>: All of the W's in the solution. Only saved if <code>save_timeseries=true</code> is specified in the solver. * <code>timeseries_analytic</code>: If <code>save_timeseries=true</code>, saves the solution at each save point. * <code>prob::DEProblem</code>: Holds the problem object used to define the problem. * <code>save_timeseries::Bool</code>: True if solver saved the extra timepoints. * <code>appxTrue::Bool</code>: Boolean flag for if u_analytic was an approximation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L47-69' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L47-69' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
     <pre class="documenter-inline"><span class="nf">SDESolution</span><span class="p">(</span><span class="n">u</span><span class="p">::</span><span class="n">Union{AbstractArray,Number}</span><span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L85">src/general/solutions.jl:85</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L85">src/general/solutions.jl:85</a>
 </li>
 <li>
     <pre class="documenter-inline"><span class="nf">SDESolution</span><span class="p">(</span><span class="n">a</span><span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L99">src/general/solutions.jl:99</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L99">src/general/solutions.jl:99</a>
 </li>
 <li>
     <pre class="documenter-inline"><span class="nf">SDESolution</span><span class="p">(</span><span class="n">u</span><span class="p">, </span><span class="n">u_analytic</span><span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L90">src/general/solutions.jl:90</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L90">src/general/solutions.jl:90</a>
 </li>
 </ul>
 
@@ -444,18 +444,18 @@
 <li><code>timeseries</code>::AbstractArrayOrVoid<code>: u over time. Only saved if</code>save_timeseries=true`</li>
 </ul>
 <p>is specified in the solver. * <code>t::AbstractArrayOrVoid</code>: All the t's in the solution. Only saved if <code>save_timeseries=true</code> is specified in the solver. * <code>timeseries_analytic</code>: If <code>save_timeseries=true</code>, saves the solution at each timestep. * <code>prob::DEProblem</code>: Holds the problem object used to define the problem. * <code>save_timeseries::Bool</code>: True if solver saved the extra timepoints. * <code>appxTrue::Bool</code>: Boolean flag for if u_analytic was an approximation.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L102-122' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L102-122' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
     <pre class="documenter-inline"><span class="nf">ODESolution</span><span class="p">(</span><span class="n">u</span><span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L134">src/general/solutions.jl:134</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L134">src/general/solutions.jl:134</a>
 </li>
 <li>
     <pre class="documenter-inline"><span class="nf">ODESolution</span><span class="p">(</span><span class="n">u</span><span class="p">, </span><span class="n">u_analytic</span><span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L139">src/general/solutions.jl:139</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L139">src/general/solutions.jl:139</a>
 </li>
 </ul>
 
@@ -477,7 +477,7 @@
 <li>errors</li>
 <li>converrors</li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L149-167' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L149-167' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
@@ -492,7 +492,7 @@
 </span>    <span class="n">trueknown</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L179">src/general/solutions.jl:179</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L179">src/general/solutions.jl:179</a>
 </li>
 </ul>
 
@@ -503,7 +503,7 @@
 <strong><code>DifferentialEquations.appxTrue!</code></strong> &mdash; <em>Function</em>.</p>
 <p>appxTrue!(res,res2)</p>
 <p>Adds the solution from res2 to the FEMSolution object res. Useful to add a quasi-true solution when none is known by computing once at a very small time/space step and taking that solution as the "true" solution</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L182-189' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L182-189' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
@@ -512,14 +512,14 @@
 </span>    <span class="n">res2</span><span class="p">::</span><span class="n">DifferentialEquations.FEMSolution</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L191">src/general/solutions.jl:191</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L191">src/general/solutions.jl:191</a>
 </li>
 </ul>
 
 <p><a id='DifferentialEquations.FEMSolutionTS' href='#DifferentialEquations.FEMSolutionTS'>#</a>
 <strong><code>DifferentialEquations.FEMSolutionTS</code></strong> &mdash; <em>Function</em>.</p>
 <p>S = FEMSolutionTS(timeseries::GrowableArray,numvars::Int) S[i][j] =&gt; Variable i at time j.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L196-199' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L196-199' class='documenter-source'>source</a><br></p>
 <p><strong>Methods</strong></p>
 <ul class="documenter-methodtable">
 <li>
@@ -528,7 +528,7 @@
 </span>    <span class="n">numvars</span><span class="p">::</span><span class="n">Int64</span>
 <span class="p">)</span></pre>
     defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7a1656a8cc23cba48e64d5beedd83594c4f008f0/src/general/solutions.jl#L201">src/general/solutions.jl:201</a>
+    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/0f4507ebc3486cc2726e315f9ba4e617883f7811/src/general/solutions.jl#L201">src/general/solutions.jl:201</a>
 </li>
 </ul>
               
