@@ -320,9 +320,9 @@
 <p>This tutorial will introduce you to the functionality for solving ODEs. Other introductions can be found by <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/master/examples">checking out the IJulia notebooks in the examples folder</a>.</p>
 <p>In this example we will solve the equation</p>
 <p>$$
-du/dt = f(u,t)
+\frac{du}{dt} = f(u,t)
 $$</p>
-<p>where $f(u,t)=αu$. We know via Calculus that the solution to this equation is $u(t)=u₀<em>exp(α</em>t)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
+<p>where $f(u,t)=αu$. We know via Calculus that the solution to this equation is $u(t)=u₀\exp(αt)$. To solve this numerically, we define a problem type by giving it the equation and the initial condition:</p>
 <pre class="codehilite"><code class="language-julia">using DifferentialEquations
 α=1
 u₀=1/2
