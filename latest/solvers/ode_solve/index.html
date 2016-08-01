@@ -353,11 +353,11 @@
 <p><code>:ExplicitRK</code> - A general Runge-Kutta solver which takes in a tableau. Can be adaptive. Tableaus are specified via the keyword argument <code>tab=tableau</code>. The default tableau is for Dormand-Prine 4/5. Other supplied tableaus include:</p>
 <ul>
 <li><code>constructRalston()</code> - Returns a tableau for Ralston's method</li>
-<li><code>constructRKF()</code> - Returns a tableau for Runge-Kutta-Fuhlberg 4/5</li>
+<li><code>constructRKF()</code> - Returns a tableau for Runge-Kutta-Fehlberg 4/5</li>
 <li><code>constructBogakiShampine()</code> - Returns a tableau for Bogakai-Shampine's 2/3 method.</li>
 <li><code>constructCashKarp()</code> - Returns a tableau for the Cash-Karp method 4/5.</li>
 <li><code>constructDormandPrince()</code> - Returns a tableau for Dormand-Prince 4/5.</li>
-<li><code>constructRKF8()</code> - Returns a tableau for Runge-Kutta-Fuhlberg Order 7/8 method.</li>
+<li><code>constructRKF8()</code> - Returns a tableau for Runge-Kutta-Fehlberg Order 7/8 method.</li>
 <li><code>constructDormandPrice8()</code> - Returns a tableau for the Dormand-Prince Order 7/8 method.
           * <code>:ImplicitEuler</code> - A 1st order implicit solver. Unconditionally stable.
           * <code>:Trapezoid</code> - A second order unconditionally stable implicit solver. Good for highly stiff.
@@ -384,19 +384,19 @@
 <p><code>:ode23</code> - Bogakai-Shampine's 2/3 method</p>
 </li>
 <li><code>:ode45</code> - Dormand-Prince's 4/5 method</li>
-<li><code>:ode78</code> - Runge-Kutta-Fuhlberg 7/8 method</li>
+<li><code>:ode78</code> - Runge-Kutta-Fehlberg 7/8 method</li>
 <li><code>:ode23s</code> - Rosenbrock's 2/3 method</li>
 <li><code>:ode1</code> - Forward Euler</li>
 <li><code>:ode2_midpoint</code> - Midpoint Method</li>
 <li><code>:ode2_heun</code> - Heun's Method</li>
 <li><code>:ode4</code> - RK4</li>
-<li><code>:ode45_fe</code> - Runge-Kutta-Fuhlberg 4/5 method</li>
+<li><code>:ode45_fe</code> - Runge-Kutta-Fehlberg 4/5 method</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/277c150384b51840c928f3aecb94d8bcade56636/src/ode/ode_solve.jl#L1-76' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/7588e5c68729c47d8906d8f6b062848287ac91d2/src/ode/ode_solve.jl#L1-76' class='documenter-source'>source</a><br></p>
 <p><a id='Pros-and-Cons-of-Different-Methods-1'></a></p>
 <h2 id="pros-and-cons-of-different-methods">Pros and Cons of Different Methods</h2>
               

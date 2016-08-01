@@ -393,11 +393,11 @@
 <p>Huen's Method</p>
 </li>
 <li>Cash-Karp</li>
-<li>Runge-Kutta-Fuhlberg (RKF) 4/5</li>
+<li>Runge-Kutta-Fehlberg (RKF) 4/5</li>
 <li>Ralston's Method</li>
 <li>Bogaki-Shampine</li>
 <li>Dormand-Prince 4/5</li>
-<li>Runge-Kutta-Fuhlberg (RKF) 7/8</li>
+<li>Runge-Kutta-Fehlberg (RKF) 7/8</li>
 <li>
 <p>Dormand-Prince 7/8</p>
 <ul>
@@ -431,13 +431,13 @@
 <p>ode23 - Bogacki-Shampine's method</p>
 </li>
 <li>ode45 - Dormand-Prince  4/5</li>
-<li>ode78 - Runge-Kutta-Fuhlberg  7/8</li>
+<li>ode78 - Runge-Kutta-Fehlberg  7/8</li>
 <li>ode23s - Rosenbrock method 2/3</li>
 <li>ode1 - Forward Euler</li>
 <li>midpoint - Midpoint method</li>
 <li>ode2_heun - Huen's method</li>
 <li>ode4 - RK4</li>
-<li>ode45_fe - Runge-Kutta-Fuhlberg 4/5</li>
+<li>ode45_fe - Runge-Kutta-Fehlberg 4/5</li>
 </ul>
 </li>
 </ul>
@@ -662,8 +662,8 @@ notebook()</code></pre>
 <li><a href="man/StokesProblem/#DifferentialEquations.StokesProblem"><code>DifferentialEquations.StokesProblem</code></a></li>
 <li><a href="man/solution/#DifferentialEquations.StokesSolution"><code>DifferentialEquations.StokesSolution</code></a></li>
 <li><a href="internals/extras/#DifferentialEquations.Tableau"><code>DifferentialEquations.Tableau</code></a></li>
-<li><a href="man/convergence/#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}"><code>Base.length</code></a></li>
 <li><a href="internals/solver_helpers/#Base.length-Tuple{DifferentialEquations.ExplicitRK}"><code>Base.length</code></a></li>
+<li><a href="man/convergence/#Base.length-Tuple{DifferentialEquations.ConvergenceSimulation}"><code>Base.length</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.CFLμ"><code>DifferentialEquations.CFLμ</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.CFLν"><code>DifferentialEquations.CFLν</code></a></li>
 <li><a href="man/solution/#DifferentialEquations.FEMSolutionTS"><code>DifferentialEquations.FEMSolutionTS</code></a></li>
@@ -731,11 +731,11 @@ notebook()</code></pre>
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts"><code>DifferentialEquations.quadpts</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts1"><code>DifferentialEquations.quadpts1</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.setboundary"><code>DifferentialEquations.setboundary</code></a></li>
-<li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/ode_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/femheat_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/fempoisson_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_prolongation"><code>DifferentialEquations.stokes_prolongation</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_restriction"><code>DifferentialEquations.stokes_restriction</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.test_convergence"><code>DifferentialEquations.test_convergence</code></a></li>
@@ -796,5 +796,5 @@ notebook()</code></pre>
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-08-01 14:40:17.967264
+Build Date UTC : 2016-08-01 22:20:41.375229
 -->
