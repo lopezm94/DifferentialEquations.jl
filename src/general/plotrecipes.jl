@@ -116,5 +116,10 @@ end
   mesh.node[:,1], mesh.node[:,2], ones(mesh.node[:,1])
 end
 
+#@recipe f{T<:SIUnits.SIQuantity}(::Type{T}, x::T) = x.val
+#@recipe f{T<:SIUnits.SIQuantity{N,m,kg,s,A,K,mol,cd,rad,sr}}(::Type{SIUnits.SIQuantity{N,m,kg,s,A,K,mol,cd,rad,sr}},x::T) (println("here!") ; map((y)->y.val,x))
+#@recipe f{T<:AbstractArray{SIUnits.SIQuantity}}(::Type{T}, unitArray::T) =  (println("here!") ; map((x)->x.val,unitArray))
+#@recipe f{T<:AbstractArray{SIUnits.SIQuantity{Float64,0,0,1,0,0,0,0,0,0}}}(::Type{T}, unitArray::T) =  (map((x)->x.val,unitArray)) # Works for seconds
+
 # mesh = meshExample_lakemesh()
 # PyPlot.plot_trisurf(mesh.node[:,1],mesh.node[:,2],ones(mesh.node[:,2]),triangles=mesh.elem-1)

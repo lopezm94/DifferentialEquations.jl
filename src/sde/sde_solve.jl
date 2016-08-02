@@ -41,7 +41,7 @@ function solve(prob::SDEProblem,tspan::AbstractArray=[0,1];Δt::Number=0,save_ti
               abstol=1e-3,reltol=1e-6,qmax=1.125,δ=1/6,maxiters::Int = round(Int,1e9),
               Δtmax=nothing,Δtmin=nothing,progress_steps=1000,internalnorm=2,
               discard_length=1e-15,adaptivealg::Symbol=:RSwM3,progressbar=false,tType=typeof(Δt),tableau = nothing)
-
+  atomloaded = isdefined(Main,:Atom)
   @unpack prob: f,σ,u₀,knownanalytic,analytic, numvars, sizeu
 
   tspan = vec(tspan)
@@ -115,28 +115,37 @@ function solve(prob::SDEProblem,tspan::AbstractArray=[0,1];Δt::Number=0,save_ti
     rands = ChunkedArray(randn,u)
   end
 
+  maxStackSize = 0
+  #EEst = 0
+
+  if typeof(Δt) <: Main.SIUnits.SIQuantity
+    Δt = Δt.val
+  end
+  if typeof(t) <: Main.SIUnits.SIQuantity
+    t = t.val
+  end
+  if typeof(T) <: Main.SIUnits.SIQuantity
+    T = T.val
+  end
   sqΔt = sqrt(Δt)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
-  maxStackSize = 0
-  #EEst = 0
-
   # This part is a mess. Needs cleaning.
   if alg==:EM
-    u,t,W,timeseries,ts,Ws = sde_eulermaruyama(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,rands,sqΔt,W)
+    u,t,W,timeseries,ts,Ws = sde_eulermaruyama(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps,rands,sqΔt,W)
   elseif alg==:RKMil
-    u,t,W,timeseries,ts,Ws = sde_rkmil(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,rands,sqΔt,W)
+    u,t,W,timeseries,ts,Ws = sde_rkmil(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps,rands,sqΔt,W)
   elseif alg==:SRI
-    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =            sde_sri(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =            sde_sri(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   elseif alg==:SRIW1Optimized
-    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 = sde_sriw1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 = sde_sriw1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   elseif alg==:SRIVectorized
-    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =  sde_srivectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =  sde_srivectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   elseif alg==:SRAVectorized
-    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =  sde_sravectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =  sde_sravectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   elseif alg==:SRA1Optimized || alg==:SRA # Need a devectorized form
-    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =  sde_sra1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+    u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2 =  sde_sra1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   end
 
   (atomloaded && progressbar) ? Main.Atom.progress(t/T) : nothing #Use Atom's progressbar if loaded

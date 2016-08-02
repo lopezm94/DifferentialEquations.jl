@@ -214,7 +214,7 @@ function solve(fem_mesh::FEMmesh,prob::HeatProblem;alg::Symbol=:Euler,
     prob.D = D
   end
   t = 0
-  sqrtΔt= sqrt(Δt)
+
   #Setup f quadraturef
   mid = Array{Float64}(size(node[vec(elem[:,2]),:])...,3)
   mid[:,:,1] = (node[vec(elem[:,2]),:]+node[vec(elem[:,3]),:])/2
@@ -235,6 +235,19 @@ function solve(fem_mesh::FEMmesh,prob::HeatProblem;alg::Symbol=:Euler,
   #Setup for Calculations
   Minv = sparse(inv(M)) #sparse(Minv) needed until update
 
+
+  if typeof(Δt) <: Main.SIUnits.SIQuantity
+    Δt = Δt.val
+  end
+  if typeof(t) <: Main.SIUnits.SIQuantity
+    t = t.val
+  end
+  #=
+  if typeof(T) <: Main.SIUnits.SIQuantity
+    T = T.val
+  end
+  =#
+  sqrtΔt= sqrt(Δt)
   #Heat Equation Loop
   u,timeseres,ts=femheat_solve(FEMHeatIntegrator{linearity,alg,stochasticity}(N,Δt,t,Minv,D,A,freenode,f,gD,gN,u,node,elem,area,bdnode,mid,dirichlet,neumann,islinear,numvars,sqrtΔt,σ,noisetype,fem_mesh.numiters,save_timeseries,timeseries,ts,atomloaded,solver,autodiff,method,show_trace,iterations,timeseries_steps,progressbar,progress_steps))
 

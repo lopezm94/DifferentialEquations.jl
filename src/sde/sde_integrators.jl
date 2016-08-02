@@ -34,7 +34,7 @@ maxStackSize = 0
 maxStackSize2 = 0
 end
 
-function sde_eulermaruyama(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,rands,sqΔt,W)
+function sde_eulermaruyama(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps,rands,sqΔt,W)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   while t<T
@@ -50,7 +50,7 @@ function sde_eulermaruyama(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeser
   u,t,W,timeseries,ts,Ws
 end
 
-function sde_sri(f,σ,u::AbstractArray,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_sri(f,σ,u::AbstractArray,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
@@ -103,7 +103,7 @@ function sde_sri(f,σ,u::AbstractArray,t,Δt,T,iter,maxiters,timeseries,Ws,ts,ti
   u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2
 end
 
-function sde_sriw1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_sriw1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
@@ -148,7 +148,7 @@ function sde_sriw1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timese
   u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2
 end
 
-function sde_sri(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_sri(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
@@ -201,7 +201,7 @@ function sde_sri(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeserie
   u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2
 end
 
-function sde_srivectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_srivectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
@@ -234,7 +234,7 @@ function sde_srivectorized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeser
   u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2
 end
 
-function sde_rkmil(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,rands,sqΔt,W)
+function sde_rkmil(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps,rands,sqΔt,W)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   while t<T
@@ -253,7 +253,7 @@ function sde_rkmil(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_step
   u,t,W,timeseries,ts,Ws
 end
 
-function sde_sra1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_sra1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
@@ -276,7 +276,7 @@ function sde_sra1optimized(f,σ,u,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeser
   u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2
 end
 
-function sde_sravectorized(f,σ,u::AbstractArray,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_sravectorized(f,σ,u::AbstractArray,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first
@@ -303,7 +303,7 @@ function sde_sravectorized(f,σ,u::AbstractArray,t,Δt,T,iter,maxiters,timeserie
   u,t,W,timeseries,ts,Ws,maxStackSize,maxStackSize2
 end
 
-function sde_sravectorized(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,rands,sqΔt,W,Z,tableau)
+function sde_sravectorized(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeseries_steps,save_timeseries,adaptive,adaptivealg,δ,γ,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,numvars,sizeu,discard_length,progressbar,atomloaded,progress_steps,rands,sqΔt,W,Z,tableau)
   iter = 0
   ΔW = sqΔt*next(rands) # Take one first
   ΔZ = sqΔt*next(rands) # Take one first

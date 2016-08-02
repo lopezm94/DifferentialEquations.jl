@@ -2,7 +2,7 @@ __precompile__()
 
 module DifferentialEquations
 
-using IterativeSolvers, Parameters, Plots, GenericSVD,
+using IterativeSolvers, Parameters, Plots, GenericSVD, SIUnits,
       EllipsisNotation, GrowableArrays, ChunkedArrays
 import Base: length, size, getindex, endof, show, print
 
@@ -23,7 +23,6 @@ FunctionOrVoid = Union{Function,Void}
 #Constants
 
 const TEST_FLOPS_CUTOFF = 1e10
-const atomloaded = isdefined(Main,:Atom)
 const initialized_backends = Set{Symbol}()
 
 include("general/backends.jl")

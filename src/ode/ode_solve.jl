@@ -79,7 +79,7 @@ function solve(prob::ODEProblem,tspan::AbstractArray=[0,1];kwargs...)
   if tspan[2]-tspan[1]<0 || length(tspan)>2
     error("tspan must be two numbers and final time must be greater than starting time. Aborting.")
   end
-
+  atomloaded = isdefined(Main,:Atom)
   o = KW(kwargs)
   t = tspan[1]
   T = tspan[2]
@@ -149,28 +149,39 @@ function solve(prob::ODEProblem,tspan::AbstractArray=[0,1];kwargs...)
     timeseries = GrowableArray(u₀)
     ts = Vector{tType}(0)
     push!(ts,t)
+    # Strip units for run, these only add to themselves so valid
+    # Already typed the array so they will be unit'd at the end anyways
+    if typeof(Δt) <: Main.SIUnits.SIQuantity
+      Δt = Δt.val
+    end
+    if typeof(t) <: Main.SIUnits.SIQuantity
+      t = t.val
+    end
+    if typeof(T) <: Main.SIUnits.SIQuantity
+      T = T.val
+    end
     @materialize maxiters,timeseries_steps,save_timeseries,adaptive,progressbar,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,tableau,autodiff= o
     iter = 0
     if alg==:Euler
-      u,t,timeseries,ts = ode_euler(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar)
+      u,t,timeseries,ts = ode_euler(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps)
     elseif alg==:Midpoint
-      u,t,timeseries,ts = ode_midpoint(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar)
+      u,t,timeseries,ts = ode_midpoint(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps)
     elseif alg==:RK4
-      u,t,timeseries,ts = ode_rk4(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar)
+      u,t,timeseries,ts = ode_rk4(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps)
     elseif alg==:ExplicitRK
-      u,t,timeseries,ts = ode_explicitrk(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,A,c,α,αEEst,stages,order,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar)
+      u,t,timeseries,ts = ode_explicitrk(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,A,c,α,αEEst,stages,order,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar,atomloaded,progress_steps)
     elseif alg==:Feagin10
-      u,t,timeseries,ts = ode_feagin10(f,u,t,Δt,T,iter,order,maxiters,timeseries,ts,timeseries_steps,save_timeseries,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar)
+      u,t,timeseries,ts = ode_feagin10(f,u,t,Δt,T,iter,order,maxiters,timeseries,ts,timeseries_steps,save_timeseries,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar,atomloaded,progress_steps)
     elseif alg==:Feagin12
-      u,t,timeseries,ts = ode_feagin12(f,u,t,Δt,T,iter,order,maxiters,timeseries,ts,timeseries_steps,save_timeseries,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar)
+      u,t,timeseries,ts = ode_feagin12(f,u,t,Δt,T,iter,order,maxiters,timeseries,ts,timeseries_steps,save_timeseries,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar,atomloaded,progress_steps)
     elseif alg==:Feagin14
-      u,t,timeseries,ts = ode_feagin14(f,u,t,Δt,T,iter,order,maxiters,timeseries,ts,timeseries_steps,save_timeseries,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar)
+      u,t,timeseries,ts = ode_feagin14(f,u,t,Δt,T,iter,order,maxiters,timeseries,ts,timeseries_steps,save_timeseries,γ,adaptive,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar,atomloaded,progress_steps)
     elseif alg==:ImplicitEuler
-      u,t,timeseries,ts = ode_impliciteuler(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,sizeu,progressbar,autodiff)
+      u,t,timeseries,ts = ode_impliciteuler(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,sizeu,progressbar,atomloaded,progress_steps,autodiff)
     elseif alg==:Trapezoid
-      u,t,timeseries,ts = ode_trapezoid(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,sizeu,progressbar,autodiff)
+      u,t,timeseries,ts = ode_trapezoid(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,sizeu,progressbar,atomloaded,progress_steps,autodiff)
     elseif alg==:Rosenbrock32
-      u,t,timeseries,ts = ode_rosenbrock32(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,sizeu,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar,γ)
+      u,t,timeseries,ts = ode_rosenbrock32(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,sizeu,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,progressbar,atomloaded,progress_steps,γ)
     end
 
   elseif alg ∈ ODEINTERFACE_ALGORITHMS
