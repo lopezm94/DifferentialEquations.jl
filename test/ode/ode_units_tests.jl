@@ -6,7 +6,9 @@ f(y,t) = α*y
 u₀ = 1.5Newton
 prob = ODEProblem(f,u₀)
 
-sol =solve(prob::ODEProblem,[0,1],Δt=(1/2^4)Second,save_timeseries=true,alg=:Midpoint,adaptive=true)
+sol =solve(prob::ODEProblem,[0,1],Δt=(1/2^4)Second,save_timeseries=true,alg=:Midpoint)
+
+sol =solve(prob::ODEProblem,[0,1],Δt=(1/2^4)Second,save_timeseries=true,alg=:ExplicitRK,adaptive=true)
 
 Plots.plotly()
 plot(map((x)->x.val,sol.t),map((x)->x.val,sol[:])) #plot(sol)

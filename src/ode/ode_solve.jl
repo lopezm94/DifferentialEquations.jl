@@ -125,8 +125,8 @@ function solve(prob::ODEProblem,tspan::AbstractArray=[0,1];kwargs...)
     if alg ∉ DIFFERENTIALEQUATIONSJL_ADAPTIVEALGS
       o[:adaptive] = false
     else
-      if o[:adaptive] == true
-        Δt = float(Δt)
+      if o[:adaptive] == true && typeof(Δt)==Int64 # Extend
+        error("Type of Δt must be compatible with operations like sqrt().")
       end
     end
     if alg ∈ DIFFERENTIALEQUATIONSJL_IMPLICITALGS
@@ -149,18 +149,28 @@ function solve(prob::ODEProblem,tspan::AbstractArray=[0,1];kwargs...)
     timeseries = GrowableArray(u₀)
     ts = Vector{tType}(0)
     push!(ts,t)
+
+    @materialize maxiters,timeseries_steps,save_timeseries,adaptive,progressbar,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,tableau,autodiff= o
     # Strip units for run, these only add to themselves so valid
     # Already typed the array so they will be unit'd at the end anyways
-    if typeof(Δt) <: Main.SIUnits.SIQuantity
+    if typeof(Δt) <: SIUnits.SIQuantity
       Δt = Δt.val
     end
-    if typeof(t) <: Main.SIUnits.SIQuantity
+    if typeof(t) <: SIUnits.SIQuantity
       t = t.val
     end
-    if typeof(T) <: Main.SIUnits.SIQuantity
+    if typeof(T) <: SIUnits.SIQuantity
       T = T.val
     end
-    @materialize maxiters,timeseries_steps,save_timeseries,adaptive,progressbar,abstol,reltol,qmax,Δtmax,Δtmin,internalnorm,tableau,autodiff= o
+    if typeof(Δtmax) <: SIUnits.SIQuantity
+      Δtmax = Δtmax.val
+    end
+    if typeof(Δtmin) <: SIUnits.SIQuantity
+      Δtmin = Δtmin.val
+    end
+    if typeof(u) <: SIUnits.SIQuantity
+      abstol = convert(typeof(u),abstol)
+    end
     iter = 0
     if alg==:Euler
       u,t,timeseries,ts = ode_euler(f,u,t,Δt,T,iter,maxiters,timeseries,ts,timeseries_steps,save_timeseries,adaptive,progressbar,atomloaded,progress_steps)
