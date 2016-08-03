@@ -166,10 +166,10 @@ function sde_sri(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeserie
     H0[:]=zeros(size(u)...,length(α))
     H1[:]=zeros(size(u)...,length(α))
     for i = 1:length(α)
-      A0temp = 0.0
-      B0temp = 0.0
-      A1temp = 0.0
-      B1temp = 0.0
+      A0temp = zero(u)
+      B0temp = zero(u)
+      A1temp = zero(u)
+      B1temp = zero(u)
       for j = 1:i-1
         @inbounds A0temp += A₀[i,j]*f(H0[..,j],t + c₀[j]*Δt)
         @inbounds B0temp += B₀[i,j]*σ(H1[..,j],t + c₁[j]*Δt)
@@ -179,10 +179,10 @@ function sde_sri(f,σ,u::Number,t,Δt,T,iter,maxiters,timeseries,Ws,ts,timeserie
       H0[..,i] = u + A0temp*Δt + B0temp.*chi2
       H1[..,i] = u + A1temp*Δt + B1temp*sqΔt
     end
-    atemp = 0.0
-    btemp = 0.0
-    E₂    = 0.0
-    E₁temp= 0.0
+    atemp = zero(u)
+    btemp = zero(u)
+    E₂    = zero(u)
+    E₁temp= zero(u)
     for i = 1:length(α)
       @inbounds ftemp = f(H0[..,i],t+c₀[i]*Δt)
       @inbounds atemp += α[i]*ftemp

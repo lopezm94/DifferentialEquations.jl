@@ -113,7 +113,7 @@ function ode_explicitrk(f::Function,u::Number,t,Δt,T,iter,maxiters,timeseries,t
   while t < T
     @ode_loopheader
     for i = 1:stages
-      utilde = 0
+      utilde = zero(u)
       for j = 1:i-1
         utilde += A[i,j]*ks[j]
       end
