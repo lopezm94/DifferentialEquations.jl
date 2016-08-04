@@ -329,7 +329,7 @@ fem_mesh = notime_squaremesh([0 1 0 1],Δx,:dirichlet)</code></pre>
 <pre class="codehilite"><code class="language-julia">sol = solve(fem_mesh,pdeProb)</code></pre>
 
 
-<p>fem_solvepoisson takes in a mesh and a PoissonProblem and uses the solver to compute the solution. Here the solver was chosen to be GMRES. Other solvers can be found in the documentation. This returns a FEMSolution object which holds data about the solution, such as the solution values (u). To plot the solution, we use the command</p>
+<p>solve takes in a mesh and a PoissonProblem and uses the solver to compute the solution. Here the solver was chosen to be GMRES. Other solvers can be found in the documentation. This returns a FEMSolution object which holds data about the solution, such as the solution values (u). To plot the solution, we use the command</p>
 <pre class="codehilite"><code class="language-julia">plot(sol::FEMSolution)
 Plots.gui()</code></pre>
 
