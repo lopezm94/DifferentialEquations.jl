@@ -240,6 +240,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="../progress_bar/">Juno Progress Bar Integration</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -354,26 +361,7 @@ $$</p>
 <li><code>numvars</code> = The number of variables in the Poisson system. Automatically calculated in many cases.</li>
 <li><code>D</code> = Vector of diffusion coefficients. Defaults is <code>D=ones(1,numvars)</code>.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/general/problems.jl#L154' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">PoissonProblem</span><span class="p">(</span><span class="n">f</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/general/problems.jl#L252">src/general/problems.jl:252</a>
-</li>
-<li>
-    <pre><span class="nf">PoissonProblem</span><span class="p">(</span>
-    <span class="n">f</span><span class="p">,
-</span>    <span class="n">analytic</span><span class="p">,
-</span>    <span class="n">Du</span>
-<span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/general/problems.jl#L225">src/general/problems.jl:225</a>
-</li>
-</ul>
-
-<p><em>Hiding 1 method defined outside of this package.</em></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/general/problems.jl#L154' class='documenter-source'>source</a><br></p>
 <p><a id='Heat-Equation-Problem-1'></a></p>
 <h2 id="heat-equation-problem">Heat Equation Problem</h2>
 <p><a id='DifferentialEquations.HeatProblem' href='#DifferentialEquations.HeatProblem'>#</a>
@@ -403,26 +391,7 @@ $$</p>
 <li><code>numvars</code> = Number of variables in the system. Automatically calculated from u₀ in most cases.</li>
 <li><code>D</code> = Array which defines the diffusion coefficients. Default is <code>D=ones(1,numvars)</code>.</li>
 </ul>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/general/problems.jl#L1-48' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">HeatProblem</span><span class="p">(</span><span class="n">u₀</span><span class="p">, </span><span class="n">f</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/general/problems.jl#L98">src/general/problems.jl:98</a>
-</li>
-<li>
-    <pre><span class="nf">HeatProblem</span><span class="p">(</span>
-    <span class="n">analytic</span><span class="p">,
-</span>    <span class="n">Du</span><span class="p">,
-</span>    <span class="n">f</span>
-<span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/general/problems.jl#L72">src/general/problems.jl:72</a>
-</li>
-</ul>
-
-<p><em>Hiding 1 method defined outside of this package.</em></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/general/problems.jl#L1-L48' class='documenter-source'>source</a><br></p>
 <p><a id='Example-Problems-1'></a></p>
 <h2 id="example-problems">Example Problems</h2>
 <p>Examples problems can be found in <a href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/blob/master/src/premades/premade_problems.jl">src/premades/premade_problems.jl</a></p>
@@ -431,206 +400,71 @@ $$</p>
 <p><a id='DifferentialEquations.poissonProblemExample_wave' href='#DifferentialEquations.poissonProblemExample_wave'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_wave</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem with solution: $u(x,y)= sin(2π.<em>x).</em>cos(2π.<em>y)/(8π</em>π)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L345' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">poissonProblemExample_wave</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L347">src/premades/premade_problems.jl:347</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L345' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.poissonProblemExample_noisyWave' href='#DifferentialEquations.poissonProblemExample_noisyWave'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_noisyWave</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem with deterministic solution: $u(x,y)= sin(2π.<em>x).</em>cos(2π.<em>y)/(8π</em>π)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L353' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">poissonProblemExample_noisyWave</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L355">src/premades/premade_problems.jl:355</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L353' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.poissonProblemExample_birthdeath' href='#DifferentialEquations.poissonProblemExample_birthdeath'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_birthdeath</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem for nonlinear Poisson equation. Uses $f(u)=1-u/2$.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L362' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">poissonProblemExample_birthdeath</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L364">src/premades/premade_problems.jl:364</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L362' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.poissonProblemExample_birthdeathinteractingsystem' href='#DifferentialEquations.poissonProblemExample_birthdeathinteractingsystem'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_birthdeathinteractingsystem</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 1/2 and solves the system $f(u)=1-u/2$ and $f(v)=.5u-v$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L378' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">poissonProblemExample_birthdeathinteractingsystem</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L380">src/premades/premade_problems.jl:380</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L378' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.poissonProblemExample_birthdeathsystem' href='#DifferentialEquations.poissonProblemExample_birthdeathsystem'>#</a>
 <strong><code>DifferentialEquations.poissonProblemExample_birthdeathsystem</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 1/2 and solves the system $f(u)=1-u/2$ and $f(v)=1-v$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L369' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">poissonProblemExample_birthdeathsystem</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L371">src/premades/premade_problems.jl:371</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L369' class='documenter-source'>source</a><br></p>
 <p><a id='Heat-Equation-1'></a></p>
 <h3 id="heat-equation">Heat Equation</h3>
 <p><a id='DifferentialEquations.heatProblemExample_diffuse' href='#DifferentialEquations.heatProblemExample_diffuse'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_diffuse</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem with solution: $u(x,y,t)=exp(-10((x-.5).^2 + (y-.5).^2 )-t)$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L267' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_diffuse</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L269">src/premades/premade_problems.jl:269</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L267' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_pure' href='#DifferentialEquations.heatProblemExample_pure'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_pure</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 1 at (0.5,0.5) and solves with $f=gD=0$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L275' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_pure</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L277">src/premades/premade_problems.jl:277</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L275' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_moving' href='#DifferentialEquations.heatProblemExample_moving'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_moving</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem with solution: $u(x,y,t)=0.1<em>(1-exp(-100</em>(t-0.5).^2)).*exp(-25((x-t+0.5).^2 + (y-t+0.5).^2))$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L256' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_moving</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L258">src/premades/premade_problems.jl:258</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L256' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_birthdeath' href='#DifferentialEquations.heatProblemExample_birthdeath'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_birthdeath</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 0 and solves with $f(u)=1-u/2$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L282' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_birthdeath</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L284">src/premades/premade_problems.jl:284</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L282' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_stochasticbirthdeath' href='#DifferentialEquations.heatProblemExample_stochasticbirthdeath'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_stochasticbirthdeath</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 0 and solves with $f(u)=1-u/2$ with noise $σ(u)=10u^2$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L337' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_stochasticbirthdeath</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L339">src/premades/premade_problems.jl:339</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L337' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_birthdeathinteractingsystem' href='#DifferentialEquations.heatProblemExample_birthdeathinteractingsystem'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_birthdeathinteractingsystem</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 1/2 and solves the system $f(u)=1-u/2$ and $f(v)=.5u-v$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L307' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_birthdeathinteractingsystem</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L309">src/premades/premade_problems.jl:309</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L307' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_gierermeinhardt' href='#DifferentialEquations.heatProblemExample_gierermeinhardt'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_gierermeinhardt</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which solves the Gierer-Meinhardt equations wtih quasi-random initial perturbations.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L326' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_gierermeinhardt</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L328">src/premades/premade_problems.jl:328</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L326' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_birthdeathsystem' href='#DifferentialEquations.heatProblemExample_birthdeathsystem'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_birthdeathsystem</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which starts with 1/2 and solves the system $f(u)=1-u/2$ and $f(v)=1-v$</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L289' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_birthdeathsystem</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L291">src/premades/premade_problems.jl:291</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L289' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_diffusionconstants' href='#DifferentialEquations.heatProblemExample_diffusionconstants'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_diffusionconstants</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which solves the homogeneous Heat equation with all mass starting at (1/2,1/2) with two different diffusion constants.</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L298' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_diffusionconstants</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L300">src/premades/premade_problems.jl:300</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L298' class='documenter-source'>source</a><br></p>
 <p><a id='DifferentialEquations.heatProblemExample_grayscott' href='#DifferentialEquations.heatProblemExample_grayscott'>#</a>
 <strong><code>DifferentialEquations.heatProblemExample_grayscott</code></strong> &mdash; <em>Function</em>.</p>
 <p>Example problem which solves the Gray-Scott equations with quasi-random initial conditions</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L316' class='documenter-source'>source</a><br></p>
-<p><strong>Methods</strong></p>
-<ul class="documenter-methodtable">
-<li>
-    <pre class="documenter-inline"><span class="nf">heatProblemExample_grayscott</span><span class="p">(</span><span class="p">)</span></pre>
-    defined at
-    <a target="_blank" href="https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/premades/premade_problems.jl#L318">src/premades/premade_problems.jl:318</a>
-</li>
-</ul>
-
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/premades/premade_problems.jl#L316' class='documenter-source'>source</a><br></p>
 <p><a id='Related-Functions-1'></a></p>
 <h2 id="related-functions">Related Functions</h2>
 <p><a id='DifferentialEquations.DEProblem' href='#DifferentialEquations.DEProblem'>#</a>
 <strong><code>DifferentialEquations.DEProblem</code></strong> &mdash; <em>Type</em>.</p>
 <p>PdeProblem: Defines differential equation problems via its internal functions</p>
-<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/280a2a15411756011d9d39d9155ef6c133d99f33/src/DifferentialEquations.jl#L10' class='documenter-source'>source</a><br></p>
+<p><a target='_blank' href='https://github.com/ChrisRackauckas/DifferentialEquations.jl/tree/3fc4386a85201b844520988110e97af6cf3c5c45/src/DifferentialEquations.jl#L10' class='documenter-source'>source</a><br></p>
               
             </div>
           </div>

@@ -255,6 +255,13 @@
     </li>
 
         
+            
+    <li class="toctree-l1 ">
+        <a class="" href="man/progress_bar/">Juno Progress Bar Integration</a>
+        
+    </li>
+
+        
     </ul>
 <li>
           
@@ -558,16 +565,9 @@ notebook()</code></pre>
 <p><a id='Manual-1'></a></p>
 <h2 id="manual">Manual</h2>
 <ul>
-<li><a href="man/overview/#Overview-of-DifferentialEquations.jl-Usage-1">Overview of DifferentialEquations.jl Usage</a></li>
-<li><a href="man/overview/#Extras-for-Developers-and-Researchers-1">Extras for Developers and Researchers</a></li>
-<li><a href="man/ODEProblem/#Defining-an-ODE-Problem-1">Defining an ODE Problem</a><ul>
-<li><a href="man/ODEProblem/#Problem-Type-1">Problem Type</a></li>
-<li><a href="man/ODEProblem/#Example-Problems-1">Example Problems</a></li>
-</ul>
-</li>
-<li><a href="man/SDEProblem/#Defining-a-SDE-Problem-1">Defining a SDE Problem</a><ul>
-<li><a href="man/SDEProblem/#Problem-Type-1">Problem Type</a></li>
-<li><a href="man/SDEProblem/#Example-Problems-1">Example Problems</a></li>
+<li><a href="man/plot/#Plot-Functions-1">Plot Functions</a><ul>
+<li><a href="man/plot/#Standard-Plots-1">Standard Plots</a></li>
+<li><a href="man/plot/#Extra-Plot-Functions-1">Extra Plot Functions</a></li>
 </ul>
 </li>
 <li><a href="man/FEMProblem/#Defining-a-FEM-Problem-1">Defining a FEM Problem</a><ul>
@@ -577,11 +577,14 @@ notebook()</code></pre>
 <li><a href="man/FEMProblem/#Related-Functions-1">Related Functions</a></li>
 </ul>
 </li>
-<li><a href="man/StokesProblem/#Defining-a-Stokes-Problem-1">Defining a Stokes Problem</a><ul>
-<li><a href="man/StokesProblem/#Problem-Type-1">Problem Type</a></li>
-<li><a href="man/StokesProblem/#Example-Problems-1">Example Problems</a></li>
+<li><a href="internals/fem_tools/#Internal-Finite-Element-Tools-1">Internal Finite Element Tools</a><ul>
+<li><a href="internals/fem_tools/#General-1">General</a></li>
+<li><a href="internals/fem_tools/#Mesh-Tools-1">Mesh Tools</a></li>
+<li><a href="internals/fem_tools/#Solver-Tools-1">Solver Tools</a></li>
+<li><a href="internals/fem_tools/#Error-Tools-1">Error Tools</a></li>
 </ul>
 </li>
+<li><a href="solvers/fempoisson_solve/#Finite-Element-Method-Poisson-Equation-Solvers-1">Finite Element Method Poisson Equation Solvers</a></li>
 <li><a href="man/mesh/#Meshes-1">Meshes</a><ul>
 <li><a href="man/mesh/#Mesh-Specification-1">Mesh Specification</a></li>
 <li><a href="man/mesh/#Mesh-Type-1">Mesh Type</a></li>
@@ -590,14 +593,63 @@ notebook()</code></pre>
 <li><a href="man/mesh/#Plot-Functions-1">Plot Functions</a></li>
 </ul>
 </li>
+<li><a href="man/progress_bar/#Juno-Progress-Bar-Integration-1">Juno Progress Bar Integration</a></li>
+<li><a href="man/conditional_dependencies/#Conditional-Dependencies-1">Conditional Dependencies</a><ul>
+<li><a href="man/conditional_dependencies/#The-Conditional-Dependency-Notification-1">The Conditional Dependency Notification</a></li>
+<li><a href="man/conditional_dependencies/#What-Methods-Require-Conditional-Dependencies?-1">What Methods Require Conditional Dependencies?</a></li>
+<li><a href="man/conditional_dependencies/#Installation-Instructions-1">Installation Instructions</a></li>
+</ul>
+</li>
 <li><a href="man/solution/#The-Solution-Type-1">The Solution Type</a><ul>
 <li><a href="man/solution/#Solution-Types-1">Solution Types</a></li>
 <li><a href="man/solution/#Related-Functions-1">Related Functions</a></li>
 </ul>
 </li>
-<li><a href="man/plot/#Plot-Functions-1">Plot Functions</a><ul>
-<li><a href="man/plot/#Standard-Plots-1">Standard Plots</a></li>
-<li><a href="man/plot/#Extra-Plot-Functions-1">Extra Plot Functions</a></li>
+<li><a href="solvers/fdmstokes_solve/#Finite-Difference-Method-Stokes-Equation-Solvers-1">Finite Difference Method Stokes Equation Solvers</a><ul>
+<li><a href="solvers/fdmstokes_solve/#Stokes-Equation-1">Stokes Equation</a></li>
+</ul>
+</li>
+<li><a href="tutorials/ode_example/#Ordinary-Differential-Equation-(ODE)-Example-1">Ordinary Differential Equation (ODE) Example</a></li>
+<li><a href="tutorials/femstochastic_example/#Stochastic-Finite-Element-Examples-1">Stochastic Finite Element Examples</a><ul>
+<li><a href="tutorials/femstochastic_example/#Finite-Element-Stochastic-Poisson-Equation-1">Finite Element Stochastic Poisson Equation</a></li>
+<li><a href="tutorials/femstochastic_example/#Finite-Element-Stochastic-Heat-Equation-1">Finite Element Stochastic Heat Equation</a></li>
+</ul>
+</li>
+<li><a href="man/StokesProblem/#Defining-a-Stokes-Problem-1">Defining a Stokes Problem</a><ul>
+<li><a href="man/StokesProblem/#Problem-Type-1">Problem Type</a></li>
+<li><a href="man/StokesProblem/#Example-Problems-1">Example Problems</a></li>
+</ul>
+</li>
+<li><a href="internals/contributors_guide/#Contributor's-Guide-1">Contributor's Guide</a><ul>
+<li><a href="internals/contributors_guide/#Developing-New-Solver-Algorithms-1">Developing New Solver Algorithms</a></li>
+<li><a href="internals/contributors_guide/#Adding-Conditional-Dependencies-1">Adding Conditional Dependencies</a></li>
+<li><a href="internals/contributors_guide/#Developing-A-New-Problem-1">Developing A New Problem</a></li>
+<li><a href="internals/contributors_guide/#Other-Help-1">Other Help</a></li>
+</ul>
+</li>
+<li><a href="man/SDEProblem/#Defining-a-SDE-Problem-1">Defining a SDE Problem</a><ul>
+<li><a href="man/SDEProblem/#Problem-Type-1">Problem Type</a></li>
+<li><a href="man/SDEProblem/#Example-Problems-1">Example Problems</a></li>
+</ul>
+</li>
+<li><a href="man/overview/#Overview-of-DifferentialEquations.jl-Usage-1">Overview of DifferentialEquations.jl Usage</a></li>
+<li><a href="man/overview/#Extras-for-Developers-and-Researchers-1">Extras for Developers and Researchers</a></li>
+<li><a href="tutorials/femheat_example/#Heat-Equation-Finite-Element-Method-Example-1">Heat Equation Finite Element Method Example</a></li>
+<li><a href="tutorials/sde_example/#Stochastic-Differential-Equation-(SDE)-Example-1">Stochastic Differential Equation (SDE) Example</a><ul>
+<li><a href="solvers/femheat_solve/#Finite-Element-Method-Heat-Equation-Solvers-1">Finite Element Method Heat Equation Solvers</a></li>
+</ul>
+</li>
+<li><a href="internals/solver_helpers/#Solver-Helpers-1">Solver Helpers</a><ul>
+<li><a href="internals/solver_helpers/#ODE-Solver-Extras-1">ODE Solver Extras</a></li>
+<li><a href="internals/solver_helpers/#SDE-Solver-Extras-1">SDE Solver Extras</a></li>
+<li><a href="internals/solver_helpers/#Stationary-Stokes-1">Stationary Stokes</a></li>
+</ul>
+</li>
+<li><a href="solvers/sde_solve/#Stochastic-Differential-Equation-Solvers-1">Stochastic Differential Equation Solvers</a></li>
+<li><a href="tutorials/fempoisson_example/#Poisson-Equation-Finite-Element-Method-Example-1">Poisson Equation Finite Element Method Example</a></li>
+<li><a href="man/ODEProblem/#Defining-an-ODE-Problem-1">Defining an ODE Problem</a><ul>
+<li><a href="man/ODEProblem/#Problem-Type-1">Problem Type</a></li>
+<li><a href="man/ODEProblem/#Example-Problems-1">Example Problems</a></li>
 </ul>
 </li>
 <li><a href="man/convergence/#Convergence-Simulations-1">Convergence Simulations</a><ul>
@@ -606,10 +658,24 @@ notebook()</code></pre>
 <li><a href="man/convergence/#Related-Functions-1">Related Functions</a></li>
 </ul>
 </li>
-<li><a href="man/conditional_dependencies/#Conditional-Dependencies-1">Conditional Dependencies</a><ul>
-<li><a href="man/conditional_dependencies/#The-Conditional-Dependency-Notification-1">The Conditional Dependency Notification</a></li>
-<li><a href="man/conditional_dependencies/#What-Methods-Require-Conditional-Dependencies?-1">What Methods Require Conditional Dependencies?</a></li>
-<li><a href="man/conditional_dependencies/#Installation-Instructions-1">Installation Instructions</a></li>
+<li><a href="solvers/ode_solve/#Ordinary-Differential-Equation-Solvers-1">Ordinary Differential Equation Solvers</a><ul>
+<li><a href="solvers/ode_solve/#Pros-and-Cons-of-Different-Methods-1">Pros and Cons of Different Methods</a></li>
+</ul>
+</li>
+<li><a href="internals/extras/#Extra-Functions-1">Extra Functions</a></li>
+<li><a href=".#DifferentialEquations.jl-Documentation-1">DifferentialEquations.jl Documentation</a><ul>
+<li><a href=".#Using-the-Package-1">Using the Package</a></li>
+</ul>
+</li>
+<li><a href=".#Supported-Equations-1">Supported Equations</a></li>
+<li><a href=".#Implemented-Solvers-1">Implemented Solvers</a></li>
+<li><a href=".#Roadmap-1">Roadmap</a><ul>
+<li><a href=".#IJulia-Notebook-Tutorials-1">IJulia Notebook Tutorials</a></li>
+<li><a href=".#Tutorials-1">Tutorials</a></li>
+<li><a href=".#Solver-Options-1">Solver Options</a></li>
+<li><a href=".#Manual-1">Manual</a></li>
+<li><a href=".#Internal-Documentation-1">Internal Documentation</a></li>
+<li><a href=".#Index-1">Index</a></li>
 </ul>
 </li>
 </ul>
@@ -641,7 +707,6 @@ notebook()</code></pre>
 <p><a id='Index-1'></a></p>
 <h2 id="index">Index</h2>
 <ul>
-<li><a href="internals/fem_tools/#DifferentialEquations"><code>DifferentialEquations</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.ODE_DEFAULT_TABLEAU"><code>DifferentialEquations.ODE_DEFAULT_TABLEAU</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.ConvergenceSimulation"><code>DifferentialEquations.ConvergenceSimulation</code></a></li>
 <li><a href="man/FEMProblem/#DifferentialEquations.DEProblem"><code>DifferentialEquations.DEProblem</code></a></li>
@@ -688,7 +753,6 @@ notebook()</code></pre>
 <li><a href="internals/solver_helpers/#DifferentialEquations.constructRalston"><code>DifferentialEquations.constructRalston</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.constructSRA1"><code>DifferentialEquations.constructSRA1</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.constructSRIW1"><code>DifferentialEquations.constructSRIW1</code></a></li>
-<li><a href="man/convergence/#DifferentialEquations.conv_ests"><code>DifferentialEquations.conv_ests</code></a></li>
 <li><a href="man/SDEProblem/#DifferentialEquations.cubicSDEExample"><code>DifferentialEquations.cubicSDEExample</code></a></li>
 <li><a href="man/StokesProblem/#DifferentialEquations.dirichletzeroStokesExample"><code>DifferentialEquations.dirichletzeroStokesExample</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.fem_squaremesh"><code>DifferentialEquations.fem_squaremesh</code></a></li>
@@ -731,11 +795,11 @@ notebook()</code></pre>
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts"><code>DifferentialEquations.quadpts</code></a></li>
 <li><a href="internals/fem_tools/#DifferentialEquations.quadpts1"><code>DifferentialEquations.quadpts1</code></a></li>
 <li><a href="man/mesh/#DifferentialEquations.setboundary"><code>DifferentialEquations.setboundary</code></a></li>
-<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
-<li><a href="solvers/fempoisson_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/femheat_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.HeatProblem}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/fdmstokes_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.StokesProblem,DifferentialEquations.FDMMesh}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/sde_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.SDEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="solvers/ode_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.ODEProblem,AbstractArray}"><code>DifferentialEquations.solve</code></a></li>
+<li><a href="solvers/fempoisson_solve/#DifferentialEquations.solve-Tuple{DifferentialEquations.FEMmesh,DifferentialEquations.PoissonProblem}"><code>DifferentialEquations.solve</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_prolongation"><code>DifferentialEquations.stokes_prolongation</code></a></li>
 <li><a href="internals/solver_helpers/#DifferentialEquations.stokes_restriction"><code>DifferentialEquations.stokes_restriction</code></a></li>
 <li><a href="man/convergence/#DifferentialEquations.test_convergence"><code>DifferentialEquations.test_convergence</code></a></li>
@@ -796,5 +860,5 @@ notebook()</code></pre>
 
 <!--
 MkDocs version : 0.15.3
-Build Date UTC : 2016-08-06 11:58:27.395027
+Build Date UTC : 2016-08-07 05:07:21.151732
 -->
